@@ -8,7 +8,7 @@ class Helper
         $data = $model::orderBy('id','desc')->first();
         if(!$data){
             $og_length = $length;
-            $last_number = '';
+            $last_number = '1';
         }else{
             $code = substr($data->$trow, strlen($prefix)+1);
             $actial_last_number = $code;
@@ -19,7 +19,7 @@ class Helper
         }
         $zeros = "";
         for($i=0;$i<$og_length;$i++){
-            $zeros.="0";
+            $zeros.="";
         }
         return $prefix.'-'.$zeros.$last_number;
     }

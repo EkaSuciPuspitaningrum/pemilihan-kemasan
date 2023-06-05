@@ -53,7 +53,7 @@
                                             <td>{{$produk->id_produk}}</td>
                                             <td>{{$produk->jenis_produk}}</td>
                                             <td>{{$produk->keterangan_produk}}</td>
-                                            <td><a data-toggle="modal" href="/produk_show/{{$produk->id_produk}}"  data-target="#editJenis" type="button" class="btn btn-warning">Edit</a>
+                                            <td><a data-toggle="modal"  data-target="#editJenis" type="button" class="btn btn-warning">Edit</a>
                                                 <a href="" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
@@ -103,7 +103,7 @@
                                             <td>{{$kriteria->id_kriteria}}</td>
                                             <td>{{$kriteria->kriteria_produk}}</td>
                                             <td>{{$kriteria->keterangan_kriteria}}</td>
-                                            <td><a href="" type="button" class="btn btn-warning">Edit</a>
+                                            <td><a data-toggle="modal"  data-target="#editKriteria" type="button" class="btn btn-warning">Edit</a>
                                                 <a href="" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
@@ -206,6 +206,97 @@
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade"
+            tabindex="-1"
+            role="dialog"
+            id="editJenis">
+            <div class="modal-dialog"
+                role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Data Jenis-Jenis Produk</h5>
+                        <button type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form method="POST">
+                        @csrf
+                        <div class="modal-body modal-lg">
+                            <div class="form-group">
+                                <label for="jeniskemasan">Jenis Produk</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="jenis_produk" name="jenis_produk">
+                            </div>
+                            <div class="form-group">
+                                <label for="jeniskemasan">Keterangan Jenis Produk</label>
+                                <textarea class="form-control" style="height: 150px" name="keterangan_produk"
+                                 required></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer bg-whitesmoke br">
+                            <button type="button"
+                                class="btn btn-danger"
+                                data-dismiss="modal">Tutup</button>
+                            <button type="submit"
+                                class="btn btn-primary">Edit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>     
+</div>
+
+
+<div class="modal fade"
+            tabindex="-1"
+            role="dialog"
+            id="editKriteria">
+            <div class="modal-dialog"
+                role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Data Kriteria - Kriteria Produk</h5>
+                        <button type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{{ url("/kriteria_store") }}" method="POST">
+                        @csrf
+                        <div class="modal-body modal-lg">
+                            <div class="form-group">
+                                <label for="kriteriaproduk">Kriteria Produk</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="kriteria_produk" name="kriteria_produk">
+                            </div>
+                            <div class="form-group">
+                                <label for="kriteriaproduk">Keterangan Kriteria Produk</label>
+                                <textarea class="form-control" style="height: 150px" name="keterangan_kriteria"
+                                 required></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer bg-whitesmoke br">
+                            <button type="button"
+                                class="btn btn-danger"
+                                data-dismiss="modal">Tutup</button>
+                            <button type="submit"
+                                class="btn btn-primary">Edit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>     
+</div>
+
 </div>
 @endsection
 

@@ -29,8 +29,12 @@ use Illuminate\Support\Facades\Route;
 //     return view('halaman.dashboard');
 // });
 
+// Route::get('/', function () {
+//     return view('admin.dashboard');
+// });
+
 Route::get('/', function () {
-    return view('admin.dashboard');
+    return view('login.login');
 });
 
 //admin
