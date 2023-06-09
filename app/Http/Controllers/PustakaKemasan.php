@@ -11,7 +11,7 @@ class PustakaKemasan extends Controller
     public function show()
     {
         $data = ["jenis_kemasan"=>JenisKemasan::all()];
-        return view('admin.pustaka_kemasan', $data, [
+        return view('pakar.pustaka_kemasan', $data, [
             'type_menu' => 'pustaka_kemasan',
         ]);
     }

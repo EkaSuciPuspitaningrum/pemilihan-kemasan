@@ -8,7 +8,7 @@ class AturanKemasan extends Controller
 {
     public function show()
     {
-        return view('admin.aturan-kemasan', [
+        return view('pakar.tentang-metode', [
             'type_menu' => 'aturan',
         ]);
     }

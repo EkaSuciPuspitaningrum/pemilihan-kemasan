@@ -8,7 +8,7 @@ class TentangMetode extends Controller
 {
     public function show()
     {
-        return view('halaman.tentang-metode', [
+        return view('user.tentang-metode', [
             'type_menu' => 'cari',
         ]);
     }

@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\AturanKemasan;
+use App\Http\Controllers\AuthRegis;
 use App\Http\Controllers\Dashboard;
-use App\Http\Controllers\DashboardAdmin;
-use App\Http\Controllers\KriteriaKemasan;
+use App\Http\Controllers\DashboardPakar;
 use App\Http\Controllers\PencarianKemasan;
 use App\Http\Controllers\PustakaKemasan;
 use App\Http\Controllers\PustakaProduk;
@@ -30,24 +30,27 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Route::get('/', function () {
-//     return view('admin.dashboard');
+//     return view('pakar.dashboard');
 // });
 
 Route::get('/', function () {
     return view('login.login');
 });
 
-//admin
-Route::get('/dashboard', [Dashboard::class,'show'])->name('dashboard.show');
+//pakar
 
-Route::get('/cari', [PencarianKemasan::class,'show'])->name('cari.show');
-Route::get('/history', [PencarianKemasan::class,'show'])->name('history.showhistory');
+Route::name('auth')->group(function(){
+    Route::get('/regis_user', [AuthRegis::class,'show_regis_user'])->name('show_regis_user');
+    Route::get('/regis_pakar', [AuthRegis::class,'show_regis_pakar'])->name('show_regis_pakar');
 
-Route::get('/tentang', [TentangMetode::class,'show'])->name('tentang.show');
+});
 
+Route::name('super-admin')->group(function () {
+   
+});
 
-Route::name('admin')->group(function () {
-    Route::get('/dashboard_admin', [DashboardAdmin::class,'show'])->name('dashboard_admin.show');
+Route::name('pakar')->group(function () {
+    Route::get('/dashboard_pakar', [DashboardPakar::class,'show'])->name('dashboard_pakar.show');
     
     Route::get('/pustaka_produk', [PustakaProduk::class,'show'])->name('pustaka_produk.show');
     Route::post('/produk_store', [PustakaProduk::class,'store'])->name('produk_store');
@@ -61,6 +64,7 @@ Route::name('admin')->group(function () {
 
 Route::name('user')->group(function () {
     Route::get('/dashboard_user', [Dashboard::class,'show'])->name('dashboard.show'); 
-    Route::get('/pustaka_kemasan', [PustakaKemasan::class,'show'])->name('pustaka_kemasan.show');
-    Route::get('/aturan', [AturanKemasan::class,'show'])->name('aturan.show');
+    Route::get('/tentang', [TentangMetode::class,'show'])->name('tentang.show');
+    Route::get('/cari', [PencarianKemasan::class,'show'])->name('cari.show');
+Route::get('/history', [PencarianKemasan::class,'show'])->name('history.showhistory');
 });

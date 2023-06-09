@@ -13,7 +13,7 @@ class PustakaProduk extends Controller
     {
         $data = ["jenis_produk"=>JenisProduk::all()];
         $kriteria = ["kriteria_produk"=>KriteriaProduk::all()];
-        return view('admin.pustaka_produk', $data, $kriteria,[
+        return view('pakar.pustaka_produk', $data, $kriteria,[
             'type_menu' => 'pustaka_produk',
         ]);
     }
@@ -33,7 +33,7 @@ class PustakaProduk extends Controller
 
     public function produk_edit($id){
         $data = JenisProduk::find($id); 
-        return view('admin.pustaka_produk', compact('data'));
+        return view('pakar.pustaka_produk', compact('data'));
     }
 
     public function kriteriaStore(Request $request)
