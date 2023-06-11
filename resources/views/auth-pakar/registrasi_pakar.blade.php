@@ -42,45 +42,69 @@
                 <div class="card-body">
 
                   <form method="POST">
+
                     <div class="row">
                       <div class="form-group col-6">
                         <label for="frist_name">First Name</label>
-                        <input id="frist_name" type="text" class="form-control" name="frist_name" autofocus="" spellcheck="false" data-ms-editor="true">
+                        <input id="frist_name" type="text" class="form-control" required name="frist_name" autofocus="" spellcheck="false" data-ms-editor="true">
                       </div>
                       <div class="form-group col-6">
                         <label for="last_name">Last Name</label>
                         <input id="last_name" type="text" class="form-control" name="last_name">
                       </div>
                     </div>
-  
-                    <div class="form-group">
-                      <label for="email">Email</label>
-                      <input id="email" type="email" class="form-control" name="email">
-                      <div class="invalid-feedback">
-                      </div>
-                    </div>
-  
+                    
                     <div class="row">
                       <div class="form-group col-6">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" class="form-control" required name="email">
+                        <div class="invalid-feedback">
+                        </div>
+                      </div>
+                      <div class="form-group col-6">
                         <label for="password" class="d-block">Password</label>
-                        <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password">
+                        <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" required name="password">
                         <div id="pwindicator" class="pwindicator">
                           <div class="bar"></div>
                           <div class="label"></div>
                         </div>
                       </div>
+                    </div>
+
+                    <div class="row">
                       <div class="form-group col-6">
-                        <label for="password2" class="d-block">Password Confirmation</label>
-                        <input id="password2" type="password" class="form-control" name="password-confirm">
+                        <label for="pend_terakhir">Pendidikan Terakhir</label>
+                        <select name="pend_terakhir" id="pend_terakhir" class="form-control">
+                          <option value="D4/S1/Setara">D4/S1/Setara</option>
+                          <option value="S2/Setara">S2/Setara</option>
+                          <option value="S3/Setara">S3/Setara</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-6">
+                        <label for="nama_instansi">Nama Instansi</label>
+                        <input id="nama_instansi" type="text" required class="form-control" name="nama_instansi" autofocus="" spellcheck="false" data-ms-editor="true">
                       </div>
                     </div>
-  
+
+                    <div class="form-group">
+                      <label for="nama_instansi">Ijazah Pendidikan Terakhir</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input " id="customFile">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                      </div>
+                      
+                    </div>
                     
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-lg btn-block">
-                        Register
+                        Daftar
                       </button>
                     </div>
+                    <div class="mt-5 text-center">
+                      Sudah Memiliki Akun ?  
+                      <a style="text-align: right" href="{{ url('/') }}"> Login</a>
+                  </div>
+                  <br>
                   </form>
                 </div>
               </div>

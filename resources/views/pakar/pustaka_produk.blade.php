@@ -1,12 +1,14 @@
-@extends('layouts-admin.app')
+@extends('layouts-pakar.app')
 
-@section('title', 'Jenis Kemasan')
+@section('title', 'Data Produk')
 
 @push('style')
     <!-- CSS Libraries -->
-    <link rel="stylesheet" href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
     <link rel="stylesheet"
         href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('library/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet"
         href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
 @endpush
@@ -32,18 +34,18 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div id="table" class="table" > 
+                            <div> 
                                 @php
                                     $i=1;
                                 @endphp 
-                                <table id="table" class="table-striped table" style="text-align: center">
+                                <table id="table" class="table-striped table"  style="text-align: center">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Kode Jenis</th>
-                                            <th scope="col">Jenis Produk</th>
-                                            <th scope="col">Keterangan Jenis Produk</th>
-                                            <th scope="col">Action</th>
+                                            <th  style="text-align: center" scope="col">#</th>
+                                            <th  style="text-align: center" scope="col">Kode Jenis</th>
+                                            <th  style="text-align: center" scope="col">Jenis Produk</th>
+                                            <th  style="text-align: center" scope="col">Keterangan Jenis Produk</th>
+                                            <th  style="text-align: center" scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody >
@@ -82,18 +84,18 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div id="table" class="table" > 
+                            <div> 
                                 @php
                                     $i=1;
                                 @endphp 
-                                <table id="table" class="table-striped table" style="text-align: center">
+                                <table id="table-2" class="table-striped table" style="text-align: center">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Kode Kriteria</th>
-                                            <th scope="col">Kriteria Produk</th>
-                                            <th scope="col">Keterangan Kriteria Produk</th>
-                                            <th scope="col">Action</th>
+                                            <th style="text-align: center" scope="col">#</th>
+                                            <th style="text-align: center" scope="col">Kode Kriteria</th>
+                                            <th style="text-align: center" scope="col">Kriteria Produk</th>
+                                            <th style="text-align: center" scope="col">Keterangan Kriteria Produk</th>
+                                            <th style="text-align: center" scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody >
@@ -304,14 +306,17 @@
     <!-- JS Libraies -->
     <script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="{{ asset('library/simpleweather/jquery.simpleWeather.min.js') }}"></script>
     <script src="{{ asset('library/chart.js/dist/Chart.min.js') }}"></script>
     <script src="{{ asset('library/jqvmap/dist/jquery.vmap.min.js') }}"></script>
     <script src="{{ asset('library/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
     <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
+    <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/table.js') }}"></script>
+    <script src="{{ asset('js/page/table-2.js') }}"></script>
+    <script src="{{ asset('js/page/index-0.js') }}"></script>
+    <script src="{{ asset('js/page/forms-advanced-forms.js') }}"></script>
 @endpush

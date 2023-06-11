@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->text("id_kemasan");
             $table->string("jenis_kemasan")->nullable();
-            $table->string("bahan_kemasan")->nullable();
             $table->string("keterangan_kemasan")->nullable();
             $table->timestamps();
         });

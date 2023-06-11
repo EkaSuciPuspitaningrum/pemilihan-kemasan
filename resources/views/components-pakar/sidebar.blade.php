@@ -14,15 +14,18 @@
             <li class="{{ Request::is('pustaka_produk') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('pustaka_produk') }}"><i class="fas fa-tag"></i><span>Data Produk</span></a>
             </li>
-
             <li class="menu-header">Pustaka Kemasan</li>
             <li class="{{ Request::is('pustaka_kemasan') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('pustaka_kemasan') }}"><i class="fas fa-box"></i><span>Data Kemasan</span></a>
             </li>
-
             <li class="menu-header">Pengetahuan</li>
             <li class="{{ Request::is('aturan') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('aturan') }}"><i class="fas fa-book-open"></i><span>Basis Pengetahuan Kemasan</span></a>
+            </li>
+
+            <li class="menu-header">Tentang</li>
+            <li class="{{ Request::is('tentang') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('pakar_metode') }}"><i class="fas fa-solid fa-circle-exclamation"></i><span>Penjelasan Metode</span></a>
             </li>
         </ul>
     </aside>

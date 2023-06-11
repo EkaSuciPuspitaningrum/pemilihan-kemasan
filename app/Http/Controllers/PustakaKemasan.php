@@ -23,7 +23,6 @@ class PustakaKemasan extends Controller
        $kemasan = new JenisKemasan();
        $kemasan->id_kemasan = $generator;
        $kemasan->jenis_kemasan = $request->jenis_kemasan;
-       $kemasan->bahan_kemasan = $request->bahan_kemasan;
        $kemasan->keterangan_kemasan = $request->keterangan_kemasan;
        $kemasan->save();
        

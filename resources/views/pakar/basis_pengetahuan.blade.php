@@ -1,12 +1,10 @@
-@extends('layouts.app')
+@extends('layouts-pakar.app')
 
 @section('title', 'Aturan Kemasan')
 
 @push('style')
     <!-- CSS Libraries -->
-    <link rel="stylesheet" href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/css/select.bootstrap4.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
     <link rel="stylesheet"
         href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
     <link rel="stylesheet"
@@ -36,42 +34,42 @@
                             <div class="buttons">
                                 <button class="btn btn-primary"
                                 data-toggle="modal"
-                                data-target="#exampleModal">Tambah Basis Pengetahuan Kemasan</button>
+                                data-target="#pengetahuanModal">Tambah Basis Pengetahuan Kemasan</button>
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="table" >
-                                <table class="table-striped table">
+                            <div> 
+                                @php
+                                    $i=1;
+                                @endphp 
+                                <table id="table" class="table" style="text-align: center">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">First</th>
-                                            <th scope="col">Last</th>
-                                            <th scope="col">Handle</th>
-                                            <th scope="col">First</th>
-                                            <th scope="col">Last</th>
-                                            <th scope="col">Handle</th>
+                                            <th style="text-align: center" scope="col">#</th>
+                                            <th style="text-align: center" scope="col">Kode Pengetahuan</th>
+                                            <th style="text-align: center" scope="col">Jenis Kemasan</th>
+                                            <th style="text-align: center" scope="col">Kriteria Produk</th>
+                                            <th style="text-align: center" scope="col">MB</th>
+                                            <th style="text-align: center" scope="col">MD</th>
+                                            <th style="text-align: center" scope="col">CF</th>
+                                            <th style="text-align: center" scope="col">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody >
+                                        @foreach ($dataa as $data )
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
+                                            <th>{{ $i++}}</th>
+                                            <td>{{$data->id_pengetahuan}}</td>
+                                            <td>{{$data->jenis_kemasan}}</td>
+                                            <td>{{$data->kriteria_produk}}</td>
+                                            <td>{{$data->nilai_mb}}</td>
+                                            <td>{{$data->nilai_md}}</td>
+                                            <td>{{$data->nilai_cf}}</td>
+                                            <td><a data-toggle="modal" href="/pengetahuan_show/{{$data->id_pengetahuan}}"  data-target="#editData" type="button" class="btn btn-warning">Edit</a>
+                                                <a href="" type="button" class="btn btn-danger">Hapus</a>
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -85,7 +83,7 @@
     <div class="modal fade"
             tabindex="-1"
             role="dialog"
-            id="exampleModal">
+            id="pengetahuanModal">
             <div class="modal-dialog"
                 role="document">
                 <div class="modal-content">
@@ -98,65 +96,59 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body modal-lg">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="kodejenis">Kode Pengetahuan</label>
-                                <input type="text"
-                                       class="form-control"
-                                       id="kodejenis" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Kriteria Kemasan</label>
-                                <select class="form-control select2"
-                                    multiple="">
-                                    <option>P01 - Mudah rusak</option>
-                                    <option>Option 2</option>
-                                    <option>Option 3</option>
+                    <form action="{{ url("/pengetahuan_store") }}" method="POST">
+                        @csrf
+                        <div class="modal-body modal-lg">
+                            <div class="form-group">
+                                <label>Jenis Kemasan</label>
+                                <select name="jenis_kemasan" class="form-control">
+                                    @foreach ($kemasan as $kemas)
+                                        <option>{{ $kemas->jenis_kemasan }}</option>
+                                    @endforeach
                                 </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Jenis Kemasan</label>
-                                    <select class="form-control">
-                                        <option>Option 1</option>
-                                        <option>Option 2</option>
-                                        <option>Option 3</option>
+                            </div>
+                            <div class="form-group">
+                                <label>Kriteria Produk</label>
+                                <select name="kriteria_produk" class="form-control">
+                                    @foreach ($produk as $product)
+                                        <option>{{ $product->jenis_produk}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="nilaipercaya">Nilai Kepercayaan (MB)</label>
+                                    <select id="nilai_mb" name="nilai_mb" class="form-control">
+                                        <option value="1">Sangat Yakin</option>
+                                        <option value="0.8">Yakin</option>
+                                        <option value="0.6">Cukup Yakin</option>
+                                        <option value="0.4">Kurang Yakin</option>
+                                        <option value="0.2">Tidak Tahu</option>
+                                        <option value="0">Tidak</option>
                                     </select>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="nilaipercaya">Nilai Kepercayaan (MB)</label>
-                                <select class="form-control">
-                                    <option value="0">Tidak Tahu</option>
-                                    <option value="0.4">Mungkin</option>
-                                    <option value="0.6">Kemungkinan Besar</option>
-                                    <option value="0.8">Hampir Pasti</option>
-                                    <option value="1">Pasti</option>
-                                </select>
-                                    <code>Hasil berdasarkan pakar</code>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="nilaitdkpercaya">Nilai Ketidakpercayaan (MD)</label>
+                                    <select id="nilai_md" name="nilai_md" class="form-control">
+                                        <option value="1">Sangat Yakin</option>
+                                        <option value="0.8">Yakin</option>
+                                        <option value="0.6">Cukup Yakin</option>
+                                        <option value="0.4">Kurang Yakin</option>
+                                        <option value="0.2">Tidak Tahu</option>
+                                        <option value="0">Tidak</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="nilaitdkpercaya">Nilai Ketidakpercayaan (MD)</label>
-                                <select class="form-control">
-                                    <option value="0">Tidak Tahu</option>
-                                    <option value="0.4">Mungkin</option>
-                                    <option value="0.6">Kemungkinan Besar</option>
-                                    <option value="0.8">Hampir Pasti</option>
-                                    <option value="1">Pasti</option>
-                                </select>
-                                       <code>Hasil berdasarkan user</code>
-                            </div>
+
                         </div>
-                    </div>
-                    <div class="modal-footer bg-whitesmoke br">
-                        <button type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal">Close</button>
-                        <button type="button"
-                            class="btn btn-primary">Save changes</button>
-                    </div>
+                        <div class="modal-footer bg-whitesmoke br">
+                            <button type="button"
+                                class="btn btn-danger"
+                                data-dismiss="modal">Tutup</button>
+                            <button type="submit"
+                                class="btn btn-primary">Tambah</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -167,8 +159,7 @@
 @push('scripts')
     <!-- JS Libraies -->
     <script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/select/1.3.3/js/select.bootstrap4.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
     <script src="{{ asset('library/simpleweather/jquery.simpleWeather.min.js') }}"></script>
     <script src="{{ asset('library/chart.js/dist/Chart.min.js') }}"></script>
     <script src="{{ asset('library/jqvmap/dist/jquery.vmap.min.js') }}"></script>

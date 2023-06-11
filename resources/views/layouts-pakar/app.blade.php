@@ -48,16 +48,16 @@
     <div id="app">
         <div class="main-wrapper">
             <!-- Header -->
-            @include('components-admin.header')
+            @include('components-pakar.header')
 
             <!-- Sidebar -->
-            @include('components-admin.sidebar')
+            @include('components-pakar.sidebar')
 
             <!-- Content -->
             @yield('main')
 
             <!-- Footer -->
-            @include('components-admin.footer')
+            @include('components-pakar.footer')
         </div>
     </div>
 

@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AturanKemasan;
+use App\Http\Controllers\AutAdmin;
 use App\Http\Controllers\AuthRegis;
+use App\Http\Controllers\AuthAdmin;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\DashboardPakar;
 use App\Http\Controllers\PencarianKemasan;
@@ -21,13 +23,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('auth.login');
-// });
-
-// Route::get('/', function () {
-//     return view('halaman.dashboard');
-// });
 
 // Route::get('/', function () {
 //     return view('pakar.dashboard');
@@ -46,6 +41,7 @@ Route::name('auth')->group(function(){
 });
 
 Route::name('super-admin')->group(function () {
+    Route::get('/login_admin', [AutAdmin::class,'show_login_admin'])->name('show_login_admin');
    
 });
 
@@ -59,7 +55,15 @@ Route::name('pakar')->group(function () {
   
     Route::get('/pustaka_kemasan', [PustakaKemasan::class,'show'])->name('pustaka_kemasan.show');
     Route::post('/kemasan_store', [PustakaKemasan::class,'store'])->name('kemasan_store');
+    
     Route::get('/aturan', [AturanKemasan::class,'show'])->name('aturan.show');
+    Route::post('/pengetahuan_store', [AturanKemasan::class,'store'])->name('pengetahuan_store');
+    Route::get('/pengetahuan_show/{id}', [AturanKemasan::class,'pengetahuan_edit'])->name('pengetahuan_edit');
+    
+    Route::get('/pakar_metode', [TentangMetode::class,'pakar_show'])->name('pakar_show');
+    Route::get('/user_metode', [TentangMetode::class,'user_show'])->name('user_show');
+
+
 });
 
 Route::name('user')->group(function () {

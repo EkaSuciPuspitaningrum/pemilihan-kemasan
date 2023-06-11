@@ -36,7 +36,7 @@
                     <div class="m-3 p-4">
                         <h4 class="text-dark font-weight-normal">Selamat Datang di <span class="font-weight-bold">Web Sistem Pakar Untuk Pemilihan Kemasan Produk</span>
                         </h4>
-                        <p class="text-muted">Sebelum memulai, Anda harus masuk atau mendaftar jika Anda belum memiliki akun</p>
+                        <p class="text-muted">Sebelum memulai, Anda harus masuk terlebih dahulu.</p>
                         <br>
                         <form method="POST"
                             action="#"
@@ -78,26 +78,6 @@
                                     tabindex="4">
                                     Login
                                 </button>
-                            </div>
-                            <div class="mt-5 text-center">
-                                Apakah Anda Admin?
-                                <a style="text-align: right" href="{{ url('login_admin') }}">Login Sebagai Admin</a>
-
-                            </div>
-
-                            <div class="mt-5 text-center">
-                                Belum memiliki akun?
-                            </div>
-                            <br>
-                            <div class="section-body">
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <a style="text-align: right" href="{{ url('regis_user') }}">Daftar Sebagai Pengguna</a>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <a style="text-align: left" href="{{ url('regis_pakar') }}">Daftar Sebagai Pakar</a>
-                                    </div>
-                                </div>
                             </div>
                         </form>
 
