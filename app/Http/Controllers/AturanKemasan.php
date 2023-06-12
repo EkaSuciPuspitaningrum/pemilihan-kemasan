@@ -14,12 +14,12 @@ class AturanKemasan extends Controller
     {
         $dataa = ["dataa"=>BasisPengetahuan::all()];
         $kemasan = ["kemasan"=>JenisKemasan::all()];
-        $produk = ["produk"=>KriteriaProduk::all()];
-        return view('pakar.basis_pengetahuan', $dataa, $kemasan, $produk,[
+        $kriteria = ["kriteria"=>KriteriaProduk::all()];
+        return view('pakar.basis_pengetahuan', $dataa, $kemasan, $kriteria, [
             'type_menu' => 'aturan',
-            // "kemasan" => $kemasan,
-            // "produk" => $produk,
-            // "dataa" => $dataa,
+            "dataa" => $dataa,
+            "kemasan" => $kemasan,
+            "kriteria" => $kriteria,
         ]);
     }
 
@@ -30,7 +30,7 @@ class AturanKemasan extends Controller
        $pengetahuan = new BasisPengetahuan();
        $pengetahuan->id_pengetahuan = $generator;
        $pengetahuan->jenis_kemasan = $request->jenis_kemasan;
-       $pengetahuan->kriteria_produk = $request->kriteria_produk;
+       $pengetahuan->kriteria = $request->kriteria;
        
        $nilai_mb = $request->input('nilai_mb');
        $nilai_md = $request->input('nilai_md');

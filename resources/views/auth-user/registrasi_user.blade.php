@@ -41,27 +41,28 @@
               <div class="card card-primary">
             
                 <div class="card-body">
-                  <form method="POST">
+                  <form method="POST" action="{{ url("/akun_user_store") }}">
+                    @csrf
                     <div class="row">
                       <div class="form-group col-6">
-                        <label for="frist_name">First Name</label>
-                        <input id="frist_name" type="text" class="form-control" name="frist_name" autofocus="" data-ms-editor="true">
+                        <label for="first_name_user">First Name</label>
+                        <input id="first_name_user" type="text" class="form-control" name="first_name_user" autofocus="" data-ms-editor="true" required>
                       </div>
                       <div class="form-group col-6">
-                        <label for="last_name">Last Name</label>
-                        <input id="last_name" type="text" class="form-control" name="last_name">
+                        <label for="last_name_user">Last Name</label>
+                        <input id="last_name_user" type="text" class="form-control" name="last_name_user">
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-6">
                         <label for="email">Email</label>
-                        <input id="email" type="email" class="form-control" name="email">
+                        <input id="email" type="email" class="form-control" name="email" required>
                         <div class="invalid-feedback">
                         </div>
                       </div>
                       <div class="form-group col-6">
                         <label for="password" class="d-block">Password</label>
-                        <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password">
+                        <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password" required>
                         <div id="pwindicator" class="pwindicator">
                           <div class="bar"></div>
                           <div class="label"></div>

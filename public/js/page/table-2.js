@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('#table-2').DataTable({
         scrollX: true,
-        autoWidth: true,
+        autoWidth: false,
         paging: true,
         info: true,
         searching: true,

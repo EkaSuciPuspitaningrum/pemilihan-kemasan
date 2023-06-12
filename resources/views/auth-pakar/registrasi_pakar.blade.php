@@ -41,16 +41,16 @@
               <div class="card card-primary">
                 <div class="card-body">
 
-                  <form method="POST">
-
+                  <form method="POST" action="{{ url("/akun_pakar_store") }}">
+                    @csrf
                     <div class="row">
                       <div class="form-group col-6">
-                        <label for="frist_name">First Name</label>
-                        <input id="frist_name" type="text" class="form-control" required name="frist_name" autofocus="" spellcheck="false" data-ms-editor="true">
+                        <label for="first_name_pakar">First Name</label>
+                        <input id="first_name_pakar" type="text" class="form-control" required name="first_name_pakar" autofocus="" spellcheck="false" data-ms-editor="true" required> 
                       </div>
                       <div class="form-group col-6">
-                        <label for="last_name">Last Name</label>
-                        <input id="last_name" type="text" class="form-control" name="last_name">
+                        <label for="last_name_pakar">Last Name</label>
+                        <input id="last_name_pakar" type="text" class="form-control" name="last_name_pakar">
                       </div>
                     </div>
                     
@@ -86,14 +86,14 @@
                       </div>
                     </div>
 
-                    <div class="form-group">
-                      <label for="nama_instansi">Ijazah Pendidikan Terakhir</label>
+                    {{-- <div class="form-group">
+                      <label for="file">Ijazah Pendidikan Terakhir</label>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input " id="customFile">
+                            <input type="file" class="custom-file-input " id="customFile" name="file">
                             <label class="custom-file-label" for="customFile">Choose file</label>
                       </div>
                       
-                    </div>
+                    </div> --}}
                     
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-lg btn-block">

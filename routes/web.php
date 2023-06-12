@@ -24,20 +24,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// Route::get('/', function () {
-//     return view('pakar.dashboard');
-// });
-
 Route::get('/', function () {
-    return view('login.login');
+    return view('pakar.dashboard');
 });
+
+// Route::get('/', function () {
+//     return view('login.login');
+// });
 
 //pakar
 
 Route::name('auth')->group(function(){
     Route::get('/regis_user', [AuthRegis::class,'show_regis_user'])->name('show_regis_user');
     Route::get('/regis_pakar', [AuthRegis::class,'show_regis_pakar'])->name('show_regis_pakar');
-
+    
+    Route::post('/akun_pakar_store', [AuthRegis::class,'pakar_store'])->name('pakar_store');
+    Route::post('/akun_user_store', [AuthRegis::class,'user_store'])->name('user_store');
 });
 
 Route::name('super-admin')->group(function () {
@@ -46,6 +48,7 @@ Route::name('super-admin')->group(function () {
 });
 
 Route::name('pakar')->group(function () {
+
     Route::get('/dashboard_pakar', [DashboardPakar::class,'show'])->name('dashboard_pakar.show');
     
     Route::get('/pustaka_produk', [PustakaProduk::class,'show'])->name('pustaka_produk.show');
@@ -67,6 +70,7 @@ Route::name('pakar')->group(function () {
 });
 
 Route::name('user')->group(function () {
+
     Route::get('/dashboard_user', [Dashboard::class,'show'])->name('dashboard.show'); 
     Route::get('/tentang', [TentangMetode::class,'show'])->name('tentang.show');
     Route::get('/cari', [PencarianKemasan::class,'show'])->name('cari.show');

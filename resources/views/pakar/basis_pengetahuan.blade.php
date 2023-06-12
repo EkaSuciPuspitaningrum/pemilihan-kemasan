@@ -110,8 +110,8 @@
                             <div class="form-group">
                                 <label>Kriteria Produk</label>
                                 <select name="kriteria_produk" class="form-control">
-                                    @foreach ($produk as $product)
-                                        <option>{{ $product->jenis_produk}}</option>
+                                    @foreach ($kriteria as $kriteriaa)
+                                        <option>{{ $kriteriaa->kriteria_produk }}</option>
                                     @endforeach
                                 </select>
                             </div>
