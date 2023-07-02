@@ -31,11 +31,6 @@ class PustakaProduk extends Controller
        return redirect("/pustaka_produk");
     }
 
-    public function produk_edit($id){
-        $data = JenisProduk::find($id); 
-        return view('pakar.pustaka_produk', compact('data'));
-    }
-
     public function kriteriaStore(Request $request)
     {
 
@@ -48,6 +43,16 @@ class PustakaProduk extends Controller
        
        return redirect("/pustaka_produk");
 
+    }
+
+    public function kriteria_show(KriteriaProduk $kriteria)
+    {
+        return view('pakar.pustaka_produk',compact('kriteria'));
+    }
+
+    public function produk_show(JenisProduk $produk)
+    {
+        return view('pakar.pustaka_produk',compact('produk'));
     }
 
 

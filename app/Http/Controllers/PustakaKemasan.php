@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Helpers\Helper;
 use App\Models\JenisKemasan;
+use Illuminate\Support\Facades\DB;
 
 class PustakaKemasan extends Controller
 {
@@ -28,4 +29,22 @@ class PustakaKemasan extends Controller
        
        return redirect("/pustaka_kemasan");
     }
+
+    public function kemasan_show(JenisKemasan $kemasan)
+    {
+        return view('pakar.pustaka_kemasan',compact('kemasan'));
+    }
+
+    public function kemasan_edit(Request $request, $id)
+{
+    $post = JenisKemasan::findOrFail($id);
+
+    $post->update([
+        'jenis_kemasan' => $request->jenis_kemasan,
+        'keterangan_kemasan' => $request->keterangan_kemasan,
+    ]);
+
+	return redirect('/pustaka_kemasan');
+}
+
 }

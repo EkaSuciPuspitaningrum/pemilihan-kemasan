@@ -1,6 +1,6 @@
-@extends('layouts-pakar.app')
+@extends('layouts-super-admin.app')
 
-@section('title', 'Data Kemasan')
+@section('title', 'Data Pengguna')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -17,12 +17,12 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Pustaka Kemasan</h1>
+            <h1>Data Pengguna</h1>
         </div>
 
         <div class="section-body">
-            <h2 class="section-title">Jenis Kemasan</h2>
-            <p class="section-lead">Silahkan tambahkan, ubah maupun hapus data jenis-jenis kemasan.</p>
+            <h2 class="section-title">Data Pengguna</h2>
+            <p class="section-lead">Silahkan tambahkan, ubah maupun hapus data pengguna.</p>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -30,7 +30,7 @@
                             <div class="buttons">
                                 <button class="btn btn-primary"
                                 data-toggle="modal"
-                                data-target="#jenisKemasan">Tambah Jenis Kemasan</button>
+                                data-target="#jenisKemasan">Tambah Data Pengguna</button>
                             </div>
                         </div>
                         <div class="card-body">
@@ -49,7 +49,7 @@
                                         </tr>
                                     </thead>
                                     <tbody >
-                                        @foreach ($jenis_kemasan as $kemasan )
+                                        {{-- @foreach ($jenis_kemasan as $kemasan )
                                         <tr>
                                             <th>{{ $i++}}</th>
                                             <td>{{$kemasan->id_kemasan}}</td>
@@ -59,7 +59,7 @@
                                                 <a href="" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>
@@ -80,7 +80,7 @@
                 role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Masukkan Data Kemasan kemasan</h5>
+                        <h5 class="modal-title">Masukkan Data Pengguna</h5>
                         <button type="button"
                             class="close"
                             data-dismiss="modal"
@@ -125,7 +125,7 @@
                 role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit Data Kemasan kemasan</h5>
+                        <h5 class="modal-title">Edit Data Pengguna</h5>
                         <button type="button"
                             class="close"
                             data-dismiss="modal"
@@ -133,7 +133,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ url("/kemasan_edit/{id}",$kemasan->id) }}" method="POST">
+                    {{-- <form action="{{ url("/kemasan_edit/{id}",$kemasan->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="modal-body modal-lg">
@@ -157,7 +157,7 @@
                             <button type="submit"
                                 class="btn btn-warning">Edit</button>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>     

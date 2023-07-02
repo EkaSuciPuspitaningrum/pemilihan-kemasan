@@ -1,6 +1,6 @@
-@extends('layouts-pakar.app')
+@extends('layouts-super-admin.app')
 
-@section('title', 'Data Kemasan')
+@section('title', 'Data Pakar')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -17,12 +17,12 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Pustaka Kemasan</h1>
+            <h1>Data Pakar</h1>
         </div>
 
         <div class="section-body">
-            <h2 class="section-title">Jenis Kemasan</h2>
-            <p class="section-lead">Silahkan tambahkan, ubah maupun hapus data jenis-jenis kemasan.</p>
+            <h2 class="section-title">Data Pakar</h2>
+            <p class="section-lead">Silahkan tambahkan, ubah maupun hapus data pakar.</p>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -30,7 +30,7 @@
                             <div class="buttons">
                                 <button class="btn btn-primary"
                                 data-toggle="modal"
-                                data-target="#jenisKemasan">Tambah Jenis Kemasan</button>
+                                data-target="#jenisKemasan">Tambah Data Pakar</button>
                             </div>
                         </div>
                         <div class="card-body">
@@ -42,20 +42,30 @@
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
-                                            <th style="text-align: center" scope="col">Kode Jenis</th>
-                                            <th style="text-align: center" scope="col">Jenis Kemasan</th>
-                                            <th style="text-align: center" scope="col">Keterangan Jenis Kemasan</th>
+                                            <th style="text-align: center" scope="col">Kode Calon Pakar</th>
+                                            <th style="text-align: center" scope="col">Nama Pertama</th>
+                                            <th style="text-align: center" scope="col">Nama Terakhir</th>
+                                            <th style="text-align: center" scope="col">Pendidikan Terakhir</th>
+                                            <th style="text-align: center" scope="col">Nama Instansi</th>
+                                            <th style="text-align: center" scope="col">Email</th>
+                                            <th style="text-align: center" scope="col">Password</th>
+                                            <th style="text-align: center" scope="col">Tanggal Pembuatan Akun</th>
                                             <th style="text-align: center" scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody >
-                                        @foreach ($jenis_kemasan as $kemasan )
+                                        @foreach ($pakar as $dataa )
                                         <tr>
                                             <th>{{ $i++}}</th>
-                                            <td>{{$kemasan->id_kemasan}}</td>
-                                            <td>{{$kemasan->jenis_kemasan}}</td>
-                                            <td>{{$kemasan->keterangan_kemasan}}</td>
-                                            <td><a data-toggle="modal" href="{{ url('/kemasan_show/{id}',$kemasan->id) }}"  data-target="#editKemasan" type="button" class="btn btn-warning">Edit</a>
+                                            <td>{{$dataa->id_pakar}}</td>
+                                            <td>{{$dataa->first_name_pakar}}</td>
+                                            <td>{{$dataa->last_name_pakar}}</td>
+                                            <td>{{$dataa->pend_terakhir}}</td>
+                                            <td>{{$dataa->nama_instansi}}</td>
+                                            <td>{{$dataa->email}}</td>
+                                            <td>{{$dataa->password}}</td>
+                                            <td>{{$dataa->created_at}}</td>
+                                            <td><a data-toggle="modal" href=""  data-target="#editKemasan" type="button" class="btn btn-warning">Edit</a>
                                                 <a href="" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
@@ -80,7 +90,7 @@
                 role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Masukkan Data Kemasan kemasan</h5>
+                        <h5 class="modal-title">Masukkan Data Pakar</h5>
                         <button type="button"
                             class="close"
                             data-dismiss="modal"
@@ -88,7 +98,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ url("/kemasan_store") }}" method="POST">
+                    {{-- <form action="{{ url("/kemasan_store") }}" method="POST">
                         @csrf
                         <div class="modal-body modal-lg">
                             <div class="form-group">
@@ -111,7 +121,7 @@
                             <button type="submit"
                                 class="btn btn-primary">Tambah</button>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>     
@@ -125,7 +135,7 @@
                 role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit Data Kemasan kemasan</h5>
+                        <h5 class="modal-title">Edit Data Pakar</h5>
                         <button type="button"
                             class="close"
                             data-dismiss="modal"
@@ -133,7 +143,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ url("/kemasan_edit/{id}",$kemasan->id) }}" method="POST">
+                    {{-- <form action="{{ url("/kemasan_edit/{id}",$kemasan->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="modal-body modal-lg">
@@ -157,7 +167,7 @@
                             <button type="submit"
                                 class="btn btn-warning">Edit</button>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>     

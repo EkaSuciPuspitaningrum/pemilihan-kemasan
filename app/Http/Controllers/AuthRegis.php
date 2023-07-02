@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
+use App\Models\CalonPakar;
 use App\Models\Pakar;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -39,8 +40,8 @@ class AuthRegis extends Controller
         //     'file' => 'required|file|mimes:[pdf]',
         // ]);
 
-       $generator = Helper::IDGenerator(new Pakar, 'id_pakar', 3, 'PKR');
-       $pakar = new Pakar;
+       $generator = Helper::IDGenerator(new CalonPakar, 'id_pakar', 3, 'PKR');
+       $pakar = new CalonPakar;
        $pakar->id_pakar = $generator;
        $pakar->first_name_pakar = $request->first_name_pakar;
        $pakar->last_name_pakar = $request->last_name_pakar;

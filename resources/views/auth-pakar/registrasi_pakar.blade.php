@@ -41,7 +41,7 @@
               <div class="card card-primary">
                 <div class="card-body">
 
-                  <form method="POST" action="{{ url("/akun_pakar_store") }}">
+                  <form method="POST" action="{{ url("/akun_pakar_store") }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                       <div class="form-group col-6">

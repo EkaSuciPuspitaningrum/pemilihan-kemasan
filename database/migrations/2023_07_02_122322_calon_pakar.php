@@ -13,12 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admin', function (Blueprint $table) {
+        Schema::create('calon_pakar', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('username');
+            $table->text("id_pakar");
+            $table->string('first_name_pakar');
+            $table->string('last_name_pakar');
+            $table->string('role');
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('password')->hash();
+            $table->string('pend_terakhir');
+            $table->string('nama_instansi');
+            // $table->string('file');
             $table->timestamps();
         });
     }
@@ -30,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin');
+        //
     }
 };

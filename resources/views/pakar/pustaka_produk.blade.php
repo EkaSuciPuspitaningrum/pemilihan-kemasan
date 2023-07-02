@@ -55,7 +55,7 @@
                                             <td>{{$produk->id_produk}}</td>
                                             <td>{{$produk->jenis_produk}}</td>
                                             <td>{{$produk->keterangan_produk}}</td>
-                                            <td><a data-toggle="modal"  data-target="#editJenis" type="button" class="btn btn-warning">Edit</a>
+                                            <td><a data-toggle="modal"  data-target="#editJenis" href="{{ url('/produk_show/{id}',$produk->id) }}" type="button" class="btn btn-warning">Edit</a>
                                                 <a href="" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
@@ -105,7 +105,7 @@
                                             <td>{{$kriteria->id_kriteria}}</td>
                                             <td>{{$kriteria->kriteria_produk}}</td>
                                             <td>{{$kriteria->keterangan_kriteria}}</td>
-                                            <td><a data-toggle="modal"  data-target="#editKriteria" type="button" class="btn btn-warning">Edit</a>
+                                            <td><a data-toggle="modal" data-target="#editKriteria" href="{{ url('/kriteria_show/{id}',$kriteria->id) }}" type="button" class="btn btn-warning">Edit</a>
                                                 <a href="" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
@@ -233,12 +233,12 @@
                                 <label for="jeniskemasan">Jenis Produk</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="jenis_produk" name="jenis_produk">
+                                       id="jenis_produk" name="jenis_produk" value="{{ $produk->jenis_produk }}">
                             </div>
                             <div class="form-group">
                                 <label for="jeniskemasan">Keterangan Jenis Produk</label>
                                 <textarea class="form-control" style="height: 150px" name="keterangan_produk"
-                                 required></textarea>
+                                 required>{{ $produk->keterangan_produk }}</textarea>
                             </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
@@ -246,7 +246,7 @@
                                 class="btn btn-danger"
                                 data-dismiss="modal">Tutup</button>
                             <button type="submit"
-                                class="btn btn-primary">Edit</button>
+                                class="btn btn-warning">Edit</button>
                         </div>
                     </form>
                 </div>
@@ -278,12 +278,12 @@
                                 <label for="kriteriaproduk">Kriteria Produk</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="kriteria_produk" name="kriteria_produk">
+                                       id="kriteria_produk" name="kriteria_produk" value="{{ $kriteria->kriteria_produk }}">
                             </div>
                             <div class="form-group">
                                 <label for="kriteriaproduk">Keterangan Kriteria Produk</label>
                                 <textarea class="form-control" style="height: 150px" name="keterangan_kriteria"
-                                 required></textarea>
+                                 required>{{ $kriteria->keterangan_kriteria }}</textarea>
                             </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
@@ -291,7 +291,7 @@
                                 class="btn btn-danger"
                                 data-dismiss="modal">Tutup</button>
                             <button type="submit"
-                                class="btn btn-primary">Edit</button>
+                                class="btn btn-warning">Edit</button>
                         </div>
                     </form>
                 </div>

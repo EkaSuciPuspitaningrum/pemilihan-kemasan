@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthRegis;
 use App\Http\Controllers\AuthAdmin;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\DashboardPakar;
+use App\Http\Controllers\DashboardSuper;
+use App\Http\Controllers\KelolaSuperAdmin;
 use App\Http\Controllers\PencarianKemasan;
 use App\Http\Controllers\PustakaKemasan;
 use App\Http\Controllers\PustakaProduk;
@@ -24,9 +26,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+// Route::get('/', function () {
+//     return view('pakar.dashboard');
+// });
 Route::get('/', function () {
-    return view('pakar.dashboard');
+    return view('super-admin.dashboard');
 });
+
+// Route::get('/', function () {
+//     return view('user.dashboard');
+// });
 
 // Route::get('/', function () {
 //     return view('login.login');
@@ -44,6 +53,12 @@ Route::name('auth')->group(function(){
 
 Route::name('super-admin')->group(function () {
     Route::get('/login_admin', [AutAdmin::class,'show_login_admin'])->name('show_login_admin');
+    Route::get('/dashboard_super', [DashboardSuper::class,'show'])->name('dashboard_super.show');
+    Route::get('/appr_pakar', [KelolaSuperAdmin::class,'appr_pakar'])->name('appr_pakar');
+    Route::get('/data_pakar', [KelolaSuperAdmin::class,'data_pakar'])->name('data_pakar');
+    Route::get('/data_pengguna', [KelolaSuperAdmin::class,'data_pengguna'])->name('data_pengguna');
+    Route::get('/data_admin', [KelolaSuperAdmin::class,'data_admin'])->name('data_admin');
+
    
 });
 
@@ -53,11 +68,14 @@ Route::name('pakar')->group(function () {
     
     Route::get('/pustaka_produk', [PustakaProduk::class,'show'])->name('pustaka_produk.show');
     Route::post('/produk_store', [PustakaProduk::class,'store'])->name('produk_store');
-    Route::get('/produk_show/{id}', [PustakaProduk::class,'produk_edit'])->name('produk_edit');
+    Route::get('/produk_show/{id}', [PustakaProduk::class,'produk_show'])->name('produk_show');
     Route::post('/kriteria_store', [PustakaProduk::class,'kriteriaStore'])->name('kriteria_store');
+    Route::get('/kriteria_show/{id}', [PustakaProduk::class,'kriteria_show'])->name('kriteria_show');
   
     Route::get('/pustaka_kemasan', [PustakaKemasan::class,'show'])->name('pustaka_kemasan.show');
     Route::post('/kemasan_store', [PustakaKemasan::class,'store'])->name('kemasan_store');
+    Route::post('/kemasan_show/{id}', [PustakaKemasan::class,'kemasan_show'])->name('kemasan_show');
+    Route::post('/kemasan_edit/{id}', [PustakaKemasan::class,'kemasan_edit'])->name('kemasan_edit');
     
     Route::get('/aturan', [AturanKemasan::class,'show'])->name('aturan.show');
     Route::post('/pengetahuan_store', [AturanKemasan::class,'store'])->name('pengetahuan_store');
@@ -74,5 +92,5 @@ Route::name('user')->group(function () {
     Route::get('/dashboard_user', [Dashboard::class,'show'])->name('dashboard.show'); 
     Route::get('/tentang', [TentangMetode::class,'show'])->name('tentang.show');
     Route::get('/cari', [PencarianKemasan::class,'show'])->name('cari.show');
-Route::get('/history', [PencarianKemasan::class,'show'])->name('history.showhistory');
+    Route::get('/history', [PencarianKemasan::class,'showhistory'])->name('history.showhistory');
 });

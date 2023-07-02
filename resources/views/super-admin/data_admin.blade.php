@@ -1,6 +1,6 @@
-@extends('layouts-pakar.app')
+@extends('layouts-super-admin.app')
 
-@section('title', 'Data Kemasan')
+@section('title', 'Data Admin')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -17,12 +17,12 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Pustaka Kemasan</h1>
+            <h1>Data Admin</h1>
         </div>
 
         <div class="section-body">
-            <h2 class="section-title">Jenis Kemasan</h2>
-            <p class="section-lead">Silahkan tambahkan, ubah maupun hapus data jenis-jenis kemasan.</p>
+            <h2 class="section-title">Data Admin</h2>
+            <p class="section-lead">Silahkan tambahkan, ubah maupun hapus data Admin.</p>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -30,7 +30,7 @@
                             <div class="buttons">
                                 <button class="btn btn-primary"
                                 data-toggle="modal"
-                                data-target="#jenisKemasan">Tambah Jenis Kemasan</button>
+                                data-target="#jenisKemasan">Tambah Data Admin</button>
                             </div>
                         </div>
                         <div class="card-body">
@@ -42,20 +42,24 @@
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
-                                            <th style="text-align: center" scope="col">Kode Jenis</th>
-                                            <th style="text-align: center" scope="col">Jenis Kemasan</th>
-                                            <th style="text-align: center" scope="col">Keterangan Jenis Kemasan</th>
+                                            <th style="text-align: center" scope="col">Nama</th>
+                                            <th style="text-align: center" scope="col">Username</th>
+                                            <th style="text-align: center" scope="col">Email</th>
+                                            <th style="text-align: center" scope="col">Password</th>
+                                            <th style="text-align: center" scope="col">Created at</th>
                                             <th style="text-align: center" scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody >
-                                        @foreach ($jenis_kemasan as $kemasan )
+                                        @foreach ($data_admin as $admin )
                                         <tr>
                                             <th>{{ $i++}}</th>
-                                            <td>{{$kemasan->id_kemasan}}</td>
-                                            <td>{{$kemasan->jenis_kemasan}}</td>
-                                            <td>{{$kemasan->keterangan_kemasan}}</td>
-                                            <td><a data-toggle="modal" href="{{ url('/kemasan_show/{id}',$kemasan->id) }}"  data-target="#editKemasan" type="button" class="btn btn-warning">Edit</a>
+                                            <td>{{$admin->name}}</td>
+                                            <td>{{$admin->username}}</td>
+                                            <td>{{$admin->email}}</td>
+                                            <td>{{$admin->password}}</td>
+                                            <td>{{$admin->created_at}}</td>
+                                            <td><a data-toggle="modal" href=""  data-target="#editKemasan" type="button" class="btn btn-warning">Edit</a>
                                                 <a href="" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
@@ -80,7 +84,7 @@
                 role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Masukkan Data Kemasan kemasan</h5>
+                        <h5 class="modal-title">Masukkan Data Admin</h5>
                         <button type="button"
                             class="close"
                             data-dismiss="modal"
@@ -125,7 +129,7 @@
                 role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit Data Kemasan kemasan</h5>
+                        <h5 class="modal-title">Edit Data Admin</h5>
                         <button type="button"
                             class="close"
                             data-dismiss="modal"
@@ -133,7 +137,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ url("/kemasan_edit/{id}",$kemasan->id) }}" method="POST">
+                    {{-- <form action="{{ url("/kemasan_edit/{id}",$admin->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="modal-body modal-lg">
@@ -141,13 +145,13 @@
                                 <label for="jeniskemasan">Jenis Kemasan</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="jenis_kemasan" name="jenis_kemasan" value="{{ $kemasan->jenis_kemasan }}" required>
+                                       id="jenis_kemasan" name="jenis_kemasan" value="{{ $admin->jenis_kemasan }}" required>
                                     <code>* Isi dengan jenis dan bahan, contoh : Plastik PVC</code>
                             </div>
                             <div class="form-group">
                                 <label for="ketKemasan">Keterangan Kemasan</label>
                                 <textarea class="form-control" style="height: 150px" name="keterangan_kemasan" 
-                                 required>{{ $kemasan->keterangan_kemasan }}</textarea>
+                                 required>{{ $admin->keterangan_kemasan }}</textarea>
                             </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
@@ -157,7 +161,7 @@
                             <button type="submit"
                                 class="btn btn-warning">Edit</button>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>     
