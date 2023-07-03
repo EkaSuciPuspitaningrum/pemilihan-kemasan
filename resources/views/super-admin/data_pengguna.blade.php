@@ -60,7 +60,7 @@
                                             <td>{{$dataa->password}}</td>
                                             <td>{{$dataa->created_at}}</td>
                                             <td><a data-toggle="modal" href=""  data-target="#editKemasan" type="button" class="btn btn-warning">Edit</a>
-                                                <a href="" type="button" class="btn btn-danger">Hapus</a>
+                                                <a href="/user/hapus/{{ $dataa->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
                                         @endforeach

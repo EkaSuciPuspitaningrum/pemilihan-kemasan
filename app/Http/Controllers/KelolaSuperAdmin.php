@@ -69,6 +69,14 @@ class KelolaSuperAdmin extends Controller
        return redirect("/data_pengguna");
     }
 
+    public function user_hapus($id)
+    {
+        DB::table('user')->where('id',$id)->delete();
+        
+        return redirect('/data_pengguna');
+        
+    }
+
     public function data_pakar_store(Request $request)
     {
        $pakar = new Pakar;

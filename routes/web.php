@@ -63,8 +63,9 @@ Route::name('super-admin')->group(function () {
 
     Route::get('/data_pengguna', [KelolaSuperAdmin::class,'data_pengguna'])->name('data_pengguna');
     Route::post('/data_pengguna_store', [KelolaSuperAdmin::class,'data_pengguna_store'])->name('data_pengguna_store');
-    Route::get('/data_admin', [KelolaSuperAdmin::class,'data_admin'])->name('data_admin');
+    Route::get('/user/hapus/{id}', [KelolaSuperAdmin::class,'user_hapus'])->name('user_hapus');
     
+    Route::get('/data_admin', [KelolaSuperAdmin::class,'data_admin'])->name('data_admin');
     Route::post('/admin_store', [KelolaSuperAdmin::class,'admin_store'])->name('admin_store');
     Route::get('/admin/hapus/{id}', [KelolaSuperAdmin::class,'admin_hapus'])->name('admin_hapus');
     Route::get('/admin/edit/{id}', [KelolaSuperAdmin::class,'admin_edit'])->name('admin_edit');

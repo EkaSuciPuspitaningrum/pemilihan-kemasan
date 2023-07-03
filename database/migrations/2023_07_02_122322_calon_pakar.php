@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('first_name_pakar');
             $table->string('last_name_pakar');
             $table->string('role');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('password')->hash();
             $table->string('pend_terakhir');
             $table->string('nama_instansi');
