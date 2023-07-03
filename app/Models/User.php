@@ -12,9 +12,9 @@ class User extends Model
     protected $table = 'user';
 
     protected $fillable = [
-        'id_user', 
         'first_name_user', 
         'last_name_user',
+        'role',
         'email',
         'password'
     ];  

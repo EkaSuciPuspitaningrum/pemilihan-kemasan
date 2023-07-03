@@ -42,24 +42,28 @@
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
-                                            <th style="text-align: center" scope="col">Kode Jenis</th>
-                                            <th style="text-align: center" scope="col">Jenis Kemasan</th>
-                                            <th style="text-align: center" scope="col">Keterangan Jenis Kemasan</th>
+                                            <th style="text-align: center" scope="col">Nama Pertama</th>
+                                            <th style="text-align: center" scope="col">Nama Terakhir</th>
+                                            <th style="text-align: center" scope="col">Email</th>
+                                            <th style="text-align: center" scope="col">Password</th>
+                                            <th style="text-align: center" scope="col">Created At</th>
                                             <th style="text-align: center" scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody >
-                                        {{-- @foreach ($jenis_kemasan as $kemasan )
+                                        @foreach ($data_pengguna as $dataa )
                                         <tr>
                                             <th>{{ $i++}}</th>
-                                            <td>{{$kemasan->id_kemasan}}</td>
-                                            <td>{{$kemasan->jenis_kemasan}}</td>
-                                            <td>{{$kemasan->keterangan_kemasan}}</td>
-                                            <td><a data-toggle="modal" href="{{ url('/kemasan_show/{id}',$kemasan->id) }}"  data-target="#editKemasan" type="button" class="btn btn-warning">Edit</a>
+                                            <td>{{$dataa->first_name_user}}</td>
+                                            <td>{{$dataa->last_name_user}}</td>
+                                            <td>{{$dataa->email}}</td>
+                                            <td>{{$dataa->password}}</td>
+                                            <td>{{$dataa->created_at}}</td>
+                                            <td><a data-toggle="modal" href=""  data-target="#editKemasan" type="button" class="btn btn-warning">Edit</a>
                                                 <a href="" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
-                                        @endforeach --}}
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -88,20 +92,32 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ url("/kemasan_store") }}" method="POST">
+                    <form action="{{ url("/data_pengguna_store") }}" method="POST">
                         @csrf
                         <div class="modal-body modal-lg">
                             <div class="form-group">
-                                <label for="jeniskemasan">Jenis Kemasan</label>
+                                <label for="first_name_user">Nama Pertama</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="jenis_kemasan" name="jenis_kemasan">
-                                    <code>* Isi dengan jenis dan bahan, contoh : Plastik PVC</code>
+                                       id="first_name_user" name="first_name_user">
                             </div>
                             <div class="form-group">
-                                <label for="ketKemasan">Keterangan Kemasan</label>
-                                <textarea class="form-control" style="height: 150px" name="keterangan_kemasan"
-                                 required></textarea>
+                                <label for="last_name_user">Nama Terakhir</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="last_name_user" name="last_name_user">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="password" name="password">
                             </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">

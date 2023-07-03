@@ -54,10 +54,21 @@ Route::name('auth')->group(function(){
 Route::name('super-admin')->group(function () {
     Route::get('/login_admin', [AutAdmin::class,'show_login_admin'])->name('show_login_admin');
     Route::get('/dashboard_super', [DashboardSuper::class,'show'])->name('dashboard_super.show');
+    
     Route::get('/appr_pakar', [KelolaSuperAdmin::class,'appr_pakar'])->name('appr_pakar');
+    Route::get('/calon_pakar/hapus/{id}', [KelolaSuperAdmin::class,'calon_pakar_hapus'])->name('calon_pakar_hapus');
     Route::get('/data_pakar', [KelolaSuperAdmin::class,'data_pakar'])->name('data_pakar');
+    Route::post('/data_pakar_store', [KelolaSuperAdmin::class,'data_pakar_store'])->name('data_pakar_store');
+    Route::get('/pakar/hapus/{id}', [KelolaSuperAdmin::class,'pakar_hapus'])->name('pakar_hapus');
+
     Route::get('/data_pengguna', [KelolaSuperAdmin::class,'data_pengguna'])->name('data_pengguna');
+    Route::post('/data_pengguna_store', [KelolaSuperAdmin::class,'data_pengguna_store'])->name('data_pengguna_store');
     Route::get('/data_admin', [KelolaSuperAdmin::class,'data_admin'])->name('data_admin');
+    
+    Route::post('/admin_store', [KelolaSuperAdmin::class,'admin_store'])->name('admin_store');
+    Route::get('/admin/hapus/{id}', [KelolaSuperAdmin::class,'admin_hapus'])->name('admin_hapus');
+    Route::get('/admin/edit/{id}', [KelolaSuperAdmin::class,'admin_edit'])->name('admin_edit');
+    Route::post('/admin/update', [KelolaSuperAdmin::class,'admin_update'])->name('admin_update');
 
    
 });

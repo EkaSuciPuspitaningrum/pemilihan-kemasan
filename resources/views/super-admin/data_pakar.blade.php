@@ -30,7 +30,7 @@
                             <div class="buttons">
                                 <button class="btn btn-primary"
                                 data-toggle="modal"
-                                data-target="#jenisKemasan">Tambah Data Pakar</button>
+                                data-target="#dataPakar">Tambah Data Pakar</button>
                             </div>
                         </div>
                         <div class="card-body">
@@ -42,22 +42,20 @@
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
-                                            <th style="text-align: center" scope="col">Kode Calon Pakar</th>
                                             <th style="text-align: center" scope="col">Nama Pertama</th>
                                             <th style="text-align: center" scope="col">Nama Terakhir</th>
                                             <th style="text-align: center" scope="col">Pendidikan Terakhir</th>
                                             <th style="text-align: center" scope="col">Nama Instansi</th>
                                             <th style="text-align: center" scope="col">Email</th>
                                             <th style="text-align: center" scope="col">Password</th>
-                                            <th style="text-align: center" scope="col">Tanggal Pembuatan Akun</th>
+                                            <th style="text-align: center" scope="col">Created At</th>
                                             <th style="text-align: center" scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody >
                                         @foreach ($pakar as $dataa )
                                         <tr>
-                                            <th>{{ $i++}}</th>
-                                            <td>{{$dataa->id_pakar}}</td>
+                                            <td>{{ $i++}}</td>
                                             <td>{{$dataa->first_name_pakar}}</td>
                                             <td>{{$dataa->last_name_pakar}}</td>
                                             <td>{{$dataa->pend_terakhir}}</td>
@@ -65,8 +63,9 @@
                                             <td>{{$dataa->email}}</td>
                                             <td>{{$dataa->password}}</td>
                                             <td>{{$dataa->created_at}}</td>
-                                            <td><a data-toggle="modal" href=""  data-target="#editKemasan" type="button" class="btn btn-warning">Edit</a>
-                                                <a href="" type="button" class="btn btn-danger">Hapus</a>
+                                            <td >
+                                                <a data-toggle="modal" href="" type="button" class="btn btn-warning" data-target="#editPakar">Edit</a>
+                                                <a href="/pakar/hapus/{{ $dataa->id }}"" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -85,7 +84,7 @@
     <div class="modal fade"
             tabindex="-1"
             role="dialog"
-            id="jenisKemasan">
+            id="dataPakar">
             <div class="modal-dialog"
                 role="document">
                 <div class="modal-content">
@@ -98,20 +97,46 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    {{-- <form action="{{ url("/kemasan_store") }}" method="POST">
+                    <form action="{{ url("/data_pakar_store") }}" method="POST">
                         @csrf
                         <div class="modal-body modal-lg">
                             <div class="form-group">
-                                <label for="jeniskemasan">Jenis Kemasan</label>
+                                <label for="first_name_pakar">Nama Pertama</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="jenis_kemasan" name="jenis_kemasan">
-                                    <code>* Isi dengan jenis dan bahan, contoh : Plastik PVC</code>
+                                       id="first_name_pakar" name="first_name_pakar">
                             </div>
                             <div class="form-group">
-                                <label for="ketKemasan">Keterangan Kemasan</label>
-                                <textarea class="form-control" style="height: 150px" name="keterangan_kemasan"
-                                 required></textarea>
+                                <label for="last_name_pakar">Nama Terakhir</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="last_name_pakar" name="last_name_pakar">
+                            </div>
+                            <div class="form-group">
+                                <label for="pend_terakhir">Pendidikan Terakhir</label>
+                                <select name="pend_terakhir" id="pend_terakhir" class="form-control">
+                                  <option value="D4/S1/Setara">D4/S1/Setara</option>
+                                  <option value="S2/Setara">S2/Setara</option>
+                                  <option value="S3/Setara">S3/Setara</option>
+                                </select>
+                              </div>
+                            <div class="form-group">
+                                <label for="nama_instansi">Nama Instansi</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="nama_instansi" name="nama_instansi">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="password" name="password">
                             </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
@@ -121,7 +146,7 @@
                             <button type="submit"
                                 class="btn btn-primary">Tambah</button>
                         </div>
-                    </form> --}}
+                    </form>
                 </div>
             </div>
         </div>     
@@ -130,7 +155,7 @@
     <div class="modal fade"
             tabindex="-1"
             role="dialog"
-            id="editKemasan">
+            id="editPakar">
             <div class="modal-dialog"
                 role="document">
                 <div class="modal-content">

@@ -12,7 +12,6 @@ class Pakar extends Model
     protected $table = 'pakar';
 
     protected $fillable = [
-        'id_pakar', 
         'first_name_pakar', 
         'last_name_pakar',
         'role',

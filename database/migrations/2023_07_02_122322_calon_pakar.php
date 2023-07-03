@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('calon_pakar', function (Blueprint $table) {
             $table->id();
-            $table->text("id_pakar");
             $table->string('first_name_pakar');
             $table->string('last_name_pakar');
             $table->string('role');

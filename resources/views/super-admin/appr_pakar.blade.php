@@ -31,26 +31,24 @@
                                 @php
                                     $i=1;
                                 @endphp 
-                                <table id="table" class="table" style="text-align: center">
+                                <table id="table" class="table">
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
-                                            <th style="text-align: center" scope="col">Kode Calon Pakar</th>
                                             <th style="text-align: center" scope="col">Nama Pertama</th>
                                             <th style="text-align: center" scope="col">Nama Terakhir</th>
                                             <th style="text-align: center" scope="col">Pendidikan Terakhir</th>
                                             <th style="text-align: center" scope="col">Nama Instansi</th>
                                             <th style="text-align: center" scope="col">Email</th>
                                             <th style="text-align: center" scope="col">Password</th>
-                                            <th style="text-align: center" scope="col">Tanggal Pembuatan Akun</th>
+                                            <th style="text-align: center" scope="col">Created At</th>
                                             <th style="text-align: center" scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody >
                                         @foreach ($calon_pakar as $dataa )
-                                        <tr>
+                                        <tr style="width: fit-content">
                                             <th>{{ $i++}}</th>
-                                            <td>{{$dataa->id_pakar}}</td>
                                             <td>{{$dataa->first_name_pakar}}</td>
                                             <td>{{$dataa->last_name_pakar}}</td>
                                             <td>{{$dataa->pend_terakhir}}</td>
@@ -58,8 +56,8 @@
                                             <td>{{$dataa->email}}</td>
                                             <td>{{$dataa->password}}</td>
                                             <td>{{$dataa->created_at}}</td>
-                                            <td><a data-toggle="modal" href=""  data-target="#editKemasan" type="button" class="btn btn-warning">Edit</a>
-                                                <a href="" type="button" class="btn btn-danger">Hapus</a>
+                                            <td><a href="" type="button" class="btn btn-warning">Approve</a>
+                                                <a href="/calon_pakar/hapus/{{ $dataa->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
                                         @endforeach

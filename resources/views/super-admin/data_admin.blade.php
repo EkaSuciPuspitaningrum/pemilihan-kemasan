@@ -30,7 +30,7 @@
                             <div class="buttons">
                                 <button class="btn btn-primary"
                                 data-toggle="modal"
-                                data-target="#jenisKemasan">Tambah Data Admin</button>
+                                data-target="#dataAdmin">Tambah Data Admin</button>
                             </div>
                         </div>
                         <div class="card-body">
@@ -42,7 +42,7 @@
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
-                                            <th style="text-align: center" scope="col">Nama</th>
+                                            <th style="text-align: center" scope="col">Nama Admin</th>
                                             <th style="text-align: center" scope="col">Username</th>
                                             <th style="text-align: center" scope="col">Email</th>
                                             <th style="text-align: center" scope="col">Password</th>
@@ -53,14 +53,14 @@
                                     <tbody >
                                         @foreach ($data_admin as $admin )
                                         <tr>
-                                            <th>{{ $i++}}</th>
+                                            <td>{{ $i++}}</td>
                                             <td>{{$admin->name}}</td>
                                             <td>{{$admin->username}}</td>
                                             <td>{{$admin->email}}</td>
                                             <td>{{$admin->password}}</td>
                                             <td>{{$admin->created_at}}</td>
-                                            <td><a data-toggle="modal" href=""  data-target="#editKemasan" type="button" class="btn btn-warning">Edit</a>
-                                                <a href="" type="button" class="btn btn-danger">Hapus</a>
+                                            <td><a data-toggle="modal" href="/admin/edit/{{ $admin->id }}"  data-target="#editAdmin" type="button" class="btn btn-warning">Edit</a>
+                                                <a href="/admin/hapus/{{ $admin->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -79,7 +79,7 @@
     <div class="modal fade"
             tabindex="-1"
             role="dialog"
-            id="jenisKemasan">
+            id="dataAdmin">
             <div class="modal-dialog"
                 role="document">
                 <div class="modal-content">
@@ -92,20 +92,32 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ url("/kemasan_store") }}" method="POST">
+                    <form action="{{ url("/admin_store") }}" method="POST">
                         @csrf
                         <div class="modal-body modal-lg">
                             <div class="form-group">
-                                <label for="jeniskemasan">Jenis Kemasan</label>
+                                <label for="name">Nama Admin</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="jenis_kemasan" name="jenis_kemasan">
-                                    <code>* Isi dengan jenis dan bahan, contoh : Plastik PVC</code>
+                                       id="name" name="name">
                             </div>
                             <div class="form-group">
-                                <label for="ketKemasan">Keterangan Kemasan</label>
-                                <textarea class="form-control" style="height: 150px" name="keterangan_kemasan"
-                                 required></textarea>
+                                <label for="username">Username</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="username" name="username">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="password" name="password">
                             </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
@@ -124,7 +136,7 @@
     <div class="modal fade"
             tabindex="-1"
             role="dialog"
-            id="editKemasan">
+            id="editAdmin">
             <div class="modal-dialog"
                 role="document">
                 <div class="modal-content">
@@ -137,21 +149,33 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    {{-- <form action="{{ url("/kemasan_edit/{id}",$admin->id) }}" method="POST">
+                    @foreach ($admin as $a )
+                    <form action="/admin/update" method="POST">
                         @csrf
-                        @method('PUT')
                         <div class="modal-body modal-lg">
                             <div class="form-group">
-                                <label for="jeniskemasan">Jenis Kemasan</label>
+                                <label for="name">Nama Admin</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="jenis_kemasan" name="jenis_kemasan" value="{{ $admin->jenis_kemasan }}" required>
-                                    <code>* Isi dengan jenis dan bahan, contoh : Plastik PVC</code>
+                                       id="name" name="name" value="{{ $a->name }}">
                             </div>
                             <div class="form-group">
-                                <label for="ketKemasan">Keterangan Kemasan</label>
-                                <textarea class="form-control" style="height: 150px" name="keterangan_kemasan" 
-                                 required>{{ $admin->keterangan_kemasan }}</textarea>
+                                <label for="username">Username</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="username" name="username" value="{{ $a->username }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="email" name="email" value="{{ $a->email }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="password" name="password"  value="{{ $a->password }}">
                             </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
@@ -161,7 +185,8 @@
                             <button type="submit"
                                 class="btn btn-warning">Edit</button>
                         </div>
-                    </form> --}}
+                    </form>
+                    @endforeach
                 </div>
             </div>
         </div>     

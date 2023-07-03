@@ -12,7 +12,6 @@ class CalonPakar extends Model
     protected $table = 'calon_pakar';
 
     protected $fillable = [
-        'id_pakar', 
         'first_name_pakar', 
         'last_name_pakar',
         'role',
