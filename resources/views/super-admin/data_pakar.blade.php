@@ -65,7 +65,7 @@
                                             <td>{{$dataa->created_at}}</td>
                                             <td >
                                                 <a data-toggle="modal" href="" type="button" class="btn btn-warning" data-target="#editPakar">Edit</a>
-                                                <a href="/pakar/hapus/{{ $dataa->id }}"" type="button" class="btn btn-danger">Hapus</a>
+                                                <a href="/pakar/hapus/{{ $dataa->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
                                         @endforeach
