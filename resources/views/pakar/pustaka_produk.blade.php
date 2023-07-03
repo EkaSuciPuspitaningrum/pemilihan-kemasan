@@ -20,7 +20,7 @@
             <h1>Pustaka Produk</h1>
         </div>
 
-        <div class="section-body">
+        {{-- <div class="section-body">
             <h2 class="section-title">Jenis Produk</h2>
             <p class="section-lead">Silahkan tambahkan, ubah maupun hapus data jenis-jenis produk.</p>
             <div class="row">
@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="section-body">
             <h2 class="section-title">Kriteria Produk</h2>
@@ -106,7 +106,7 @@
                                             <td>{{$kriteria->kriteria_produk}}</td>
                                             <td>{{$kriteria->keterangan_kriteria}}</td>
                                             <td><a data-toggle="modal" data-target="#editKriteria" href="{{ url('/kriteria_show/{id}',$kriteria->id) }}" type="button" class="btn btn-warning">Edit</a>
-                                                <a href="" type="button" class="btn btn-danger">Hapus</a>
+                                                <a href="/kriteria/hapus/{{ $kriteria->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -121,7 +121,7 @@
         </div>
     </section>
 
-    <div class="modal fade"
+    {{-- <div class="modal fade"
             tabindex="-1"
             role="dialog"
             id="jenisProduk">
@@ -163,7 +163,7 @@
                 </div>
             </div>
         </div>     
-</div>
+</div> --}}
 
 <div class="modal fade"
             tabindex="-1"

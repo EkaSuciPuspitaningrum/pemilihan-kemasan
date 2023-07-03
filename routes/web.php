@@ -78,20 +78,24 @@ Route::name('pakar')->group(function () {
 
     Route::get('/dashboard_pakar', [DashboardPakar::class,'show'])->name('dashboard_pakar.show');
     
-    Route::get('/pustaka_produk', [PustakaProduk::class,'show'])->name('pustaka_produk.show');
-    Route::post('/produk_store', [PustakaProduk::class,'store'])->name('produk_store');
-    Route::get('/produk_show/{id}', [PustakaProduk::class,'produk_show'])->name('produk_show');
+    // Route::get('/pustaka_produk', [PustakaProduk::class,'show'])->name('pustaka_produk.show');
+    // Route::post('/produk_store', [PustakaProduk::class,'store'])->name('produk_store');
+    // Route::get('/produk_show/{id}', [PustakaProduk::class,'produk_show'])->name('produk_show');
+    
     Route::post('/kriteria_store', [PustakaProduk::class,'kriteriaStore'])->name('kriteria_store');
     Route::get('/kriteria_show/{id}', [PustakaProduk::class,'kriteria_show'])->name('kriteria_show');
+    Route::get('/kriteria/hapus/{id}', [PustakaProduk::class,'kriteria_hapus'])->name('kriteria_hapus');
   
     Route::get('/pustaka_kemasan', [PustakaKemasan::class,'show'])->name('pustaka_kemasan.show');
     Route::post('/kemasan_store', [PustakaKemasan::class,'store'])->name('kemasan_store');
     Route::post('/kemasan_show/{id}', [PustakaKemasan::class,'kemasan_show'])->name('kemasan_show');
     Route::post('/kemasan_edit/{id}', [PustakaKemasan::class,'kemasan_edit'])->name('kemasan_edit');
+    Route::get('/kemasan/hapus/{id}', [PustakaKemasan::class,'kemasan_hapus'])->name('kemasan_hapus');
     
     Route::get('/aturan', [AturanKemasan::class,'show'])->name('aturan.show');
     Route::post('/pengetahuan_store', [AturanKemasan::class,'store'])->name('pengetahuan_store');
     Route::get('/pengetahuan_show/{id}', [AturanKemasan::class,'pengetahuan_edit'])->name('pengetahuan_edit');
+    Route::get('/pengetahuan/hapus/{id}', [AturanKemasan::class,'pengetahuan_hapus'])->name('pengetahuan_hapus');
     
     Route::get('/pakar_metode', [TentangMetode::class,'pakar_show'])->name('pakar_show');
     Route::get('/user_metode', [TentangMetode::class,'user_show'])->name('user_show');

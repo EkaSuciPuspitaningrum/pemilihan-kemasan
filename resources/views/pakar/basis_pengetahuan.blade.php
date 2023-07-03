@@ -66,7 +66,7 @@
                                             <td>{{$data->nilai_md}}</td>
                                             <td>{{$data->nilai_cf}}</td>
                                             <td><a data-toggle="modal" href="/pengetahuan_show/{{$data->id_pengetahuan}}"  data-target="#editData" type="button" class="btn btn-warning">Edit</a>
-                                                <a href="" type="button" class="btn btn-danger">Hapus</a>
+                                                <a href="/pengetahuan/hapus/{{ $data->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
                                         @endforeach

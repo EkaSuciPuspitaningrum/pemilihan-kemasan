@@ -7,6 +7,7 @@ use App\Helpers\Helper;
 use App\Models\BasisPengetahuan;
 use App\Models\JenisKemasan;
 use App\Models\KriteriaProduk;
+use Illuminate\Support\Facades\DB;
 
 class AturanKemasan extends Controller
 {
@@ -45,5 +46,13 @@ class AturanKemasan extends Controller
        
        return redirect("/aturan");
     }
+
+    public function pengetahuan_hapus($id)
+{
+    DB::table('pengetahuan')->where('id',$id)->delete();
+    
+    return redirect('/aturan');
+    
+}
 
 }

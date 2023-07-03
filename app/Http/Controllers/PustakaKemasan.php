@@ -47,4 +47,12 @@ class PustakaKemasan extends Controller
 	return redirect('/pustaka_kemasan');
 }
 
+public function kemasan_hapus($id)
+{
+    DB::table('jenis_kemasan')->where('id',$id)->delete();
+    
+    return redirect('/pustaka_kemasan');
+    
+}
+
 }

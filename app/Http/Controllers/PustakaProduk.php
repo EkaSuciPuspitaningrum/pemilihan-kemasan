@@ -6,6 +6,7 @@ use App\Models\JenisProduk;
 use Illuminate\Http\Request;
 use App\Helpers\Helper;
 use App\Models\KriteriaProduk;
+use Illuminate\Support\Facades\DB;
 
 class PustakaProduk extends Controller
 {
@@ -50,10 +51,18 @@ class PustakaProduk extends Controller
         return view('pakar.pustaka_produk',compact('kriteria'));
     }
 
-    public function produk_show(JenisProduk $produk)
-    {
-        return view('pakar.pustaka_produk',compact('produk'));
-    }
+    // public function produk_show(JenisProduk $produk)
+    // {
+    //     return view('pakar.pustaka_produk',compact('produk'));
+    // }
+
+    public function kemasan_hapus($id)
+{
+    DB::table('kriteria_produk')->where('id',$id)->delete();
+    
+    return redirect('/pustaka_produk');
+    
+}
 
 
 }

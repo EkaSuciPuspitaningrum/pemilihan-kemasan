@@ -56,7 +56,7 @@
                                             <td>{{$kemasan->jenis_kemasan}}</td>
                                             <td>{{$kemasan->keterangan_kemasan}}</td>
                                             <td><a data-toggle="modal" href="{{ url('/kemasan_show/{id}',$kemasan->id) }}"  data-target="#editKemasan" type="button" class="btn btn-warning">Edit</a>
-                                                <a href="" type="button" class="btn btn-danger">Hapus</a>
+                                                <a href="/kemasan/hapus/{{ $kemasan->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
                                         @endforeach
