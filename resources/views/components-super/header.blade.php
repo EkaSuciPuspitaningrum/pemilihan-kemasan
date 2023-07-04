@@ -103,7 +103,11 @@
                     class="rounded-circle mr-1">
                 <div class="d-sm-none d-lg-inline-block">Hi, {{session('name')}}</div>
             </a>
-            <div class="dropdown-menu dropdown-menu-right">
+            <a href="{{route('actionlogout')}}" method="GET"
+                    class="dropdown-item has-icon text-danger">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            {{-- <div class="dropdown-menu dropdown-menu-right">
                 <a href="features-activities.html"
                     class="dropdown-item has-icon">
                     <i class="fas fa-bolt"></i> Activities
@@ -117,7 +121,7 @@
                     class="dropdown-item has-icon text-danger">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
-            </div>
+            </div> --}}
         </li>
     </ul>
 </nav>

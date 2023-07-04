@@ -29,17 +29,17 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('pakar.dashboard');
 // });
-Route::get('/', function () {
-    return view('super-admin.dashboard');
-});
+// Route::get('/', function () {
+//     return view('super-admin.dashboard');
+// });
 
 // Route::get('/', function () {
 //     return view('user.dashboard');
 // });
 
-// Route::get('/', function () {
-//     return view('login.login');
-// });
+Route::get('/', function () {
+    return view('login.login');
+});
 
 //pakar
 
@@ -53,7 +53,10 @@ Route::name('auth')->group(function(){
 
 Route::name('super-admin')->group(function () {
     Route::get('/login_admin', [AutAdmin::class,'show_login_admin'])->name('show_login_admin');
-    Route::get('/dashboard_super', [DashboardSuper::class,'show'])->name('dashboard_super.show');
+    Route::post('actionlogin', [AutAdmin::class, 'actionlogin'])->name('actionlogin');
+    Route::get('actionlogout', [AutAdmin::class, 'actionlogout'])->name('actionlogout');
+    
+    Route::get('/dashboard_super', [DashboardSuper::class,'show'])->name('dashboard_super.show')->middleware('admin');
     
     Route::get('/appr_pakar', [KelolaSuperAdmin::class,'appr_pakar'])->name('appr_pakar');
     Route::get('/calon_pakar/hapus/{id}', [KelolaSuperAdmin::class,'calon_pakar_hapus'])->name('calon_pakar_hapus');

@@ -38,21 +38,28 @@
                         </h4>
                         <p class="text-muted">Sebelum memulai, Anda harus masuk terlebih dahulu.</p>
                         <br>
+                        @if(session('error'))
+                            <div class="alert alert-danger">
+                                <b>Opps!</b> {{session('error')}}
+                            </div>
+                        @endif
+
                         <form method="POST"
-                            action="#"
+                            action="{{ url("actionlogin") }}"
                             class="needs-validation"
                             novalidate="">
+                            @csrf
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input id="email"
-                                    type="email"
+                                <label for="username">Username</label>
+                                <input id="username"
+                                    type="text"
                                     class="form-control"
-                                    name="email"
+                                    name="username"
                                     tabindex="1"
                                     required
                                     autofocus>
                                 <div class="invalid-feedback">
-                                    Please fill in your email
+                                    Please fill in your username
                                 </div>
                             </div>
 

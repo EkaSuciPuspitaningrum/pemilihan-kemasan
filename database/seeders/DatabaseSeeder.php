@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Admin',
                 'username' => 'adminkemasan',
+                'role' => 'Admin',
                 'email' => 'admin@mail.ac.id',
                 'password' => 'adminkemasan',
                 'created_at' => date("Y-m-d H:i:s"),
