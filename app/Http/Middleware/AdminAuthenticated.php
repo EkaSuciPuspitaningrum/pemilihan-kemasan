@@ -17,10 +17,11 @@ class AdminAuthenticated
      */
     public function handle(Request $request, Closure $next)
     {
-    if (Auth::guard('admin')()->role == 'Admin'){
-        return $next($request);
-    } else {
-        return redirect('/dashboard_super');
-    }
+        if(auth()->check()){
+            if(auth()->user()->role == 'Admin') {
+                return $next($request);
+            }
+        }
+        return redirect()->to('/');
     }
 }

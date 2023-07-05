@@ -41,7 +41,7 @@
               <div class="card card-primary">
                 <div class="card-body">
 
-                  <form method="POST" action="{{ url("/akun_pakar_store") }}" enctype="multipart/form-data">
+                  <form method="POST" action="{{ url("/calon_pakar_store") }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                       <div class="form-group col-6">
@@ -85,6 +85,8 @@
                         <input id="nama_instansi" type="text" required class="form-control" name="nama_instansi" autofocus="" spellcheck="false" data-ms-editor="true">
                       </div>
                     </div>
+                    
+                    <input id="role" type="text" class="form-control" name="role" value="Pakar" hidden>
 
                     {{-- <div class="form-group">
                       <label for="file">Ijazah Pendidikan Terakhir</label>

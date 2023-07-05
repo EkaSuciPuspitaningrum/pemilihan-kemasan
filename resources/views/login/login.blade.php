@@ -38,6 +38,28 @@
                         </h4>
                         <p class="text-muted">Sebelum memulai, Anda harus masuk atau mendaftar jika Anda belum memiliki akun</p>
                         <br>
+                        @if(session('message'))
+                            <div class="alert alert-warning alert-dismissible show fade">
+                                <div class="alert-body">
+                                    <button class="close"
+                                        data-dismiss="alert">
+                                        <span>&times;</span>
+                                    </button>
+                                    {{session('message')}}
+                                </div>
+                            </div>
+                        @endif
+                        @if(session('error'))
+                        <div class="alert alert-danger alert-dismissible show fade">
+                            <div class="alert-body">
+                                <button class="close"
+                                    data-dismiss="alert">
+                                    <span>&times;</span>
+                                </button>
+                                {{session('error')}}
+                            </div>
+                        </div>
+                        @endif
                         <form method="POST"
                             action="#"
                             class="needs-validation"

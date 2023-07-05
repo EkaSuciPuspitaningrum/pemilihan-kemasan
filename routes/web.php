@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\AturanKemasan;
-use App\Http\Controllers\AutAdmin;
-use App\Http\Controllers\AuthRegis;
 use App\Http\Controllers\AuthAdmin;
+use App\Http\Controllers\AuthRegis;
+use App\Http\Controllers\AuthLogin;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\DashboardPakar;
 use App\Http\Controllers\DashboardSuper;
@@ -29,34 +29,42 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('pakar.dashboard');
 // });
-// Route::get('/', function () {
-//     return view('super-admin.dashboard');
-// });
+Route::get('/', function () {
+    return view('super-admin.dashboard');
+});
 
 // Route::get('/', function () {
 //     return view('user.dashboard');
 // });
 
-Route::get('/', function () {
-    return view('login.login');
-});
+// Route::get('/', function () {
+//     return view('login.login');
+// });
+
+// Route::get('/', function () {
+//     return view('auth-user.registrasi_user');
+// });
 
 //pakar
 
 Route::name('auth')->group(function(){
+    Route::get('/login', [AuthLogin::class,'login'])->name('login');
+
     Route::get('/regis_user', [AuthRegis::class,'show_regis_user'])->name('show_regis_user');
     Route::get('/regis_pakar', [AuthRegis::class,'show_regis_pakar'])->name('show_regis_pakar');
     
-    Route::post('/akun_pakar_store', [AuthRegis::class,'pakar_store'])->name('pakar_store');
+    Route::post('/calon_pakar_store', [AuthRegis::class,'calon_pakar_store'])->name('calon_pakar_store');
     Route::post('/akun_user_store', [AuthRegis::class,'user_store'])->name('user_store');
+
+    Route::post('/login_admin', [AuthLogin::class, 'actionlogin'])->name('actionlogin');
+    Route::get('actionlogout', [AuthLogin::class, 'actionlogout'])->name('actionlogout');
+    
 });
 
 Route::name('super-admin')->group(function () {
-    Route::get('/login_admin', [AutAdmin::class,'show_login_admin'])->name('show_login_admin');
-    Route::post('actionlogin', [AutAdmin::class, 'actionlogin'])->name('actionlogin');
-    Route::get('actionlogout', [AutAdmin::class, 'actionlogout'])->name('actionlogout');
+    Route::get('/login_admin', [AuthAdmin::class,'show_login_admin'])->name('show_login_admin');
     
-    Route::get('/dashboard_super', [DashboardSuper::class,'show'])->name('dashboard_super.show')->middleware('admin');
+    Route::get('/dashboard_super', [DashboardSuper::class,'show'])->name('dashboard_super.show');
     
     Route::get('/appr_pakar', [KelolaSuperAdmin::class,'appr_pakar'])->name('appr_pakar');
     Route::get('/calon_pakar/hapus/{id}', [KelolaSuperAdmin::class,'calon_pakar_hapus'])->name('calon_pakar_hapus');
@@ -72,7 +80,7 @@ Route::name('super-admin')->group(function () {
     Route::post('/admin_store', [KelolaSuperAdmin::class,'admin_store'])->name('admin_store');
     Route::get('/admin/hapus/{id}', [KelolaSuperAdmin::class,'admin_hapus'])->name('admin_hapus');
     Route::get('/admin/edit/{id}', [KelolaSuperAdmin::class,'admin_edit'])->name('admin_edit');
-    Route::post('/admin/update', [KelolaSuperAdmin::class,'admin_update'])->name('admin_update');
+    Route::post('/admin_update', [KelolaSuperAdmin::class,'admin_update'])->name('admin_update');
 
    
 });

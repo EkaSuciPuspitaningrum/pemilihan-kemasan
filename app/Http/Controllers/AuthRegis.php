@@ -17,48 +17,41 @@ class AuthRegis extends Controller
         ]);
     }
 
-    public function user_store(Request $request)
+    public function user_store()
     {
 
-       $generator = Helper::IDGenerator(new User, 'id_user', 3, 'USR');
-       $user = new User;
-       $user->id_user = $generator;
-       $user->first_name_user = $request->first_name_user;
-       $user->last_name_user = $request->last_name_user;
-       $user->role = "user";
-       $user->email = $request->email;
-       $user->password = $request->password;
+       $this->validate(request(), [
+        'first_name_user' => 'required',
+        'last_name_user' => 'required',
+        'email' => 'required|email',
+        'password' => 'required',
+        'role' => 'required',
 
-       $user->save();
-       
-       return redirect("/");
+        ]);
+
+        $user = User::create(request(['first_name_user', 'last_name_user', 'role','email', 'password']));
+
+        auth()->login($user);
+        return redirect()->to('/dashboard_user');
     }
 
-    public function pakar_store(Request $request)
+    public function calon_pakar_store()
     {
-        // $this->validate($request, [
-        //     'file' => 'required|file|mimes:[pdf]',
-        // ]);
 
-       $generator = Helper::IDGenerator(new CalonPakar, 'id_pakar', 3, 'PKR');
-       $pakar = new CalonPakar;
-       $pakar->id_pakar = $generator;
-       $pakar->first_name_pakar = $request->first_name_pakar;
-       $pakar->last_name_pakar = $request->last_name_pakar;
-       $pakar->role = "pakar";
-       $pakar->email = $request->email;
-       $pakar->password = $request->password;
-       $pakar->pend_terakhir = $request->pend_terakhir;
-       $pakar->nama_instansi = $request->nama_instansi;
-       
-    //    $file = $request->file('file');
-    //    $pakar = time()."_".$file->getClientOriginalName();
-    //    $tujuan_upload = 'data_file';
-    //    $file->move($tujuan_upload,$pakar);
+       $this->validate(request(), [
+        'first_name_pakar' => 'required',
+        'last_name_pakar' => 'required',
+        'role' => 'required',
+        'email' => 'required|email',
+        'password' => 'required',
+        'pend_terakhir' => 'required',
+        'nama_instansi' => 'required',
 
-       $pakar->save();
-       
-       return redirect("/");
+        ]);
+
+        $user = CalonPakar::create(request(['first_name_pakar', 'last_name_pakar', 'role','email', 'password', 'nama_instansi', 'pend_terakhir']));
+    
+        return redirect("/login")->with('message', 'Akun akan segera diapprove oleh Admin, mohon tunggu sekitar 5 menit.');
     }
 
     public function show_regis_pakar()

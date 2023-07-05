@@ -45,7 +45,6 @@ class KelolaSuperAdmin extends Controller
     {
        $admin = new Admin;
        $admin->name = $request->name;
-       $admin->username = $request->username;
        $admin->email = $request->email;
        $admin->password = $request->password;
 
@@ -60,7 +59,7 @@ class KelolaSuperAdmin extends Controller
        $user = new User;
        $user->first_name_user = $request->first_name_user;
        $user->last_name_user = $request->last_name_user;
-       $user->role = "user";
+       $user->role =  $request->role;
        $user->email = $request->email;
        $user->password = $request->password;
 
@@ -82,7 +81,7 @@ class KelolaSuperAdmin extends Controller
        $pakar = new Pakar;
        $pakar->first_name_pakar = $request->first_name_pakar;
        $pakar->last_name_pakar = $request->last_name_pakar;
-       $pakar->role = "pakar";
+       $pakar->role =  $request->role;
        $pakar->pend_terakhir = $request->pend_terakhir;
        $pakar->nama_instansi = $request->nama_instansi;
        $pakar->email = $request->email;
@@ -111,18 +110,17 @@ class KelolaSuperAdmin extends Controller
 
     public function admin_edit(Request $request, $id)
     {
-        $admin = DB::table('admin')->where('id',$id)->get();
+        $admins = DB::table('admins')->where('id',$id)->get();
         
-        return view('super-admin.data_admin',['admin' => $admin]);
+        return view('super-admin.data_admin',['data_admin' => $admins]);
         
     }
 
     public function admin_update(Request $request)
 {
 
-	DB::table('admin')->where('id',$request->id)->update([
+	DB::table('admins')->where('id',$request->id)->update([
 		'name' => $request->name,
-		'username' => $request->username,
 		'email' => $request->email,
 		'password' => $request->password,
 	]);
@@ -132,7 +130,7 @@ class KelolaSuperAdmin extends Controller
 
     public function admin_hapus($id)
     {
-        DB::table('admin')->where('id',$id)->delete();
+        DB::table('admins')->where('id',$id)->delete();
         
         return redirect('/data_admin');
         

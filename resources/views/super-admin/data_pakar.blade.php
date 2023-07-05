@@ -126,6 +126,7 @@
                                        class="form-control"
                                        id="nama_instansi" name="nama_instansi">
                             </div>
+                    <input id="role" type="text" class="form-control" name="role" value="Pakar" hidden>
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="text"

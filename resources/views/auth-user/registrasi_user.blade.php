@@ -69,6 +69,7 @@
                         </div>
                       </div>
                     </div>
+                    <input id="role" type="text" class="form-control" name="role" value="User" hidden>
   
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-lg btn-block">
@@ -77,7 +78,7 @@
                     </div>
                      <div class="mt-5 text-center">
                       Sudah Memiliki Akun ?  
-                      <a style="text-align: right" href="{{ url('/') }}"> Login</a>
+                      <a style="text-align: right" href="{{ url('/login') }}"> Login</a>
                   </div>
                   <br>
                   </form>

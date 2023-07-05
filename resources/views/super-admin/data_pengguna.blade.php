@@ -119,6 +119,7 @@
                                        class="form-control"
                                        id="password" name="password">
                             </div>
+                    <input id="role" type="text" class="form-control" name="role" value="User" hidden>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
                             <button type="button"

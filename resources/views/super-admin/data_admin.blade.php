@@ -43,7 +43,6 @@
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
                                             <th style="text-align: center" scope="col">Nama Admin</th>
-                                            <th style="text-align: center" scope="col">Username</th>
                                             <th style="text-align: center" scope="col">Email</th>
                                             <th style="text-align: center" scope="col">Password</th>
                                             <th style="text-align: center" scope="col">Created at</th>
@@ -55,7 +54,6 @@
                                         <tr>
                                             <td>{{ $i++}}</td>
                                             <td>{{$admin->name}}</td>
-                                            <td>{{$admin->username}}</td>
                                             <td>{{$admin->email}}</td>
                                             <td>{{$admin->password}}</td>
                                             <td>{{$admin->created_at}}</td>
@@ -102,12 +100,6 @@
                                        id="name" name="name">
                             </div>
                             <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text"
-                                       class="form-control"
-                                       id="username" name="username">
-                            </div>
-                            <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="text"
                                        class="form-control"
@@ -149,33 +141,27 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    @foreach ($admin as $a )
-                    <form action="/admin/update" method="POST">
+                    @foreach ($data_admin as $admin )
+                    <form action="" method="POST">
                         @csrf
                         <div class="modal-body modal-lg">
                             <div class="form-group">
                                 <label for="name">Nama Admin</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="name" name="name" value="{{ $a->name }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text"
-                                       class="form-control"
-                                       id="username" name="username" value="{{ $a->username }}">
+                                       id="name" name="name" value="{{ $admin->name }}">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="email" name="email" value="{{ $a->email }}">
+                                       id="email" name="email" value="{{ $admin->email }}">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="password" name="password"  value="{{ $a->password }}">
+                                       id="password" name="password"  value="{{ $admin->password }}">
                             </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">

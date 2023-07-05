@@ -45,22 +45,27 @@
                         @endif
 
                         <form method="POST"
-                            action="{{ url("actionlogin") }}"
+                        action="{{ url("/login_admin") }}"
                             class="needs-validation"
                             novalidate="">
                             @csrf
                             <div class="form-group">
-                                <label for="username">Username</label>
-                                <input id="username"
-                                    type="text"
+                                <label for="email">Email</label>
+                                <input id="email"
+                                    type="email"
                                     class="form-control"
-                                    name="username"
+                                    name="email"
                                     tabindex="1"
                                     required
                                     autofocus>
                                 <div class="invalid-feedback">
-                                    Please fill in your username
+                                    Please fill in your email
                                 </div>
+                                @error('message')        
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
@@ -74,9 +79,11 @@
                                     name="password"
                                     tabindex="2"
                                     required>
-                                <div class="invalid-feedback">
-                                    please fill in your password
-                                </div>
+                                    @error('message')  
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                             </div>
 
                             <div class="form-group text-center">
