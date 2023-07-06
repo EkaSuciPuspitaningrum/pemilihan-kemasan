@@ -27,7 +27,7 @@
                                 <h4>Jenis Kemasan</h4>
                             </div>
                             <div class="card-body">
-                                10
+                                {{ DB::table('jenis_kemasan')->count() }}
                             </div>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                                 <h4>Kriteria Produk</h4>
                             </div>
                             <div class="card-body">
-                                42
+                                {{ DB::table('kriteria_produk')->count() }}
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                                 <h4>Basis Pengetahuan</h4>
                             </div>
                             <div class="card-body">
-                                1,201
+                                {{ DB::table('pengetahuan')->count() }}
                             </div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                                 <h4>Riwayat Pencarian</h4>
                             </div>
                             <div class="card-body">
-                                47
+                                {{ DB::table('riwayat')->count() }}
                             </div>
                         </div>
                     </div>

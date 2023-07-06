@@ -56,7 +56,7 @@
                                             <td>{{$dataa->email}}</td>
                                             <td>{{$dataa->password}}</td>
                                             <td>{{$dataa->created_at}}</td>
-                                            <td><a href="" type="button" class="btn btn-warning">Approve</a>
+                                            <td><a href="/move_calon_pakar/{{ $dataa->id }}" type="button" class="btn btn-warning">Approve</a>
                                                 <a href="/calon_pakar/hapus/{{ $dataa->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>

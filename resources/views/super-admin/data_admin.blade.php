@@ -19,7 +19,17 @@
         <div class="section-header">
             <h1>Data Admin</h1>
         </div>
-
+        @if(session('message'))
+        <div class="alert alert-success alert-dismissible show fade">
+            <div class="alert-body">
+                <button class="close"
+                    data-dismiss="alert">
+                    <span>&times;</span>
+                </button>
+                {{session('message')}}
+            </div>
+        </div>
+    @endif
         <div class="section-body">
             <h2 class="section-title">Data Admin</h2>
             <p class="section-lead">Silahkan tambahkan, ubah maupun hapus data Admin.</p>
@@ -57,7 +67,7 @@
                                             <td>{{$admin->email}}</td>
                                             <td>{{$admin->password}}</td>
                                             <td>{{$admin->created_at}}</td>
-                                            <td><a data-toggle="modal" href="/admin/edit/{{ $admin->id }}"  data-target="#editAdmin" type="button" class="btn btn-warning">Edit</a>
+                                            <td><a data-toggle="modal" href="/admin/edit/{{ $admin->id }}" data-target="#editAdmin{{ $admin->id }}" type="button" class="btn btn-warning">Edit</a>
                                                 <a href="/admin/hapus/{{ $admin->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
@@ -128,7 +138,7 @@
     <div class="modal fade"
             tabindex="-1"
             role="dialog"
-            id="editAdmin">
+            id="editAdmin{{ $admin->id }}">
             <div class="modal-dialog"
                 role="document">
                 <div class="modal-content">
@@ -141,27 +151,38 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    @foreach ($data_admin as $admin )
-                    <form action="" method="POST">
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible show fade">
+                            <div class="alert-body">
+                                <button class="close"
+                                    data-dismiss="alert">
+                                    <span>&times;</span>
+                                </button>
+                                {{session('success')}}
+                            </div>
+                        </div>
+                        @endif
+                    <form action="/admin_update/{{ $admin->id }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="modal-body modal-lg">
                             <div class="form-group">
                                 <label for="name">Nama Admin</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="name" name="name" value="{{ $admin->name }}">
+                                       id="name" required name="name" value="{{ $admin->name }}">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text"
+                                <input type="email"
                                        class="form-control"
-                                       id="email" name="email" value="{{ $admin->email }}">
+                                       id="email" required name="email" value="{{ $admin->email }}">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="password" name="password"  value="{{ $admin->password }}">
+                                       id="password" required name="password"  value="{{ $admin->password }}">
                             </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
@@ -172,7 +193,6 @@
                                 class="btn btn-warning">Edit</button>
                         </div>
                     </form>
-                    @endforeach
                 </div>
             </div>
         </div>     

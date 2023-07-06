@@ -27,7 +27,7 @@
                                 <h4>Approve Pakar</h4>
                             </div>
                             <div class="card-body">
-                                10
+                                {{ DB::table('calon_pakar')->count() }}
                             </div>
                         </div>
                     </div>
@@ -39,10 +39,10 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Data Pakar</h4>
+                                <h4>Jumlah Pakar</h4>
                             </div>
                             <div class="card-body">
-                                42
+                                {{ DB::table('pakar')->count() }}
                             </div>
                         </div>
                     </div>
@@ -54,10 +54,10 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Data Pengguna</h4>
+                                <h4>Riwayat Pencarian</h4>
                             </div>
                             <div class="card-body">
-                                1,201
+                                {{ DB::table('riwayat')->count() }}
                             </div>
                         </div>
                     </div>
@@ -69,10 +69,10 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Data Admin</h4>
+                                <h4>Jumlah Admin</h4>
                             </div>
                             <div class="card-body">
-                                47
+                                {{ DB::table('admins')->count() }}
                             </div>
                         </div>
                     </div>

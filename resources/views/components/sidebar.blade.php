@@ -10,7 +10,7 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('dashboard') }}"><i class="fas fa-house"></i><span>Dashboard</span></a>
+                <a class="nav-link" href="{{ url('dashboard_user') }}"><i class="fas fa-house"></i><span>Dashboard</span></a>
             </li>
             <li class="menu-header">Pencarian Kemasan</li>
             <li class="{{ Request::is('cari') ? 'active' : '' }}">

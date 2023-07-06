@@ -113,6 +113,18 @@
                                        id="last_name_pakar" name="last_name_pakar">
                             </div>
                             <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="password" name="password">
+                            </div>
+                            <div class="form-group">
                                 <label for="pend_terakhir">Pendidikan Terakhir</label>
                                 <select name="pend_terakhir" id="pend_terakhir" class="form-control">
                                   <option value="D4/S1/Setara">D4/S1/Setara</option>
@@ -126,19 +138,13 @@
                                        class="form-control"
                                        id="nama_instansi" name="nama_instansi">
                             </div>
-                    <input id="role" type="text" class="form-control" name="role" value="Pakar" hidden>
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text"
-                                       class="form-control"
-                                       id="email" name="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="text"
-                                       class="form-control"
-                                       id="password" name="password">
-                            </div>
+                                <label for="dokumen">Curriculum Vitae (CV) / Daftar Riwayat Hidup</label>
+                                <div class="input-group mb-3">
+                                  <input type="file" class="form-control" required id="dokumen" name="dokumen">
+                                  <label class="input-group-text" for="customFile">Upload</label>
+                                </div>
+                              </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
                             <button type="button"

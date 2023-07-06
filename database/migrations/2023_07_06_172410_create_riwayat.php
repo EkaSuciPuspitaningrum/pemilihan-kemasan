@@ -13,16 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('calon_pakar', function (Blueprint $table) {
+        Schema::create('riwayat', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name_pakar');
-            $table->string('last_name_pakar');
-            $table->string('email');
-            $table->string('password')->hash();
-            $table->string('dokumen');
-            $table->string('pend_terakhir');
-            $table->string('nama_instansi');
-            // $table->string('file');
             $table->timestamps();
         });
     }
@@ -34,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('riwayat');
     }
 };

@@ -45,11 +45,11 @@
                     @csrf
                     <div class="row">
                       <div class="form-group col-6">
-                        <label for="first_name_pakar">First Name</label>
+                        <label for="first_name_pakar">Nama Pertama</label>
                         <input id="first_name_pakar" type="text" class="form-control" required name="first_name_pakar" autofocus="" spellcheck="false" data-ms-editor="true" required> 
                       </div>
                       <div class="form-group col-6">
-                        <label for="last_name_pakar">Last Name</label>
+                        <label for="last_name_pakar">Nama Terakhir</label>
                         <input id="last_name_pakar" type="text" class="form-control" name="last_name_pakar">
                       </div>
                     </div>
@@ -86,16 +86,13 @@
                       </div>
                     </div>
                     
-                    <input id="role" type="text" class="form-control" name="role" value="Pakar" hidden>
-
-                    {{-- <div class="form-group">
-                      <label for="file">Ijazah Pendidikan Terakhir</label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input " id="customFile" name="file">
-                            <label class="custom-file-label" for="customFile">Choose file</label>
+                    <div class="form-group">
+                      <label for="dokumen">Curriculum Vitae (CV) / Daftar Riwayat Hidup</label>
+                      <div class="input-group mb-3">
+                        <input type="file" class="form-control" required id="dokumen" name="dokumen">
+                        <label class="input-group-text" for="customFile">Upload</label>
                       </div>
-                      
-                    </div> --}}
+                    </div>
                     
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-lg btn-block">
@@ -104,7 +101,7 @@
                     </div>
                     <div class="mt-5 text-center">
                       Sudah Memiliki Akun ?  
-                      <a style="text-align: right" href="{{ url('/') }}"> Login</a>
+                      <a style="text-align: right" href="{{ url('/login') }}"> Login</a>
                   </div>
                   <br>
                   </form>

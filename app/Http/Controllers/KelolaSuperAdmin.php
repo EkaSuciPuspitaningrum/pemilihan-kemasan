@@ -26,13 +26,7 @@ class KelolaSuperAdmin extends Controller
             'type_menu' => 'data_pakar',
         ]);
     }
-    public function data_pengguna()
-    {
-        $dataadmin = ["data_pengguna"=>User::all()];
-        return view('super-admin.data_pengguna', $dataadmin,[
-            'type_menu' => 'data_pengguna',
-        ]);
-    }
+
     public function data_admin()
     {
         $dataAdmin = ["data_admin"=>Admin::all()];
@@ -78,18 +72,33 @@ class KelolaSuperAdmin extends Controller
 
     public function data_pakar_store(Request $request)
     {
-       $pakar = new Pakar;
-       $pakar->first_name_pakar = $request->first_name_pakar;
-       $pakar->last_name_pakar = $request->last_name_pakar;
-       $pakar->role =  $request->role;
-       $pakar->pend_terakhir = $request->pend_terakhir;
-       $pakar->nama_instansi = $request->nama_instansi;
-       $pakar->email = $request->email;
-       $pakar->password = $request->password;
+        $request->validate([
+            'dokumen' => 'required',
+            'dokumen.*' => 'mimes:doc,docx,PDF,pdf,|max:2000',
+            'first_name_pakar' => 'required',
+            'last_name_pakar' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'pend_terakhir' => 'required',
+            'nama_instansi' => 'required',
+        ]);
 
-       $pakar->save();
-       
-       return redirect("/data_pakar");
+        if ($request->hasfile('dokumen')) {            
+            $dokumen = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('dokumen')->getClientOriginalName());
+            $request->file('dokumen')->move(public_path('dokumen'), $dokumen);
+             CalonPakar::create(
+                    [                        
+                        'dokumen' =>$dokumen,
+                        'first_name_pakar' =>$request->first_name_pakar,
+                        'last_name_pakar' =>$request->last_name_pakar,
+                        'email' =>$request->email,
+                        'password' =>$request->password,
+                        'pend_terakhir' =>$request->pend_terakhir,
+                        'nama_instansi' =>$request->nama_instansi,
+                    ]
+                );
+            }
+        return redirect("/data_pakar")->with('message', 'Akun berhasil dibuat.');
     }
 
     public function pakar_hapus($id)
@@ -97,6 +106,21 @@ class KelolaSuperAdmin extends Controller
         DB::table('pakar')->where('id',$id)->delete();
         
         return redirect('/data_pakar');
+        
+    }
+
+    public function move_calon_pakar($id)
+    {
+        CalonPakar::query()
+        ->each(function ($oldPost) {
+         $newPost = $oldPost->replicate();
+         $newPost->setTable('pakar');
+         $newPost->save();
+         $oldPost->delete();
+     
+       });
+        
+        return redirect('/appr_pakar');
         
     }
 
@@ -108,25 +132,31 @@ class KelolaSuperAdmin extends Controller
         
     }
 
-    public function admin_edit(Request $request, $id)
+    public function admin_edit(Admin $admin)
     {
-        $admins = DB::table('admins')->where('id',$id)->get();
-        
-        return view('super-admin.data_admin',['data_admin' => $admins]);
-        
+        return view('super-admin.data_admin',compact('admin'));
     }
 
-    public function admin_update(Request $request)
-{
+    public function admin_update(Request $request, $id)
+    {
+        $update = Admin::find($id);
+        $update->name = $request->name;
+        $update->email = $request->email;
+        $update->password = $request->password;
 
-	DB::table('admins')->where('id',$request->id)->update([
-		'name' => $request->name,
-		'email' => $request->email,
-		'password' => $request->password,
-	]);
+        return dd($update);
 
-	return redirect('/data_admin');
-}
+        // $request->validate([
+        //     'name' => 'required|email',
+        //     'email' => 'required',
+        //     'password' => 'required',
+
+        // ]);
+  
+        // $admin->update($request->all());
+  
+        // return redirect('/data_admin')->with('success','Product updated successfully');
+    }
 
     public function admin_hapus($id)
     {

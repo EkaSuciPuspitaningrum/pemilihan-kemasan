@@ -17,40 +17,36 @@ class AuthRegis extends Controller
         ]);
     }
 
-    public function user_store()
+
+    public function calon_pakar_store(Request $request)
     {
-
-       $this->validate(request(), [
-        'first_name_user' => 'required',
-        'last_name_user' => 'required',
-        'email' => 'required|email',
-        'password' => 'required',
-        'role' => 'required',
-
+        
+        $request->validate([
+            'dokumen' => 'required',
+            'dokumen.*' => 'mimes:doc,docx,PDF,pdf,|max:2000',
+            'first_name_pakar' => 'required',
+            'last_name_pakar' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'pend_terakhir' => 'required',
+            'nama_instansi' => 'required',
         ]);
 
-        $user = User::create(request(['first_name_user', 'last_name_user', 'role','email', 'password']));
-
-        auth()->login($user);
-        return redirect()->to('/dashboard_user');
-    }
-
-    public function calon_pakar_store()
-    {
-
-       $this->validate(request(), [
-        'first_name_pakar' => 'required',
-        'last_name_pakar' => 'required',
-        'role' => 'required',
-        'email' => 'required|email',
-        'password' => 'required',
-        'pend_terakhir' => 'required',
-        'nama_instansi' => 'required',
-
-        ]);
-
-        $user = CalonPakar::create(request(['first_name_pakar', 'last_name_pakar', 'role','email', 'password', 'nama_instansi', 'pend_terakhir']));
-    
+        if ($request->hasfile('dokumen')) {            
+            $dokumen = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('dokumen')->getClientOriginalName());
+            $request->file('dokumen')->move(public_path('dokumen'), $dokumen);
+             CalonPakar::create(
+                    [                        
+                        'dokumen' =>$dokumen,
+                        'first_name_pakar' =>$request->first_name_pakar,
+                        'last_name_pakar' =>$request->last_name_pakar,
+                        'email' =>$request->email,
+                        'password' =>$request->password,
+                        'pend_terakhir' =>$request->pend_terakhir,
+                        'nama_instansi' =>$request->nama_instansi,
+                    ]
+                );
+            }
         return redirect("/login")->with('message', 'Akun akan segera diapprove oleh Admin, mohon tunggu sekitar 5 menit.');
     }
 

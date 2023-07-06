@@ -97,7 +97,7 @@
         </li> -->
         <div class="row">
             <div class="buttons">
-                <a href="{{ url('show_regis_pakar') }}"
+                <a href="{{ url('/login') }}"
                     class="btn btn-success">Login Pakar</a>
                 <a href="{{ url('login_admin') }}"
                     class="btn btn-warning">Login Admin</a>

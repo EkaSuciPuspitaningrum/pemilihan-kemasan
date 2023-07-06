@@ -33,13 +33,13 @@ use Illuminate\Support\Facades\Route;
 //     return view('super-admin.dashboard');
 // });
 
-Route::get('/', function () {
-    return view('user.dashboard');
-});
-
 // Route::get('/', function () {
-//     return view('login.login');
+//     return view('user.dashboard');
 // });
+
+Route::get('/', function () {
+    return view('login.login');
+});
 
 // Route::get('/', function () {
 //     return view('auth-user.registrasi_user');
@@ -67,15 +67,15 @@ Route::name('super-admin')->group(function () {
     Route::get('/appr_pakar', [KelolaSuperAdmin::class,'appr_pakar'])->name('appr_pakar');
     Route::get('/calon_pakar/hapus/{id}', [KelolaSuperAdmin::class,'calon_pakar_hapus'])->name('calon_pakar_hapus');
     Route::get('/data_pakar', [KelolaSuperAdmin::class,'data_pakar'])->name('data_pakar');
+    Route::get('/move_calon_pakar/{id}', [KelolaSuperAdmin::class,'move_calon_pakar'])->name('move_calon_pakar');
     Route::post('/data_pakar_store', [KelolaSuperAdmin::class,'data_pakar_store'])->name('data_pakar_store');
     Route::get('/pakar/hapus/{id}', [KelolaSuperAdmin::class,'pakar_hapus'])->name('pakar_hapus');
  
     Route::get('/data_admin', [KelolaSuperAdmin::class,'data_admin'])->name('data_admin');
     Route::post('/admin_store', [KelolaSuperAdmin::class,'admin_store'])->name('admin_store');
     Route::get('/admin/hapus/{id}', [KelolaSuperAdmin::class,'admin_hapus'])->name('admin_hapus');
-    Route::get('/admin/edit/{id}', [KelolaSuperAdmin::class,'admin_edit'])->name('admin_edit');
-    Route::post('/admin_update', [KelolaSuperAdmin::class,'admin_update'])->name('admin_update');
-
+    Route::get('/admin/edit/', [KelolaSuperAdmin::class,'admin_edit'])->name('admin_edit');
+    Route::put('/admin_update/{Admin}', 'KelolaSuperAdmin@admin_update');
    
 });
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('role');
             $table->string('email');
             $table->string('password')->hash();
+            $table->string('dokumen');
             $table->string('pend_terakhir');
             $table->string('nama_instansi');
             // $table->string('file');
