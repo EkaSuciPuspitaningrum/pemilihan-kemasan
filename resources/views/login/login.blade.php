@@ -93,7 +93,6 @@
                                     please fill in your password
                                 </div>
                             </div>
-
                             <div class="form-group text-center">
                                 <button type="submit"
                                     class="btn btn-primary btn-lg btn-icon icon-right"
@@ -101,24 +100,9 @@
                                     Login
                                 </button>
                             </div>
-                            <div class="mt-5 text-center">
-                                Apakah Anda Admin?
-                                <a style="text-align: right" href="{{ url('login_admin') }}">Login Sebagai Admin</a>
-
-                            </div>
-
-                            <div class="mt-5 text-center">
-                                Belum memiliki akun?
-                            </div>
-                            <br>
-                            <div class="section-body">
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <a style="text-align: right" href="{{ url('regis_user') }}">Daftar Sebagai Pengguna</a>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <a style="text-align: left" href="{{ url('regis_pakar') }}">Daftar Sebagai Pakar</a>
-                                    </div>
+                            <div class="form-group text-center">
+                                <div class="mt-5">
+                                    Belum memiliki akun? <a href="{{ url('regis_pakar') }}">Daftar Sebagai Pakar</a>
                                 </div>
                             </div>
                         </form>

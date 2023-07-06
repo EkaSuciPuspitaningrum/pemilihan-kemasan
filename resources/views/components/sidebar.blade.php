@@ -12,11 +12,6 @@
             <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('dashboard') }}"><i class="fas fa-house"></i><span>Dashboard</span></a>
             </li>
-
-            <li class="menu-header">Pengetahuan</li>
-            <li class="{{ Request::is('aturan') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('aturan') }}"><i class="fas fa-book-open"></i><span>Basis Pengetahuan Kemasan</span></a>
-            </li>
             <li class="menu-header">Pencarian Kemasan</li>
             <li class="{{ Request::is('cari') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('cari') }}"><i class="fas fa-magnifying-glass"></i><span>Pencarian Kemasan</span></a>

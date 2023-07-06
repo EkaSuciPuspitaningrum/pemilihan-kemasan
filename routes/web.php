@@ -29,13 +29,13 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('pakar.dashboard');
 // });
-Route::get('/', function () {
-    return view('super-admin.dashboard');
-});
-
 // Route::get('/', function () {
-//     return view('user.dashboard');
+//     return view('super-admin.dashboard');
 // });
+
+Route::get('/', function () {
+    return view('user.dashboard');
+});
 
 // Route::get('/', function () {
 //     return view('login.login');
@@ -50,11 +50,9 @@ Route::get('/', function () {
 Route::name('auth')->group(function(){
     Route::get('/login', [AuthLogin::class,'login'])->name('login');
 
-    Route::get('/regis_user', [AuthRegis::class,'show_regis_user'])->name('show_regis_user');
     Route::get('/regis_pakar', [AuthRegis::class,'show_regis_pakar'])->name('show_regis_pakar');
     
     Route::post('/calon_pakar_store', [AuthRegis::class,'calon_pakar_store'])->name('calon_pakar_store');
-    Route::post('/akun_user_store', [AuthRegis::class,'user_store'])->name('user_store');
 
     Route::post('/login_admin', [AuthLogin::class, 'actionlogin'])->name('actionlogin');
     Route::get('actionlogout', [AuthLogin::class, 'actionlogout'])->name('actionlogout');
@@ -71,11 +69,7 @@ Route::name('super-admin')->group(function () {
     Route::get('/data_pakar', [KelolaSuperAdmin::class,'data_pakar'])->name('data_pakar');
     Route::post('/data_pakar_store', [KelolaSuperAdmin::class,'data_pakar_store'])->name('data_pakar_store');
     Route::get('/pakar/hapus/{id}', [KelolaSuperAdmin::class,'pakar_hapus'])->name('pakar_hapus');
-
-    Route::get('/data_pengguna', [KelolaSuperAdmin::class,'data_pengguna'])->name('data_pengguna');
-    Route::post('/data_pengguna_store', [KelolaSuperAdmin::class,'data_pengguna_store'])->name('data_pengguna_store');
-    Route::get('/user/hapus/{id}', [KelolaSuperAdmin::class,'user_hapus'])->name('user_hapus');
-    
+ 
     Route::get('/data_admin', [KelolaSuperAdmin::class,'data_admin'])->name('data_admin');
     Route::post('/admin_store', [KelolaSuperAdmin::class,'admin_store'])->name('admin_store');
     Route::get('/admin/hapus/{id}', [KelolaSuperAdmin::class,'admin_hapus'])->name('admin_hapus');
@@ -109,7 +103,6 @@ Route::name('pakar')->group(function () {
     Route::get('/pengetahuan/hapus/{id}', [AturanKemasan::class,'pengetahuan_hapus'])->name('pengetahuan_hapus');
     
     Route::get('/pakar_metode', [TentangMetode::class,'pakar_show'])->name('pakar_show');
-    Route::get('/user_metode', [TentangMetode::class,'user_show'])->name('user_show');
 
 
 });

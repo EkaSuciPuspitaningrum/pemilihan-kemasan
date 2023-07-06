@@ -95,23 +95,13 @@
                 </div>
             </div>
         </li> -->
-        @if(auth()->check())
-        <li class="dropdown"><a href="#"
-                data-toggle="dropdown"
-                class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image"
-                    src="{{ asset('img/avatar/avatar-1.png') }}"
-                    class="rounded-circle mr-1">
-                <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->first_name_user }}</div>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
-
-                <a href="{{url('actionlogout')}}" method="GET"
-                    class="dropdown-item has-icon text-danger">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
+        <div class="row">
+            <div class="buttons">
+                <a href="{{ url('show_regis_pakar') }}"
+                    class="btn btn-success">Login Pakar</a>
+                <a href="{{ url('login_admin') }}"
+                    class="btn btn-warning">Login Admin</a>
             </div>
-        </li>
-        @endif
+        </div>
     </ul>
 </nav>

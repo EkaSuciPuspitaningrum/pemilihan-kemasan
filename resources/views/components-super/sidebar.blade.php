@@ -20,10 +20,6 @@
             <li class="{{ Request::is('data_pakar') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('data_pakar') }}"><i class="fas fa-user"></i><span>Data Pakar</span></a>
             </li>
-            <li class="menu-header">Data Pengguna</li>
-            <li class="{{ Request::is('data_pengguna') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('data_pengguna') }}"><i class="fas fa-user"></i><span>Data Pengguna</span></a>
-            </li>
             <li class="menu-header">Data Admin</li>
             <li class="{{ Request::is('data_admin') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('data_admin') }}"><i class="fas fa-lock"></i><span>Data Admin</span></a>
