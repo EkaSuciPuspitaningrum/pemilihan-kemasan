@@ -133,7 +133,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ url("/kemasan_edit/{id}",$kemasan->id) }}" method="POST">
+                    <form action="" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="modal-body modal-lg">
@@ -141,13 +141,13 @@
                                 <label for="jeniskemasan">Jenis Kemasan</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="jenis_kemasan" name="jenis_kemasan" value="{{ $kemasan->jenis_kemasan }}" required>
+                                       id="jenis_kemasan" name="jenis_kemasan" required>
                                     <code>* Isi dengan jenis dan bahan, contoh : Plastik PVC</code>
                             </div>
                             <div class="form-group">
                                 <label for="ketKemasan">Keterangan Kemasan</label>
                                 <textarea class="form-control" style="height: 150px" name="keterangan_kemasan" 
-                                 required>{{ $kemasan->keterangan_kemasan }}</textarea>
+                                 required></textarea>
                             </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">

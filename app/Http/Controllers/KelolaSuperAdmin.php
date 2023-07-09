@@ -40,11 +40,19 @@ class KelolaSuperAdmin extends Controller
        $admin = new Admin;
        $admin->name = $request->name;
        $admin->email = $request->email;
+       $admin->role = "Admin";
        $admin->password = $request->password;
 
        $admin->save();
        
        return redirect("/data_admin");
+    }
+
+    public function admin_edit($id)
+    {
+
+        $admin = DB::table('admins')->where('id',$id)->get();
+        return view('super-admin.data_admin',['admins' => $admin]);
     }
 
     public function data_pengguna_store(Request $request)
@@ -86,7 +94,7 @@ class KelolaSuperAdmin extends Controller
         if ($request->hasfile('dokumen')) {            
             $dokumen = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('dokumen')->getClientOriginalName());
             $request->file('dokumen')->move(public_path('dokumen'), $dokumen);
-             CalonPakar::create(
+             Pakar::create(
                     [                        
                         'dokumen' =>$dokumen,
                         'first_name_pakar' =>$request->first_name_pakar,
@@ -105,7 +113,7 @@ class KelolaSuperAdmin extends Controller
     {
         DB::table('pakar')->where('id',$id)->delete();
         
-        return redirect('/data_pakar');
+        return redirect('/data_pakar')->with("message", "Data berhasil dihapus.");
         
     }
 
@@ -120,7 +128,7 @@ class KelolaSuperAdmin extends Controller
      
        });
         
-        return redirect('/appr_pakar');
+        return redirect('/appr_pakar')->with("message", "Data berhasil mendapat approve.");
         
     }
 
@@ -130,11 +138,6 @@ class KelolaSuperAdmin extends Controller
         
         return redirect('/appr_pakar');
         
-    }
-
-    public function admin_edit(Admin $admin)
-    {
-        return view('super-admin.data_admin',compact('admin'));
     }
 
     public function admin_update(Request $request, $id)
@@ -162,7 +165,7 @@ class KelolaSuperAdmin extends Controller
     {
         DB::table('admins')->where('id',$id)->delete();
         
-        return redirect('/data_admin');
+        return redirect('/data_admin')->with("message", "Data berhasil dihapus.");
         
     }
 

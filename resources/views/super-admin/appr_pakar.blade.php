@@ -25,6 +25,19 @@
             <p class="section-lead">Silahkan approve maupun hapus data calon pakar.</p>
             <div class="row">
                 <div class="col-12">
+                    @if(session('message'))
+                    <div class="alert alert-success alert-dismissible show fade">
+                        <div class="alert-body">
+                            <button class="close"
+                                data-dismiss="alert">
+                                <span>&times;</span>
+                            </button>
+                            {{session('message')}}
+                        </div>
+                    </div>
+                @endif
+                <br>
+                
                     <div class="card">
                         <div class="card-body">
                             <div> 
@@ -39,6 +52,7 @@
                                             <th style="text-align: center" scope="col">Nama Terakhir</th>
                                             <th style="text-align: center" scope="col">Pendidikan Terakhir</th>
                                             <th style="text-align: center" scope="col">Nama Instansi</th>
+                                            <th style="text-align: center" scope="col">Dokumen</th>
                                             <th style="text-align: center" scope="col">Email</th>
                                             <th style="text-align: center" scope="col">Password</th>
                                             <th style="text-align: center" scope="col">Created At</th>
@@ -53,10 +67,12 @@
                                             <td>{{$dataa->last_name_pakar}}</td>
                                             <td>{{$dataa->pend_terakhir}}</td>
                                             <td>{{$dataa->nama_instansi}}</td>
+                                            <td>{{$dataa->dokumen}}</td>
                                             <td>{{$dataa->email}}</td>
                                             <td>{{$dataa->password}}</td>
                                             <td>{{$dataa->created_at}}</td>
-                                            <td><a href="/move_calon_pakar/{{ $dataa->id }}" type="button" class="btn btn-warning">Approve</a>
+                                            <td><a href="/move_calon_pakar/{{ $dataa->id }}" type="button" class="btn btn-success">Lihat</a>
+                                                <a href="/move_calon_pakar/{{ $dataa->id }}" type="button" class="btn btn-warning">Approve</a>
                                                 <a href="/calon_pakar/hapus/{{ $dataa->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>

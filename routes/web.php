@@ -30,16 +30,16 @@ use Illuminate\Support\Facades\Route;
 //     return view('pakar.dashboard');
 // });
 // Route::get('/', function () {
-//     return view('super-admin.dashboard');
-// });
-
-// Route::get('/', function () {
-//     return view('user.dashboard');
+//     return view('super-admin.\dashboard');
 // });
 
 Route::get('/', function () {
-    return view('login.login');
+    return view('user.dashboard');
 });
+
+// Route::get('/', function () {
+//     return view('login.login');
+// });
 
 // Route::get('/', function () {
 //     return view('auth-user.registrasi_user');
@@ -74,8 +74,9 @@ Route::name('super-admin')->group(function () {
     Route::get('/data_admin', [KelolaSuperAdmin::class,'data_admin'])->name('data_admin');
     Route::post('/admin_store', [KelolaSuperAdmin::class,'admin_store'])->name('admin_store');
     Route::get('/admin/hapus/{id}', [KelolaSuperAdmin::class,'admin_hapus'])->name('admin_hapus');
-    Route::get('/admin/edit/', [KelolaSuperAdmin::class,'admin_edit'])->name('admin_edit');
-    Route::put('/admin_update/{Admin}', 'KelolaSuperAdmin@admin_update');
+    Route::get('/admin/edit/{id}', [KelolaSuperAdmin::class,'admin_edit'])->name('admin_edit');
+    Route::post('/admin_update', [KelolaSuperAdmin::class,'admin_update'])->name('admin_update');
+
    
 });
 
@@ -83,8 +84,8 @@ Route::name('pakar')->group(function () {
 
     Route::get('/dashboard_pakar', [DashboardPakar::class,'show'])->name('dashboard_pakar.show');
     
-    // Route::get('/pustaka_produk', [PustakaProduk::class,'show'])->name('pustaka_produk.show');
-    // Route::post('/produk_store', [PustakaProduk::class,'store'])->name('produk_store');
+    Route::get('/pustaka_produk', [PustakaProduk::class,'show'])->name('pustaka_produk.show');
+    Route::post('/produk_store', [PustakaProduk::class,'store'])->name('produk_store');
     // Route::get('/produk_show/{id}', [PustakaProduk::class,'produk_show'])->name('produk_show');
     
     Route::post('/kriteria_store', [PustakaProduk::class,'kriteriaStore'])->name('kriteria_store');

@@ -30,9 +30,6 @@ class AuthLogin extends Controller
         if (Auth::attempt($data)) {
             $email = $request-> input('email');
             $admin = Admin::where('email', $email)->first();
-            session()->put('name', $admin->name);
-            session()->put('role', $admin->role);
-            session()->put('id', $admin->id);
             if($admin->role == "Admin"){
                 return view('super-admin.dashboard');
             }

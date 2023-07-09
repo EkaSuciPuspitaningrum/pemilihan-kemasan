@@ -20,7 +20,7 @@ class PustakaKemasan extends Controller
     public function store(Request $request)
     {
 
-       $generator = Helper::IDGenerator(new JenisKemasan(), 'id_kemasan', 3, 'KMS');
+       $generator = Helper::IDGenerator(new JenisKemasan(), 'id_kemasan', 3, 'K');
        $kemasan = new JenisKemasan();
        $kemasan->id_kemasan = $generator;
        $kemasan->jenis_kemasan = $request->jenis_kemasan;

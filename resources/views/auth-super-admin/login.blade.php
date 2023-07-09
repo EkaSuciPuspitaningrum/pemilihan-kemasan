@@ -64,9 +64,6 @@
                                     tabindex="1"
                                     required
                                     autofocus>
-                                <div class="invalid-feedback">
-                                    Please fill in your email
-                                </div>
                                 @error('message')        
                                 <div class="invalid-feedback">
                                     {{ $message }}

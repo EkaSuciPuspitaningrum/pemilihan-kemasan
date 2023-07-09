@@ -13,14 +13,12 @@ class AturanKemasan extends Controller
 {
     public function show()
     {
-        $dataa = ["dataa"=>BasisPengetahuan::all()];
-        $kemasan = ["kemasan"=>JenisKemasan::all()];
-        $kriteria = ["kriteria"=>KriteriaProduk::all()];
-        return view('pakar.basis_pengetahuan', $dataa, $kemasan, $kriteria, [
+        $data = BasisPengetahuan::all();
+        $kriteria = KriteriaProduk::all();
+        $kemasan = JenisKemasan::all();
+
+        return view('pakar.basis_pengetahuan', compact(['data', 'kriteria', 'kemasan']),[
             'type_menu' => 'aturan',
-            "dataa" => $dataa,
-            "kemasan" => $kemasan,
-            "kriteria" => $kriteria,
         ]);
     }
 

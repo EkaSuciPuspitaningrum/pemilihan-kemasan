@@ -12,11 +12,11 @@
 
             <li class="menu-header">Pustaka Produk</li>
             <li class="{{ Request::is('pustaka_produk') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('pustaka_produk') }}"><i class="fas fa-tag"></i><span>Data Produk</span></a>
+                <a class="nav-link" href="{{ url('pustaka_produk') }}"><i class="fas fa-tag"></i><span>Kriteria Produk</span></a>
             </li>
             <li class="menu-header">Pustaka Kemasan</li>
             <li class="{{ Request::is('pustaka_kemasan') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('pustaka_kemasan') }}"><i class="fas fa-box"></i><span>Data Kemasan</span></a>
+                <a class="nav-link" href="{{ url('pustaka_kemasan') }}"><i class="fas fa-box"></i><span>Jenis Kemasan</span></a>
             </li>
             <li class="menu-header">Pengetahuan</li>
             <li class="{{ Request::is('aturan') ? 'active' : '' }}">

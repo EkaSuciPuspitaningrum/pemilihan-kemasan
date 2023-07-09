@@ -111,6 +111,7 @@
                                         </tr>
                                         @endforeach
                                     </tbody>
+                                    
                                 </table>
                             </div>
                             
@@ -210,7 +211,7 @@
     </div>
 
 
-    <div class="modal fade"
+    {{-- <div class="modal fade"
             tabindex="-1"
             role="dialog"
             id="editJenis">
@@ -233,12 +234,12 @@
                                 <label for="jeniskemasan">Jenis Produk</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="jenis_produk" name="jenis_produk" value="{{ $produk->jenis_produk }}">
+                                       id="jenis_produk" name="jenis_produk" >
                             </div>
                             <div class="form-group">
                                 <label for="jeniskemasan">Keterangan Jenis Produk</label>
                                 <textarea class="form-control" style="height: 150px" name="keterangan_produk"
-                                 required>{{ $produk->keterangan_produk }}</textarea>
+                                 required></textarea>
                             </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
@@ -252,7 +253,7 @@
                 </div>
             </div>
         </div>     
-</div>
+</div> --}}
 
 
 <div class="modal fade"
@@ -278,12 +279,12 @@
                                 <label for="kriteriaproduk">Kriteria Produk</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="kriteria_produk" name="kriteria_produk" value="{{ $kriteria->kriteria_produk }}">
+                                       id="kriteria_produk" name="kriteria_produk">
                             </div>
                             <div class="form-group">
                                 <label for="kriteriaproduk">Keterangan Kriteria Produk</label>
                                 <textarea class="form-control" style="height: 150px" name="keterangan_kriteria"
-                                 required>{{ $kriteria->keterangan_kriteria }}</textarea>
+                                 required></textarea>
                             </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">

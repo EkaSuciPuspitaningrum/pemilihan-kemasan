@@ -52,6 +52,7 @@
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
+                                            <th style="text-align: center" scope="col" hidden>id</th>
                                             <th style="text-align: center" scope="col">Nama Admin</th>
                                             <th style="text-align: center" scope="col">Email</th>
                                             <th style="text-align: center" scope="col">Password</th>
@@ -63,11 +64,13 @@
                                         @foreach ($data_admin as $admin )
                                         <tr>
                                             <td>{{ $i++}}</td>
+                                            <td hidden>{{$admin->id}}</td>
                                             <td>{{$admin->name}}</td>
                                             <td>{{$admin->email}}</td>
                                             <td>{{$admin->password}}</td>
                                             <td>{{$admin->created_at}}</td>
-                                            <td><a data-toggle="modal" href="/admin/edit/{{ $admin->id }}" data-target="#editAdmin{{ $admin->id }}" type="button" class="btn btn-warning">Edit</a>
+                                            <td><a data-toggle="modal" href="{{ url('/admin/edit',$admin->id) }}" 
+                                                value="{{ $admin->id }}" data-target="#editAdmin" type="button" class="btn btn-warning edit">Edit</a>
                                                 <a href="/admin/hapus/{{ $admin->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
@@ -100,7 +103,8 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ url("/admin_store") }}" method="POST">
+                    @foreach ($admins as $admin )
+                <form action="{{ url("/admin_store") }}" method="POST">
                         @csrf
                         <div class="modal-body modal-lg">
                             <div class="form-group">
@@ -121,6 +125,9 @@
                                        class="form-control"
                                        id="password" name="password">
                             </div>
+                            <input type="text"
+                                       class="form-control"
+                                       id="role" name="role" hidden>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
                             <button type="button"
@@ -130,6 +137,7 @@
                                 class="btn btn-primary">Tambah</button>
                         </div>
                     </form>
+                    @endforeach
                 </div>
             </div>
         </div>     
@@ -138,7 +146,7 @@
     <div class="modal fade"
             tabindex="-1"
             role="dialog"
-            id="editAdmin{{ $admin->id }}">
+            id="editAdmin">
             <div class="modal-dialog"
                 role="document">
                 <div class="modal-content">
@@ -151,18 +159,8 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    @if(session('success'))
-                        <div class="alert alert-success alert-dismissible show fade">
-                            <div class="alert-body">
-                                <button class="close"
-                                    data-dismiss="alert">
-                                    <span>&times;</span>
-                                </button>
-                                {{session('success')}}
-                            </div>
-                        </div>
-                        @endif
-                    <form action="/admin_update/{{ $admin->id }}" method="POST">
+                    @foreach ($admins as $admin)
+                    <form action="{{ url('/admin_update', $admin->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="modal-body modal-lg">
@@ -170,19 +168,19 @@
                                 <label for="name">Nama Admin</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="name" required name="name" value="{{ $admin->name }}">
+                                       id="name" required name="name" >
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email"
                                        class="form-control"
-                                       id="email" required name="email" value="{{ $admin->email }}">
+                                       id="email" required name="email" >
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="password" required name="password"  value="{{ $admin->password }}">
+                                       id="password" required name="password">
                             </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
@@ -193,6 +191,7 @@
                                 class="btn btn-warning">Edit</button>
                         </div>
                     </form>
+                    @endforeach
                 </div>
             </div>
         </div>     
@@ -214,6 +213,7 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/table.js') }}"></script>
+    <script src="{{ asset('js/edit.js') }}"></script>
     <script src="{{ asset('js/page/index-0.js') }}"></script>
     <script src="{{ asset('js/page/forms-advanced-forms.js') }}"></script>
 @endpush
