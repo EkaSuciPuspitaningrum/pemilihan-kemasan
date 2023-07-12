@@ -122,3 +122,6 @@ Route::name('user')->group(function () {
     Route::get('/cari', [PencarianKemasan::class,'show'])->name('cari.show');
     Route::get('/history', [PencarianKemasan::class,'showhistory'])->name('history.showhistory');
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
