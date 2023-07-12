@@ -17,11 +17,13 @@ class AdminAuthenticated
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->check()){
-            if(auth()->user()->role == 'Admin') {
-                return $next($request);
-            }
+        if (Auth::guard('admin')->user()) {
+            return $next($request);
         }
-        return redirect()->to('/');
+        if ($request->ajax() || $request->wantsJson()) {
+            return response('Unauthorized.', 401);
+        } else {
+            return redirect(route('show_login_admin'));
+        }
     }
 }

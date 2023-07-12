@@ -14,7 +14,7 @@ class Admin extends Authenticatable
     use HasFactory;
     
     protected $primaryKey = 'id';
-    protected $table = 'admins';
+    protected $table = 'user';
 
     protected $fillable = [
         'name',

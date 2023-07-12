@@ -53,11 +53,18 @@ Route::name('auth')->group(function(){
     Route::get('/regis_pakar', [AuthRegis::class,'show_regis_pakar'])->name('show_regis_pakar');
     
     Route::post('/calon_pakar_store', [AuthRegis::class,'calon_pakar_store'])->name('calon_pakar_store');
-
     Route::post('/login_admin', [AuthLogin::class, 'actionlogin'])->name('actionlogin');
     Route::get('actionlogout', [AuthLogin::class, 'actionlogout'])->name('actionlogout');
     
 });
+
+Route::group(['middleware' => 'adminauth'], function () {
+    Route::get('/dashboard_super', function () {
+        return view('super-admin.dashboard');
+    })->name('dashboard_super');
+
+});
+
 
 Route::name('super-admin')->group(function () {
     Route::get('/login_admin', [AuthAdmin::class,'show_login_admin'])->name('show_login_admin');

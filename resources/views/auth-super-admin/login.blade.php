@@ -51,7 +51,7 @@
                         @endif
 
                         <form method="POST"
-                        action="{{ url("/login_admin") }}"
+                        action="{{url('/login_admin')}}"
                             class="needs-validation"
                             novalidate="">
                             @csrf

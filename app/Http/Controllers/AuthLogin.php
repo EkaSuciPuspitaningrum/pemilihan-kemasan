@@ -17,26 +17,20 @@ class AuthLogin extends Controller
     {
         // dd($request->all());
 
-        $request->validate([
-            'email' => 'required',
+        $credential = $request->validate([
+            'email' => 'required|email:dns',
             'password' => 'required',
         ]);
 
-        $data = [
-            'email' => $request->email,
-            'password' => $request->password,
-        ];
 
-        if (Auth::attempt($data)) {
-            $email = $request-> input('email');
-            $admin = Admin::where('email', $email)->first();
-            if($admin->role == "Admin"){
-                return view('super-admin.dashboard');
-            }
-        } else {
-            // Authentication failed, redirect back to login form with error message
-            return back()->with('error','Invalid email and password.');
+        if (Auth::attempt($credential)) {
+            $request->session()->regenerate();
+ 
+            return redirect()->intended('/dashboard_super');
+
         }
+
+        return back()->with('error','Invalid email or password.');
 
     }
 

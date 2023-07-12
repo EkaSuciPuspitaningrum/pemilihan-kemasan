@@ -18,6 +18,25 @@ class AuthAdmin extends Controller
         ]);
     }
 
+    public function actionlogin(Request $request)
+    {
+        // dd($request->all());
+        $this->validate($request, [
+            'email' => 'required|email:dns',
+            'password' => 'required',
+        ]);
+ 
+        if(auth()->guard('admin')->attempt(['email' => $request->input('email'),  'password' => $request->input('password')])){
+            $user = auth()->guard('admin')->user();
+            if($user->is_admin == 1){
+                return redirect()->route('/dashboard_super');
+            }
+        }else {
+            return back()->with('error','Whoops! invalid email or password.');
+        }
+
+    }
+     
     public function pakar_store(Request $request)
     {
        $this->validate(request(), [
