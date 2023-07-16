@@ -53,22 +53,17 @@ Route::name('auth')->group(function(){
     Route::get('/regis_pakar', [AuthRegis::class,'show_regis_pakar'])->name('show_regis_pakar');
     
     Route::post('/calon_pakar_store', [AuthRegis::class,'calon_pakar_store'])->name('calon_pakar_store');
+    
     Route::post('/login_admin', [AuthLogin::class, 'actionlogin'])->name('actionlogin');
+    Route::get('/login_admin', [AuthAdmin::class,'show_login_admin'])->name('show_login_admin');
+    
     Route::get('actionlogout', [AuthLogin::class, 'actionlogout'])->name('actionlogout');
     
 });
 
-Route::group(['middleware' => 'adminauth'], function () {
-    Route::get('/dashboard_super', function () {
-        return view('super-admin.dashboard');
-    })->name('dashboard_super');
-
-});
-
 
 Route::name('super-admin')->group(function () {
-    Route::get('/login_admin', [AuthAdmin::class,'show_login_admin'])->name('show_login_admin');
-    
+
     Route::get('/dashboard_super', [DashboardSuper::class,'show'])->name('dashboard_super.show');
     
     Route::get('/appr_pakar', [KelolaSuperAdmin::class,'appr_pakar'])->name('appr_pakar');
@@ -122,6 +117,3 @@ Route::name('user')->group(function () {
     Route::get('/cari', [PencarianKemasan::class,'show'])->name('cari.show');
     Route::get('/history', [PencarianKemasan::class,'showhistory'])->name('history.showhistory');
 });
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
