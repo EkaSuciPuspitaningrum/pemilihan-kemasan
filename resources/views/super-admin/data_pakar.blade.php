@@ -50,7 +50,7 @@
                                 @php
                                     $i=1;
                                 @endphp 
-                                <table id="table" class="table">
+                                <table style="width: 2000px" id="table" class="table" >
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
@@ -65,20 +65,21 @@
                                             <th style="text-align: center" scope="col">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody style="width: fit-content">
+                                    <tbody>
                                         @foreach ($pakar as $dataa )
                                         <tr>
-                                            <td>{{ $i++}}</td>
-                                            <td>{{$dataa->first_name_pakar}}</td>
-                                            <td>{{$dataa->last_name_pakar}}</td>
-                                            <td>{{$dataa->pend_terakhir}}</td>
-                                            <td>{{$dataa->nama_instansi}}</td>
-                                            <td>{{$dataa->dokumen}}</td>
-                                            <td>{{$dataa->email}}</td>
-                                            <td>{{$dataa->password}}</td>
-                                            <td>{{$dataa->created_at}}</td>
-                                            <td >
-                                                <a data-toggle="modal" href="" type="button" class="btn btn-warning" data-target="#editPakar">Edit</a>
+                                            <td style="text-align: center">{{ $i++}}</td>
+                                            <td style="text-align: center">{{$dataa->first_name_pakar}}</td>
+                                            <td style="text-align: center">{{$dataa->last_name_pakar}}</td>
+                                            <td style="text-align: center">{{$dataa->pend_terakhir}}</td>
+                                            <td style="text-align: center">{{$dataa->nama_instansi}}</td>
+                                            <td style="text-align: center">{{$dataa->dokumen}}</td>
+                                            <td style="text-align: center">{{$dataa->email}}</td>
+                                            <td style="text-align: center">{{$dataa->password}}</td>
+                                            <td style="text-align: center">{{$dataa->created_at}}</td>
+                                            <td style="text-align: center">
+                                                <a data-toggle="modal" data-target="#cvPakar{{ $dataa->id }}" href="/lihat_cv/{{ $dataa->id }}" type="button" class="btn btn-success" >Lihat CV</a>
+                                                <a data-toggle="modal" href="{{url('pakar/edit', $dataa->id)}}" type="button" class="btn btn-warning" data-target="#editPakar{{ $dataa->id }}">Edit</a>
                                                 <a href="/pakar/hapus/{{ $dataa->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
@@ -173,10 +174,11 @@
         </div>     
     </div>
 
+    @foreach ($pakar as $dataa )
     <div class="modal fade"
             tabindex="-1"
             role="dialog"
-            id="editPakar">
+            id="editPakar{{ $dataa->id }}">
             <div class="modal-dialog"
                 role="document">
                 <div class="modal-content">
@@ -189,22 +191,54 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    {{-- <form action="{{ url("/kemasan_edit/{id}",$kemasan->id) }}" method="POST">
+                    <form action="{{ url("/pakar/update",$dataa->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
                         <div class="modal-body modal-lg">
                             <div class="form-group">
-                                <label for="jeniskemasan">Jenis Kemasan</label>
+                                <label for="first_name_pakar">Nama Pertama</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="jenis_kemasan" name="jenis_kemasan" value="{{ $kemasan->jenis_kemasan }}" required>
-                                    <code>* Isi dengan jenis dan bahan, contoh : Plastik PVC</code>
+                                       id="first_name_pakar" name="first_name_pakar" value="{{ $dataa->first_name_pakar }}">
                             </div>
                             <div class="form-group">
-                                <label for="ketKemasan">Keterangan Kemasan</label>
-                                <textarea class="form-control" style="height: 150px" name="keterangan_kemasan" 
-                                 required>{{ $kemasan->keterangan_kemasan }}</textarea>
+                                <label for="last_name_pakar">Nama Terakhir</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="last_name_pakar" name="last_name_pakar" value="{{ $dataa->last_name_pakar }}">
                             </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="email" name="email" value="{{ $dataa->email }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="password" name="password" value="{{ $dataa->password }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="pend_terakhir">Pendidikan Terakhir</label>
+                                <select name="pend_terakhir" id="pend_terakhir" class="form-control">
+                                  <option value="D4/S1/Setara" {{ $dataa->pend_terakhir == 'D4/S1/Setara' ? 'selected' : '' }}>D4/S1/Setara</option>
+                                  <option value="S2/Setara" {{ $dataa->pend_terakhir == 'S2/Setara' ? 'selected' : '' }}>S2/Setara</option>
+                                  <option value="S3/Setara" {{ $dataa->pend_terakhir == 'S3/Setara' ? 'selected' : '' }}>S3/Setara</option>
+                                </select>
+                              </div>
+                            <div class="form-group">
+                                <label for="nama_instansi">Nama Instansi</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="nama_instansi" name="nama_instansi" value="{{ $dataa->nama_instansi }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="dokumen">Curriculum Vitae (CV) / Daftar Riwayat Hidup</label>
+                                <div class="input-group mb-3">
+                                  <input type="file" class="form-control" required id="dokumen" name="dokumen">
+                                  <label class="input-group-text" for="customFile">Upload</label>
+                                </div>
+                              </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
                             <button type="button"
@@ -213,12 +247,73 @@
                             <button type="submit"
                                 class="btn btn-warning">Edit</button>
                         </div>
-                    </form> --}}
+                    </form>
                 </div>
             </div>
         </div>     
     </div>
 </div>
+@endforeach
+
+    <div class="modal fade"
+            tabindex="-1"
+            role="dialog"
+            id="cvPakar{{ $dataa->id }}">
+            <div class="modal-dialog"
+                role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Curriculum Vitae (CV) / Daftar Riwayat Hidup Pakar</h5>
+                        <button type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="pdf-container"></div> 
+                    </div>
+                    
+                </div>
+            </div>
+    </div>  
+
+
+    <script>
+        function showPDF(pdfUrl) {
+          const container = document.getElementById('pdf-container');
+      
+          // Load PDF using PDF.js
+          pdfjsLib.getDocument(pdfUrl).promise.then(function (pdfDoc) {
+            const numPages = pdfDoc.numPages;
+      
+            // Fetch the first page
+            pdfDoc.getPage(1).then(function(page) {
+              const scale = 1.5;
+              const viewport = page.getViewport({ scale });
+      
+              // Create a canvas element to display the PDF page
+              const canvas = document.createElement('canvas');
+              const context = canvas.getContext('2d');
+              canvas.height = viewport.height;
+              canvas.width = viewport.width;
+              container.appendChild(canvas);
+      
+              // Render the PDF page into the canvas
+              const renderContext = {
+                canvasContext: context,
+                viewport: viewport,
+              };
+              page.render(renderContext);
+            });
+          });
+        }
+      
+        // Call the function with the URL of your PDF file
+        showPDF('{{ $pdfUrl }}');
+      </script>
+
 @endsection
 
 @push('scripts')
@@ -237,5 +332,6 @@
     <script src="{{ asset('js/page/table.js') }}"></script>
     <script src="{{ asset('js/page/index-0.js') }}"></script>
     <script src="{{ asset('js/page/forms-advanced-forms.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
 @endpush
 

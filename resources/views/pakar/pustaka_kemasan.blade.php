@@ -55,7 +55,7 @@
                                             <td>{{$kemasan->id_kemasan}}</td>
                                             <td>{{$kemasan->jenis_kemasan}}</td>
                                             <td>{{$kemasan->keterangan_kemasan}}</td>
-                                            <td><a data-toggle="modal" href="{{ url('/kemasan_show/{id}',$kemasan->id) }}"  data-target="#editKemasan" type="button" class="btn btn-warning">Edit</a>
+                                            <td><a data-toggle="modal" href="{{url('kemasan/edit', $kemasan->id)}}" data-target="#editKemasan{{ $kemasan->id }}" type="button" class="btn btn-warning edit">Edit</a>
                                                 <a href="/kemasan/hapus/{{ $kemasan->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
@@ -116,11 +116,11 @@
             </div>
         </div>     
     </div>
-
+    @foreach ($jenis_kemasan as $kemasan )
     <div class="modal fade"
             tabindex="-1"
             role="dialog"
-            id="editKemasan">
+            id="editKemasan{{ $kemasan->id }}">
             <div class="modal-dialog"
                 role="document">
                 <div class="modal-content">
@@ -133,21 +133,20 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="" method="POST">
+                    <form action="{{url('kemasan/update', $kemasan->id)}}"  method="POST">
                         @csrf
-                        @method('PUT')
                         <div class="modal-body modal-lg">
                             <div class="form-group">
                                 <label for="jeniskemasan">Jenis Kemasan</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="jenis_kemasan" name="jenis_kemasan" required>
+                                       id="jenis_kemasan" name="jenis_kemasan" required value="{{ $kemasan->jenis_kemasan }}">
                                     <code>* Isi dengan jenis dan bahan, contoh : Plastik PVC</code>
                             </div>
                             <div class="form-group">
                                 <label for="ketKemasan">Keterangan Kemasan</label>
                                 <textarea class="form-control" style="height: 150px" name="keterangan_kemasan" 
-                                 required></textarea>
+                                 required>{{ $kemasan->jenis_kemasan }}</textarea>
                             </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
@@ -162,6 +161,7 @@
             </div>
         </div>     
     </div>
+    @endforeach
 </div>
 @endsection
 

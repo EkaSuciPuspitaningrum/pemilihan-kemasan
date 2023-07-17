@@ -26,16 +26,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('/', function () {
+    return view('pakar.dashboard');
+});
 // Route::get('/', function () {
-//     return view('pakar.dashboard');
-// });
-// Route::get('/', function () {
-//     return view('super-admin.\dashboard');
+//     return view('super-admin.dashboard');
 // });
 
-Route::get('/', function () {
-    return view('user.dashboard');
-});
+// Route::get('/', function () {
+//     return view('user.dashboard');
+// });
 
 // Route::get('/', function () {
 //     return view('login.login');
@@ -71,14 +71,17 @@ Route::name('super-admin')->group(function () {
     Route::get('/data_pakar', [KelolaSuperAdmin::class,'data_pakar'])->name('data_pakar');
     Route::get('/move_calon_pakar/{id}', [KelolaSuperAdmin::class,'move_calon_pakar'])->name('move_calon_pakar');
     Route::post('/data_pakar_store', [KelolaSuperAdmin::class,'data_pakar_store'])->name('data_pakar_store');
+   
+    Route::get('/lihat_cv/{id}', [KelolaSuperAdmin::class,'lihat_cv'])->name('lihat_cv');
+    Route::get('/pakar/edit/{id}', [KelolaSuperAdmin::class,'pakar_edit'])->name('pakar_edit');
+    Route::post('/pakar/update/{id}', [KelolaSuperAdmin::class, 'pakar_update'])->name('pakar_update');
     Route::get('/pakar/hapus/{id}', [KelolaSuperAdmin::class,'pakar_hapus'])->name('pakar_hapus');
  
     Route::get('/data_admin', [KelolaSuperAdmin::class,'data_admin'])->name('data_admin');
     Route::post('/admin_store', [KelolaSuperAdmin::class,'admin_store'])->name('admin_store');
     Route::get('/admin/hapus/{id}', [KelolaSuperAdmin::class,'admin_hapus'])->name('admin_hapus');
     Route::get('/admin/edit/{id}', [KelolaSuperAdmin::class,'admin_edit'])->name('admin_edit');
-    Route::post('/admin_update', [KelolaSuperAdmin::class,'admin_update'])->name('admin_update');
-
+    Route::post('/admin/update/{id}', [KelolaSuperAdmin::class, 'admin_update'])->name('admin_update');
    
 });
 
@@ -87,17 +90,15 @@ Route::name('pakar')->group(function () {
     Route::get('/dashboard_pakar', [DashboardPakar::class,'show'])->name('dashboard_pakar.show');
     
     Route::get('/pustaka_produk', [PustakaProduk::class,'show'])->name('pustaka_produk.show');
-    Route::post('/produk_store', [PustakaProduk::class,'store'])->name('produk_store');
-    // Route::get('/produk_show/{id}', [PustakaProduk::class,'produk_show'])->name('produk_show');
-    
     Route::post('/kriteria_store', [PustakaProduk::class,'kriteriaStore'])->name('kriteria_store');
-    Route::get('/kriteria_show/{id}', [PustakaProduk::class,'kriteria_show'])->name('kriteria_show');
+    Route::get('/kriteria/edit/{id}', [PustakaProduk::class,'kriteria_edit'])->name('kriteria_edit');
+    Route::post('/kriteria/update/{id}', [PustakaProduk::class, 'kriteria_update'])->name('kriteria_update');
     Route::get('/kriteria/hapus/{id}', [PustakaProduk::class,'kriteria_hapus'])->name('kriteria_hapus');
   
     Route::get('/pustaka_kemasan', [PustakaKemasan::class,'show'])->name('pustaka_kemasan.show');
     Route::post('/kemasan_store', [PustakaKemasan::class,'store'])->name('kemasan_store');
-    Route::post('/kemasan_show/{id}', [PustakaKemasan::class,'kemasan_show'])->name('kemasan_show');
-    Route::post('/kemasan_edit/{id}', [PustakaKemasan::class,'kemasan_edit'])->name('kemasan_edit');
+    Route::get('/kemasan/edit/{id}', [PustakaKemasan::class,'kemasan_edit'])->name('kemasan_edit');
+    Route::post('/kemasan/update/{id}', [PustakaKemasan::class, 'kemasan_update'])->name('kemasan_update');
     Route::get('/kemasan/hapus/{id}', [PustakaKemasan::class,'kemasan_hapus'])->name('kemasan_hapus');
     
     Route::get('/aturan', [AturanKemasan::class,'show'])->name('aturan.show');

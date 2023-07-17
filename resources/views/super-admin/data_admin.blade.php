@@ -45,14 +45,10 @@
                         </div>
                         <div class="card-body">
                             <div> 
-                                @php
-                                    $i=1;
-                                @endphp 
                                 <table id="table" class="table" style="text-align: center">
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
-                                            <th style="text-align: center" scope="col" hidden>id</th>
                                             <th style="text-align: center" scope="col">Nama Admin</th>
                                             <th style="text-align: center" scope="col">Email</th>
                                             <th style="text-align: center" scope="col">Password</th>
@@ -61,16 +57,17 @@
                                         </tr>
                                     </thead>
                                     <tbody >
+                                        @php
+                                            $i=1;
+                                        @endphp 
                                         @foreach ($data_admin as $admin )
                                         <tr>
                                             <td>{{ $i++}}</td>
-                                            <td hidden>{{$admin->id}}</td>
                                             <td>{{$admin->name}}</td>
                                             <td>{{$admin->email}}</td>
                                             <td>{{$admin->password}}</td>
                                             <td>{{$admin->created_at}}</td>
-                                            <td><a data-toggle="modal" href="{{ url('/admin/edit',$admin->id) }}" 
-                                                value="{{ $admin->id }}" data-target="#editAdmin" type="button" class="btn btn-warning edit">Edit</a>
+                                            <td><a data-toggle="modal" href="{{url('admin/edit', $admin->id)}}" data-target="#editAdmin{{ $admin->id }}" type="button" class="btn btn-warning edit">Edit</a>
                                                 <a href="/admin/hapus/{{ $admin->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
@@ -103,7 +100,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    @foreach ($admins as $admin )
+                    
                 <form action="{{ url("/admin_store") }}" method="POST">
                         @csrf
                         <div class="modal-body modal-lg">
@@ -137,16 +134,16 @@
                                 class="btn btn-primary">Tambah</button>
                         </div>
                     </form>
-                    @endforeach
                 </div>
             </div>
         </div>     
     </div>
-
+    
+    @foreach ($data_admin as $admin )
     <div class="modal fade"
             tabindex="-1"
             role="dialog"
-            id="editAdmin">
+            id="editAdmin{{ $admin->id  }}">
             <div class="modal-dialog"
                 role="document">
                 <div class="modal-content">
@@ -159,28 +156,27 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    @foreach ($admins as $admin)
-                    <form action="{{ url('/admin_update', $admin->id) }}" method="POST">
+                    
+                    <form action="{{url('admin/update', $admin->id)}}" method="POST">
                         @csrf
-                        @method('PUT')
                         <div class="modal-body modal-lg">
                             <div class="form-group">
                                 <label for="name">Nama Admin</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="name" required name="name" >
+                                       id="name" required name="name" value="{{ $admin->name }}">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email"
                                        class="form-control"
-                                       id="email" required name="email" >
+                                       id="email" required name="email" value="{{ $admin->email }}">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="password" required name="password">
+                                       id="password" required name="password" value="{{ $admin->password }}">
                             </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
@@ -191,12 +187,13 @@
                                 class="btn btn-warning">Edit</button>
                         </div>
                     </form>
-                    @endforeach
                 </div>
             </div>
         </div>     
     </div>
 </div>
+@endforeach
+
 @endsection
 
 @push('scripts')

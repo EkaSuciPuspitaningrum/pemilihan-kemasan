@@ -72,7 +72,7 @@
                                 <h4>Jumlah Admin</h4>
                             </div>
                             <div class="card-body">
-                                {{ DB::table('admins')->count() }}
+                                {{ DB::table('user')->count() }}
                             </div>
                         </div>
                     </div>

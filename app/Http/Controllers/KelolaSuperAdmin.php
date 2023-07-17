@@ -48,33 +48,28 @@ class KelolaSuperAdmin extends Controller
        return redirect("/data_admin");
     }
 
-    public function admin_edit($id)
-    {
-
-        $admin = DB::table('admins')->where('id',$id)->get();
-        return view('super-admin.data_admin',['admins' => $admin]);
+    public function admin_edit($id){
+        $admin   = Admin::whereId($id)->first();
+        return view('super-admin.data_admin')->with('admin', $admin);
     }
 
-    public function data_pengguna_store(Request $request)
-    {
-
-       $user = new User;
-       $user->first_name_user = $request->first_name_user;
-       $user->last_name_user = $request->last_name_user;
-       $user->role =  $request->role;
-       $user->email = $request->email;
-       $user->password = $request->password;
-
-       $user->save();
-       
-       return redirect("/data_pengguna");
+    public function admin_update(Request $request, $id){
+        $admin = Admin::whereId($id)->first();
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->role = "Admin";
+        $admin->password = $request->password;
+        $admin->save();
+    
+        return redirect('/data_admin');
     }
 
-    public function user_hapus($id)
+
+    public function admin_hapus($id)
     {
         DB::table('user')->where('id',$id)->delete();
         
-        return redirect('/data_pengguna');
+        return redirect('/data_admin')->with("message", "Data berhasil dihapus.");
         
     }
 
@@ -82,7 +77,7 @@ class KelolaSuperAdmin extends Controller
     {
         $request->validate([
             'dokumen' => 'required',
-            'dokumen.*' => 'mimes:doc,docx,PDF,pdf,|max:2000',
+            'dokumen.*' => 'mimes:PDF,pdf,|max:2000',
             'first_name_pakar' => 'required',
             'last_name_pakar' => 'required',
             'email' => 'required|email',
@@ -109,6 +104,61 @@ class KelolaSuperAdmin extends Controller
         return redirect("/data_pakar")->with('message', 'Akun berhasil dibuat.');
     }
 
+    public function lihat_cv($id){
+        $pdfData   = Pakar::whereId($id)->first();
+
+
+        if (!$pdfData) {
+            // Tangani ketika ID tidak ditemukan
+            abort(404);
+        }
+    
+        $pdfUrl = $pdfData->dokumen; // Ganti 'pdf_url' dengan nama kolom yang sesuai
+        return view('super-admin.data_pakar', compact('pdfUrl'));
+    }
+
+    public function pakar_edit($id){
+        $pakar   = Pakar::whereId($id)->first();
+        return view('super-admin.data_pakar')->with('pakar', $pakar);
+    }
+
+    public function pakar_update(Request $request, $id){
+        
+        $request->validate([
+            'dokumen' => 'required',
+            'dokumen.*' => 'mimes:PDF,pdf,|max:2000',
+            'first_name_pakar' => 'required',
+            'last_name_pakar' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'pend_terakhir' => 'required',
+            'nama_instansi' => 'required',
+        ]);
+        
+        $pakar = Pakar::whereId($id)->first();
+
+        if ($request->hasFile('dokumen')) {
+            $dokumen = $request->file('dokumen');
+            $store_path = "dokumen";
+            $name = md5(uniqid(rand(), true)) . str_replace(' ', '-', $dokumen->getClientOriginalName());
+            $dokumen->move(public_path('/' . $store_path), $name);
+            $exist_dokumen = $pakar['dokumen'];
+            if (isset($exist_dokumen) && file_exists($exist_dokumen)) {
+                unlink($exist_dokumen);
+            }
+            $update['dokumen'] = $store_path . '/' . $name;
+        }
+        $pakar->first_name_pakar = $request->first_name_pakar;
+        $pakar->last_name_pakar = $request->last_name_pakar;
+        $pakar->email = $request->email;
+        $pakar->password = $request->password;
+        $pakar->pend_terakhir = $request->pend_terakhir;
+        $pakar->nama_instansi = $request->nama_instansi;
+        $pakar->save();
+    
+        return redirect('/data_pakar');
+    }
+
     public function pakar_hapus($id)
     {
         DB::table('pakar')->where('id',$id)->delete();
@@ -120,11 +170,11 @@ class KelolaSuperAdmin extends Controller
     public function move_calon_pakar($id)
     {
         CalonPakar::query()
-        ->each(function ($oldPost) {
-         $newPost = $oldPost->replicate();
-         $newPost->setTable('pakar');
-         $newPost->save();
-         $oldPost->delete();
+        ->each(function ($oldadmin) {
+         $newadmin = $oldadmin->replicate();
+         $newadmin->setTable('pakar');
+         $newadmin->save();
+         $oldadmin->delete();
      
        });
         
@@ -140,33 +190,5 @@ class KelolaSuperAdmin extends Controller
         
     }
 
-    public function admin_update(Request $request, $id)
-    {
-        $update = Admin::find($id);
-        $update->name = $request->name;
-        $update->email = $request->email;
-        $update->password = $request->password;
-
-        return dd($update);
-
-        // $request->validate([
-        //     'name' => 'required|email',
-        //     'email' => 'required',
-        //     'password' => 'required',
-
-        // ]);
-  
-        // $admin->update($request->all());
-  
-        // return redirect('/data_admin')->with('success','Product updated successfully');
-    }
-
-    public function admin_hapus($id)
-    {
-        DB::table('admins')->where('id',$id)->delete();
-        
-        return redirect('/data_admin')->with("message", "Data berhasil dihapus.");
-        
-    }
 
 }

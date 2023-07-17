@@ -35,17 +35,20 @@ class PustakaKemasan extends Controller
         return view('pakar.pustaka_kemasan',compact('kemasan'));
     }
 
-    public function kemasan_edit(Request $request, $id)
-{
-    $post = JenisKemasan::findOrFail($id);
+    public function kemasan_edit($id){
+        $kemasan   = JenisKemasan::whereId($id)->first();
+        return view('pakar.pustaka_kemasan')->with('kemasan', $kemasan);
+    }
 
-    $post->update([
-        'jenis_kemasan' => $request->jenis_kemasan,
-        'keterangan_kemasan' => $request->keterangan_kemasan,
-    ]);
+    public function kemasan_update(Request $request, $id){
+        $admin = JenisKemasan::whereId($id)->first();
+        $admin->jenis_kemasan = $request->jenis_kemasan;
+        $admin->keterangan_kemasan = $request->keterangan_kemasan;
+        $admin->save();
+    
+        return redirect('/pustaka_kemasan');
+    }
 
-	return redirect('/pustaka_kemasan');
-}
 
 public function kemasan_hapus($id)
 {

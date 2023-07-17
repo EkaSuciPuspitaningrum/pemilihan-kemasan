@@ -33,11 +33,21 @@ class PustakaProduk extends Controller
 
     }
 
-    public function kriteria_show(KriteriaProduk $kriteria)
-    {
-        return view('pakar.pustaka_produk',compact('kriteria'));
+
+
+    public function kriteria_edit($id){
+        $kriteria   = KriteriaProduk::whereId($id)->first();
+        return view('pakar.pustaka_produk')->with('kriteria', $kriteria);
     }
 
+    public function kriteria_update(Request $request, $id){
+        $admin = KriteriaProduk::whereId($id)->first();
+        $admin->kriteria_produk = $request->kriteria_produk;
+        $admin->keterangan_kriteria = $request->keterangan_kriteria;
+        $admin->save();
+    
+        return redirect('/pustaka_produk');
+    }
 
     public function kriteria_hapus($id)
     {
