@@ -46,7 +46,7 @@ class PustakaKemasan extends Controller
         $admin->keterangan_kemasan = $request->keterangan_kemasan;
         $admin->save();
     
-        return redirect('/pustaka_kemasan');
+        return redirect('/pustaka_kemasan')->with('message', 'Data berhasil diedit.');
     }
 
 

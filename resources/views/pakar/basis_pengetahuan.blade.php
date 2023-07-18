@@ -18,15 +18,21 @@
     <section class="section">
         <div class="section-header">
             <h1>Basis Pengetahuan Kemasan</h1>
-            <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="#">Forms</a></div>
-                <div class="breadcrumb-item">Advanced Forms</div>
+        </div>
+        @if(session('message'))
+        <div class="alert alert-success alert-dismissible show fade">
+            <div class="alert-body">
+                <button class="close"
+                    data-dismiss="alert">
+                    <span>&times;</span>
+                </button>
+                {{session('message')}}
             </div>
         </div>
-
+    @endif
         <div class="section-body">
-
+            <h2 class="section-title">Pengetahuan Kemasan</h2>
+            <p class="section-lead">Silahkan tambahkan, ubah maupun hapus data pengetahuan-pengetahuan kemasan.</p>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -42,15 +48,13 @@
                                 @php
                                     $i=1;
                                 @endphp 
-                                <table id="table" class="table" style="text-align: center">
+                                <table style="width: 2000px" id="table" class="table-hover table" >
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
                                             <th style="text-align: center" scope="col">Kode Pengetahuan</th>
                                             <th style="text-align: center" scope="col">Jenis Kemasan</th>
                                             <th style="text-align: center" scope="col">Kriteria Produk</th>
-                                            <th style="text-align: center" scope="col">MB</th>
-                                            <th style="text-align: center" scope="col">MD</th>
                                             <th style="text-align: center" scope="col">CF</th>
                                             <th style="text-align: center" scope="col">Action</th>
                                         </tr>
@@ -58,15 +62,13 @@
                                     <tbody >
                                         @foreach ($data as $dataa )
                                         <tr>
-                                            <th>{{ $i++}}</th>
-                                            <td>{{$dataa->id_pengetahuan}}</td>
+                                            <th style="text-align: center">{{ $i++}}</th>
+                                            <td style="text-align: center">{{$dataa->id_pengetahuan}}</td>
                                             <td>{{$dataa->jenis_kemasan}}</td>
                                             <td>{{$dataa->kriteria_produk}}</td>
-                                            <td>{{$dataa->nilai_mb}}</td>
-                                            <td>{{$dataa->nilai_md}}</td>
-                                            <td>{{$dataa->nilai_cf}}</td>
-                                            <td><a data-toggle="modal" href="/pengetahuan_show/{{$dataa->id_pengetahuan}}"  data-target="#editData" type="button" class="btn btn-warning">Edit</a>
-                                                <a href="/pengetahuan/hapus/{{ $data->id }}" type="button" class="btn btn-danger">Hapus</a>
+                                            <td style="text-align: center">{{$dataa->nilai_cf}}</td>
+                                            <td style="text-align: center"><a data-toggle="modal" href="{{url('pengetahuan/edit', $dataa->id)}}"  data-target="#editData{{ $dataa->id }}" type="button" class="btn btn-warning">Edit</a>
+                                                <a href="/pengetahuan/hapus/{{ $dataa->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -115,29 +117,16 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="nilaipercaya">Nilai Kepercayaan (MB)</label>
-                                    <select id="nilai_mb" name="nilai_mb" class="form-control">
-                                        <option value="1">Sangat Yakin</option>
-                                        <option value="0.8">Yakin</option>
-                                        <option value="0.6">Cukup Yakin</option>
-                                        <option value="0.4">Kurang Yakin</option>
-                                        <option value="0.2">Tidak Tahu</option>
-                                        <option value="0">Tidak</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="nilaitdkpercaya">Nilai Ketidakpercayaan (MD)</label>
-                                    <select id="nilai_md" name="nilai_md" class="form-control">
-                                        <option value="1">Sangat Yakin</option>
-                                        <option value="0.8">Yakin</option>
-                                        <option value="0.6">Cukup Yakin</option>
-                                        <option value="0.4">Kurang Yakin</option>
-                                        <option value="0.2">Tidak Tahu</option>
-                                        <option value="0">Tidak</option>
-                                    </select>
-                                </div>
+                            <div class="form-group">
+                                <label for="nilaipercaya">Nilai Kepercayaan Mutlak (CF)</label>
+                                <select id="nilai_cf" name="nilai_cf" class="form-control">
+                                    <option value="1">Sangat Yakin</option>
+                                    <option value="0.8">Yakin</option>
+                                    <option value="0.6">Cukup Yakin</option>
+                                    <option value="0.4">Kurang Yakin</option>
+                                    <option value="0.2">Tidak Tahu</option>
+                                    <option value="0">Tidak</option>
+                                </select>
                             </div>
 
                         </div>
@@ -153,6 +142,67 @@
             </div>
         </div>
 
+        @foreach ($data as $dataa )
+        <div class="modal fade"
+            tabindex="-1"
+            role="dialog"
+            id="editData{{ $dataa->id }}">
+            <div class="modal-dialog"
+                role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Masukkan Basis Pengetahuan Kemasan</h5>
+                        <button type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{{ url("/pengetahuan/update",$dataa->id) }}" method="POST">
+                        @csrf
+                        <div class="modal-body modal-lg">
+                            <div class="form-group">
+                                <label>Jenis Kemasan</label>
+                                <select name="jenis_kemasan" class="form-control">
+                                    @foreach ($kemasan as $kemas)
+                                        <option value="{{ $kemas->jenis_kemasan }}" {{$dataa->jenis_kemasan == $kemas->jenis_kemasan  ? 'selected' : ''}}>{{ $kemas->jenis_kemasan}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Kriteria Produk</label>
+                                <select name="kriteria_produk" class="form-control">
+                                    @foreach ($kriteria as $kriteriaa)
+                                        <option value="{{ $kriteriaa->kriteria_produk }}" {{$dataa->kriteria_produk == $kriteriaa->kriteria_produk  ? 'selected' : ''}}>{{ $kriteriaa->kriteria_produk}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group ">
+                                <label for="nilaipercaya">Nilai Kepercayaan Mutlak (CF)</label>
+                                <select id="nilai_cf" name="nilai_cf" class="form-control">
+                                    <option value="1" {{ $dataa->nilai_cf == '1' ? 'selected' : '' }}>Sangat Yakin</option>
+                                    <option value="0.8" {{ $dataa->nilai_cf == '0.8' ? 'selected' : '' }}>Yakin</option>
+                                    <option value="0.6" {{ $dataa->nilai_cf == '0.6' ? 'selected' : '' }}>Cukup Yakin</option>
+                                    <option value="0.4" {{ $dataa->nilai_cf == '0.4' ? 'selected' : '' }}>Kurang Yakin</option>
+                                    <option value="0.2" {{ $dataa->nilai_cf == '0.2' ? 'selected' : '' }}>Tidak Tahu</option>
+                                    <option value="0" {{ $dataa->nilai_cf == '0' ? 'selected' : '' }}>Tidak</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer bg-whitesmoke br">
+                            <button type="button"
+                                class="btn btn-danger"
+                                data-dismiss="modal">Tutup</button>
+                                <button type="submit"
+                                class="btn btn-warning">Edit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @endforeach
 </div>
 @endsection
 

@@ -50,7 +50,7 @@
                                 @php
                                     $i=1;
                                 @endphp 
-                                <table style="width: 2000px" id="table" class="table" >
+                                <table style="width: 2000px" id="table" class="table-hover table" >
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
@@ -255,6 +255,7 @@
 </div>
 @endforeach
 
+@foreach ($pakar as $dataa )
     <div class="modal fade"
             tabindex="-1"
             role="dialog"
@@ -271,48 +272,14 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <div id="pdf-container"></div> 
+                    <div id="pdf-container">
+                        <embed src="{{ url('lihat_cv', $dataa->id) }}" type="application/pdf" width="100%" height="400px" />
                     </div>
                     
                 </div>
             </div>
     </div>  
-
-
-    <script>
-        function showPDF(pdfUrl) {
-          const container = document.getElementById('pdf-container');
-      
-          // Load PDF using PDF.js
-          pdfjsLib.getDocument(pdfUrl).promise.then(function (pdfDoc) {
-            const numPages = pdfDoc.numPages;
-      
-            // Fetch the first page
-            pdfDoc.getPage(1).then(function(page) {
-              const scale = 1.5;
-              const viewport = page.getViewport({ scale });
-      
-              // Create a canvas element to display the PDF page
-              const canvas = document.createElement('canvas');
-              const context = canvas.getContext('2d');
-              canvas.height = viewport.height;
-              canvas.width = viewport.width;
-              container.appendChild(canvas);
-      
-              // Render the PDF page into the canvas
-              const renderContext = {
-                canvasContext: context,
-                viewport: viewport,
-              };
-              page.render(renderContext);
-            });
-          });
-        }
-      
-        // Call the function with the URL of your PDF file
-        showPDF('{{ $pdfUrl }}');
-      </script>
+    @endforeach
 
 @endsection
 

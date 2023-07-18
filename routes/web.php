@@ -73,6 +73,8 @@ Route::name('super-admin')->group(function () {
     Route::post('/data_pakar_store', [KelolaSuperAdmin::class,'data_pakar_store'])->name('data_pakar_store');
    
     Route::get('/lihat_cv/{id}', [KelolaSuperAdmin::class,'lihat_cv'])->name('lihat_cv');
+    Route::get('/lihat_cv_appr/{id}', [KelolaSuperAdmin::class,'lihat_cv_appr'])->name('lihat_cv_appr');
+    
     Route::get('/pakar/edit/{id}', [KelolaSuperAdmin::class,'pakar_edit'])->name('pakar_edit');
     Route::post('/pakar/update/{id}', [KelolaSuperAdmin::class, 'pakar_update'])->name('pakar_update');
     Route::get('/pakar/hapus/{id}', [KelolaSuperAdmin::class,'pakar_hapus'])->name('pakar_hapus');
@@ -103,7 +105,8 @@ Route::name('pakar')->group(function () {
     
     Route::get('/aturan', [AturanKemasan::class,'show'])->name('aturan.show');
     Route::post('/pengetahuan_store', [AturanKemasan::class,'store'])->name('pengetahuan_store');
-    Route::get('/pengetahuan_show/{id}', [AturanKemasan::class,'pengetahuan_edit'])->name('pengetahuan_edit');
+    Route::get('/pengetahuan/edit/{id}', [AturanKemasan::class,'pengetahuan_edit'])->name('pengetahuan_edit');
+    Route::post('/pengetahuan/update/{id}', [AturanKemasan::class, 'pengetahuan_update'])->name('pengetahuan_update');
     Route::get('/pengetahuan/hapus/{id}', [AturanKemasan::class,'pengetahuan_hapus'])->name('pengetahuan_hapus');
     
     Route::get('/pakar_metode', [TentangMetode::class,'pakar_show'])->name('pakar_show');
@@ -118,3 +121,4 @@ Route::name('user')->group(function () {
     Route::get('/cari', [PencarianKemasan::class,'show'])->name('cari.show');
     Route::get('/history', [PencarianKemasan::class,'showhistory'])->name('history.showhistory');
 });
+

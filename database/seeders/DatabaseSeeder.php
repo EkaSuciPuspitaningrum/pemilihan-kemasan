@@ -25,6 +25,9 @@ class DatabaseSeeder extends Seeder
 
             $this->call([
                 AdminSeeder::class,
+                DataKemasan::class,
+                DataKriteriaProduk::class,
+                DataPengetahuan::class,
             ]);
     }
 }

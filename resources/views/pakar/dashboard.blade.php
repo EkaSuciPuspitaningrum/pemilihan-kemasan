@@ -14,20 +14,20 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Dashboard Admin</h1>
+                <h1>Dashboard Pakar</h1>
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-primary">
-                            <i class="fas fa-box"></i>
+                            <i class="fas fa-user"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Jenis Kemasan</h4>
+                                <h4>Total Pakar</h4>     
                             </div>
                             <div class="card-body">
-                                10
+                                {{ DB::table('pakar')->count() }}
                             </div>
                         </div>
                     </div>
@@ -35,14 +35,14 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-danger">
-                            <i class="fas fa-box-open"></i>
+                            <i class="fas fa-box"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
                                 <h4>Kriteria Produk</h4>
                             </div>
                             <div class="card-body">
-                                42
+                                {{ DB::table('kriteria_produk')->count() }}
                             </div>
                         </div>
                     </div>
@@ -50,14 +50,14 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-warning">
-                            <i class="fas fa-book-open"></i>
+                            <i class="fas fa-box-open"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Basis Pengetahuan</h4>
+                                <h4>Jenis Kemasan</h4>
                             </div>
                             <div class="card-body">
-                                1,201
+                                {{ DB::table('jenis_kemasan')->count() }}
                             </div>
                         </div>
                     </div>
@@ -69,10 +69,10 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Riwayat Pencarian</h4>
+                                <h4>Basis Pengetahuan</h4>
                             </div>
                             <div class="card-body">
-                                47
+                                {{ DB::table('pengetahuan')->count() }}
                             </div>
                         </div>
                     </div>

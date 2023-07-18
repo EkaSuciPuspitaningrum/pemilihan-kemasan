@@ -46,7 +46,7 @@ class PustakaProduk extends Controller
         $admin->keterangan_kriteria = $request->keterangan_kriteria;
         $admin->save();
     
-        return redirect('/pustaka_produk');
+        return redirect('/pustaka_produk')->with('message', 'Data berhasil diedit.');
     }
 
     public function kriteria_hapus($id)

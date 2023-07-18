@@ -9,6 +9,7 @@ use App\Models\Pakar;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class KelolaSuperAdmin extends Controller
 {
@@ -61,7 +62,7 @@ class KelolaSuperAdmin extends Controller
         $admin->password = $request->password;
         $admin->save();
     
-        return redirect('/data_admin');
+        return redirect('/data_admin')->with('message', 'Data berhasil diedit.');
     }
 
 
@@ -105,18 +106,39 @@ class KelolaSuperAdmin extends Controller
     }
 
     public function lihat_cv($id){
-        $pdfData   = Pakar::whereId($id)->first();
+        $pdfFile = Pakar::whereId($id)->first();
 
+    // Check if the PDF file exists
+    if ($pdfFile) {
+        // Get the contents of the PDF file
+        $pdfContent = Storage::disk('dokumen')->get($pdfFile->dokumen);
 
-        if (!$pdfData) {
-            // Tangani ketika ID tidak ditemukan
-            abort(404);
-        }
-    
-        $pdfUrl = $pdfData->dokumen; // Ganti 'pdf_url' dengan nama kolom yang sesuai
-        return view('super-admin.data_pakar', compact('pdfUrl'));
+        // Return the PDF file as response with appropriate headers
+        return response($pdfContent, 200)->header('Content-Type', 'application/pdf');
     }
 
+    // PDF file not found, return a response indicating the error
+    return response('PDF file not found', 404);
+    
+    }
+
+    public function lihat_cv_appr($id){
+        $pdfFile = CalonPakar::whereId($id)->first();
+
+    // Check if the PDF file exists
+    if ($pdfFile) {
+        // Get the contents of the PDF file
+        $pdfContent = Storage::disk('dokumen')->get($pdfFile->dokumen);
+
+        // Return the PDF file as response with appropriate headers
+        return response($pdfContent, 200)->header('Content-Type', 'application/pdf');
+    }
+
+    // PDF file not found, return a response indicating the error
+    return response('PDF file not found', 404);
+    
+    }
+    
     public function pakar_edit($id){
         $pakar   = Pakar::whereId($id)->first();
         return view('super-admin.data_pakar')->with('pakar', $pakar);
@@ -126,7 +148,7 @@ class KelolaSuperAdmin extends Controller
         
         $request->validate([
             'dokumen' => 'required',
-            'dokumen.*' => 'mimes:PDF,pdf,|max:2000',
+            'dokumen.*' => 'mimes:PDF,pdf|max:2000',
             'first_name_pakar' => 'required',
             'last_name_pakar' => 'required',
             'email' => 'required|email',
@@ -156,7 +178,7 @@ class KelolaSuperAdmin extends Controller
         $pakar->nama_instansi = $request->nama_instansi;
         $pakar->save();
     
-        return redirect('/data_pakar');
+        return redirect('/data_pakar')->with('message', 'Data berhasil diedit.');
     }
 
     public function pakar_hapus($id)
@@ -186,7 +208,7 @@ class KelolaSuperAdmin extends Controller
     {
         DB::table('calon_pakar')->where('id',$id)->delete();
         
-        return redirect('/appr_pakar');
+        return redirect('/appr_pakar')->with('message', 'Data berhasil dihapus.');
         
     }
 

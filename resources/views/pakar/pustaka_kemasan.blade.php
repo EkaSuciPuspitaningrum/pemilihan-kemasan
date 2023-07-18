@@ -19,7 +19,17 @@
         <div class="section-header">
             <h1>Pustaka Kemasan</h1>
         </div>
-
+        @if(session('message'))
+        <div class="alert alert-success alert-dismissible show fade">
+            <div class="alert-body">
+                <button class="close"
+                    data-dismiss="alert">
+                    <span>&times;</span>
+                </button>
+                {{session('message')}}
+            </div>
+        </div>
+    @endif
         <div class="section-body">
             <h2 class="section-title">Jenis Kemasan</h2>
             <p class="section-lead">Silahkan tambahkan, ubah maupun hapus data jenis-jenis kemasan.</p>
@@ -38,7 +48,7 @@
                                 @php
                                     $i=1;
                                 @endphp 
-                                <table id="table" class="table" style="text-align: center">
+                                <table id="table" class="table-hover table" >
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
@@ -51,11 +61,12 @@
                                     <tbody >
                                         @foreach ($jenis_kemasan as $kemasan )
                                         <tr>
-                                            <th>{{ $i++}}</th>
-                                            <td>{{$kemasan->id_kemasan}}</td>
+                                            <th style="text-align: center">{{ $i++}}</th>
+                                            <td style="text-align: center">{{$kemasan->id_kemasan}}</td>
                                             <td>{{$kemasan->jenis_kemasan}}</td>
                                             <td>{{$kemasan->keterangan_kemasan}}</td>
-                                            <td><a data-toggle="modal" href="{{url('kemasan/edit', $kemasan->id)}}" data-target="#editKemasan{{ $kemasan->id }}" type="button" class="btn btn-warning edit">Edit</a>
+                                            <td style="text-align: center">
+                                                <a data-toggle="modal" href="{{url('kemasan/edit', $kemasan->id)}}" data-target="#editKemasan{{ $kemasan->id }}" type="button" class="btn btn-warning edit">Edit</a>
                                                 <a href="/kemasan/hapus/{{ $kemasan->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
@@ -146,7 +157,7 @@
                             <div class="form-group">
                                 <label for="ketKemasan">Keterangan Kemasan</label>
                                 <textarea class="form-control" style="height: 150px" name="keterangan_kemasan" 
-                                 required>{{ $kemasan->jenis_kemasan }}</textarea>
+                                 required>{{ $kemasan->keterangan_kemasan }}</textarea>
                             </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">

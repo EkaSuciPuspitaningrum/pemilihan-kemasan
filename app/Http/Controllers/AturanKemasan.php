@@ -29,27 +29,34 @@ class AturanKemasan extends Controller
        $pengetahuan = new BasisPengetahuan();
        $pengetahuan->id_pengetahuan = $generator;
        $pengetahuan->jenis_kemasan = $request->jenis_kemasan;
-       $pengetahuan->kriteria = $request->kriteria;
-       
-       $nilai_mb = $request->input('nilai_mb');
-       $nilai_md = $request->input('nilai_md');
-       
-       $nilai_cf = $nilai_mb - $nilai_md;
-
-       $pengetahuan->nilai_mb = $request->nilai_mb;
-       $pengetahuan->nilai_md = $request->nilai_md;
-       $pengetahuan->nilai_cf = $nilai_cf;
+       $pengetahuan->kriteria_produk = $request->kriteria_produk;
+       $pengetahuan->nilai_cf = $request->nilai_cf;
 
        $pengetahuan->save();
        
        return redirect("/aturan");
     }
 
+    public function pengetahuan_edit($id){
+        $data   = BasisPengetahuan::whereId($id)->first();
+        return view('pakar.basis_pengetahuan')->with('data', $data);
+    }
+
+    public function pengetahuan_update(Request $request, $id){
+        $admin = BasisPengetahuan::whereId($id)->first();
+        $admin->jenis_kemasan = $request->jenis_kemasan;
+        $admin->kriteria_produk = $request->kriteria_produk;
+        $admin->nilai_cf = $request->nilai_cf;
+        $admin->save();
+    
+        return redirect('/aturan')->with('message', 'Data berhasil diedit.');
+    }
+
     public function pengetahuan_hapus($id)
 {
     DB::table('pengetahuan')->where('id',$id)->delete();
     
-    return redirect('/aturan');
+    return redirect('/aturan')->with('message', 'Data berhasil dihapus.');
     
 }
 

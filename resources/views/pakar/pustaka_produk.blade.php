@@ -45,7 +45,7 @@
                         </div>
                         <div class="card-body">
                             <div> 
-                                <table id="table-2" class="table-striped table" style="text-align: center">
+                                <table style="width: 2000px" id="table" class="table-hover table" >
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
@@ -61,11 +61,11 @@
                                         @endphp 
                                         @foreach ($kriteria_produk as $kriteria )
                                         <tr>
-                                            <th>{{ $i++}}</th>
-                                            <td>{{$kriteria->id_kriteria}}</td>
+                                            <th style="text-align: center">{{ $i++}}</th>
+                                            <td style="text-align: center">{{$kriteria->id_kriteria}}</td>
                                             <td>{{$kriteria->kriteria_produk}}</td>
                                             <td>{{$kriteria->keterangan_kriteria}}</td>
-                                            <td>
+                                            <td style="text-align: center">
                                                 <a data-toggle="modal" href="{{url('kriteria/edit', $kriteria->id)}}" data-target="#editKriteria{{ $kriteria->id }}" type="button" class="btn btn-warning edit">Edit</a>
                                                 <a href="/kriteria/hapus/{{ $kriteria->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
@@ -188,7 +188,6 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/table.js') }}"></script>
-    <script src="{{ asset('js/page/table-2.js') }}"></script>
     <script src="{{ asset('js/page/index-0.js') }}"></script>
     <script src="{{ asset('js/page/forms-advanced-forms.js') }}"></script>
 @endpush

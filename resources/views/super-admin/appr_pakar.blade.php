@@ -44,7 +44,7 @@
                                 @php
                                     $i=1;
                                 @endphp 
-                                <table id="table" class="table">
+                                <table style="width: 2000px" id="table" class="table-hover table">
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
@@ -61,17 +61,18 @@
                                     </thead>
                                     <tbody >
                                         @foreach ($calon_pakar as $dataa )
-                                        <tr style="width: fit-content">
+                                        <tr>
                                             <th>{{ $i++}}</th>
-                                            <td>{{$dataa->first_name_pakar}}</td>
-                                            <td>{{$dataa->last_name_pakar}}</td>
-                                            <td>{{$dataa->pend_terakhir}}</td>
-                                            <td>{{$dataa->nama_instansi}}</td>
-                                            <td>{{$dataa->dokumen}}</td>
-                                            <td>{{$dataa->email}}</td>
-                                            <td>{{$dataa->password}}</td>
-                                            <td>{{$dataa->created_at}}</td>
-                                            <td><a href="/move_calon_pakar/{{ $dataa->id }}" type="button" class="btn btn-success">Lihat</a>
+                                            <td style="text-align: center">{{$dataa->first_name_pakar}}</td>
+                                            <td style="text-align: center">{{$dataa->last_name_pakar}}</td>
+                                            <td style="text-align: center">{{$dataa->pend_terakhir}}</td>
+                                            <td style="text-align: center">{{$dataa->nama_instansi}}</td>
+                                            <td style="text-align: center">{{$dataa->dokumen}}</td>
+                                            <td style="text-align: center">{{$dataa->email}}</td>
+                                            <td style="text-align: center">{{$dataa->password}}</td>
+                                            <td style="text-align: center">{{$dataa->created_at}}</td>
+                                            <td style="text-align: center">
+                                                <a data-toggle="modal" data-target="#cvPakar{{ $dataa->id }}" href="/lihat_cv_appr/{{ $dataa->id }}" type="button" class="btn btn-success" >Lihat CV</a>
                                                 <a href="/move_calon_pakar/{{ $dataa->id }}" type="button" class="btn btn-warning">Approve</a>
                                                 <a href="/calon_pakar/hapus/{{ $dataa->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
@@ -88,6 +89,33 @@
         </div>
 
     </section>
+
+    @foreach ($calon_pakar as $dataa )
+    <div class="modal fade"
+            tabindex="-1"
+            role="dialog"
+            id="cvPakar{{ $dataa->id }}">
+            <div class="modal-dialog"
+                role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Curriculum Vitae (CV) / Daftar Riwayat Hidup Pakar</h5>
+                        <button type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="pdf-container">
+                        <embed src="{{ url('lihat_cv_appr', $dataa->id) }}" type="application/pdf" width="100%" height="400px" />
+                    </div>
+                    
+                </div>
+            </div>
+    </div>  
+    @endforeach
+
 </div>
 @endsection
 
