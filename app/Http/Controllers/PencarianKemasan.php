@@ -67,12 +67,12 @@ class PencarianKemasan extends Controller
             foreach ($resultProcess as $key => $value) {
                 if (count($resultProcess[$key]) > 0) {
                      foreach ($value as $a => $b) {
-                    $fetchDataMB[$key][$a] = $dataAturan
+                    $fetchData[$key][$a] = $dataAturan
                         ->where('jenis_kemasan', $key)
                         ->where('kriteria_produk', $b)
                         ->select('nilai_CF')
                         ->first();
-                    $dataHasilFetchCF[$key][$a] = $fetchDataMB[$key][$a]->nilai_CF;
+                    $dataHasilFetchCF[$key][$a] = $fetchData[$key][$a]->nilai_CF;
                 }
                 $fixIndexes[$key] = array_values($dataHasilFetchCF[$key]);
                 }

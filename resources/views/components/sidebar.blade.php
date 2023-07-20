@@ -13,8 +13,8 @@
                 <a class="nav-link" href="{{ url('dashboard_user') }}"><i class="fas fa-house"></i><span>Dashboard</span></a>
             </li>
             <li class="menu-header">Pencarian Kemasan</li>
-            <li class="{{ Request::is('cari') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('cari') }}"><i class="fas fa-magnifying-glass"></i><span>Pencarian Kemasan</span></a>
+            <li class="{{ Request::is('pencarian') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('pencarian') }}"><i class="fas fa-magnifying-glass"></i><span>Pencarian Kemasan</span></a>
             </li>
             <li class="menu-header">Riwayat Pencarian</li>
             <li class="{{ Request::is('history') ? 'active' : '' }}">

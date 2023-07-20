@@ -1,6 +1,6 @@
 @extends('layouts-user.app')
 
-@section('title', 'Pencarian Kemasan')
+@section('title', 'Hasil Pencarian Kemasan')
 
 @push('style')
     <!-- CSS Libraries -->
