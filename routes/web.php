@@ -58,13 +58,14 @@ Route::name('auth')->group(function(){
     Route::get('/login_admin', [AuthAdmin::class,'show_login_admin'])->name('show_login_admin');
     
     Route::get('actionlogout', [AuthLogin::class, 'actionlogout'])->name('actionlogout');
+    Route::post('/login_pakar', [AuthLogin::class, 'login_pakar'])->name('login_pakar');
     
 });
 
 
 Route::name('super-admin')->group(function () {
 
-    Route::get('/dashboard_super', [DashboardSuper::class,'show'])->name('dashboard_super.show');
+    Route::get('/dashboard_super', [DashboardSuper::class,'show'])->name('dashboard_super');
     
     Route::get('/appr_pakar', [KelolaSuperAdmin::class,'appr_pakar'])->name('appr_pakar');
     Route::get('/calon_pakar/hapus/{id}', [KelolaSuperAdmin::class,'calon_pakar_hapus'])->name('calon_pakar_hapus');

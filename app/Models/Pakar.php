@@ -18,6 +18,8 @@ class Pakar extends Model
         'pend_terakhir',
         'nama_instansi',
         'email',
-        'password'
+        'password',
+        'password_hash'
+
     ];  
 }

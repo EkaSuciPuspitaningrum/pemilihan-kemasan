@@ -60,10 +60,11 @@
                             </div>
                         </div>
                         @endif
-                        <form method="POST"
-                            action="#"
+                         <form method="POST"
+                        action="{{url('/login_pakar')}}"
                             class="needs-validation"
                             novalidate="">
+                            @csrf
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input id="email"
@@ -73,9 +74,11 @@
                                     tabindex="1"
                                     required
                                     autofocus>
-                                <div class="invalid-feedback">
-                                    Please fill in your email
-                                </div>
+                                    @error('message')        
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                             </div>
 
                             <div class="form-group">
@@ -89,9 +92,11 @@
                                     name="password"
                                     tabindex="2"
                                     required>
-                                <div class="invalid-feedback">
-                                    please fill in your password
-                                </div>
+                                    @error('message')        
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                             </div>
                             <div class="form-group text-center">
                                 <button type="submit"

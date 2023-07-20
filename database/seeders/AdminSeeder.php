@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AdminSeeder extends Seeder
 {
@@ -24,9 +25,9 @@ class AdminSeeder extends Seeder
                 'role' => 'Admin',
                 'email' => 'admin@gmail.com',
                 'password' => 'adminkemasan',
+                'password_hash' => Hash::make('adminkemasan'),
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"), 
-                // 'password' => Hash::make('adminkemasan'),
         ]);
         
     }

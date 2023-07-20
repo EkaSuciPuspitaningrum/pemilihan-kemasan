@@ -95,23 +95,21 @@
                 </div>
             </div>
         </li> -->
-        @if(auth()->check())
         <li class="dropdown"><a href="#"
-                data-toggle="dropdown"
-                class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image"
-                    src="{{ asset('img/avatar/avatar-1.png') }}"
-                    class="rounded-circle mr-1">
-                <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->name }}</div>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
+            data-toggle="dropdown"
+            class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+            <img alt="image"
+                src="{{ asset('img/avatar/avatar-1.png') }}"
+                class="rounded-circle mr-1">
+            <div class="d-sm-none d-lg-inline-block">Hi, {{Session::get('first_name_pakar')}}</div>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
 
-                <a href="{{url('actionlogout')}}" method="GET"
-                    class="dropdown-item has-icon text-danger">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
-            </div>
-        </li>
-        @endif
+            <a href="{{url('actionlogout')}}" method="GET"
+                class="dropdown-item has-icon text-danger">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+    </li>
     </ul>
 </nav>

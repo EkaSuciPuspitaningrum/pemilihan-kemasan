@@ -19,6 +19,7 @@ class CalonPakar extends Model
         'nama_instansi',
         'email',
         'password',
+        'password_hash',
         'created_at'
     ]; 
 }

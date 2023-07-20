@@ -21,5 +21,7 @@ class Admin extends Authenticatable
         'role',
         'email',
         'password',
+        'password_hash',
+
     ];
 }

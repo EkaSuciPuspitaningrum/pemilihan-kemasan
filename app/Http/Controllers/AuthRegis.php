@@ -7,6 +7,7 @@ use App\Models\CalonPakar;
 use App\Models\Pakar;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AuthRegis extends Controller
 {
@@ -42,6 +43,7 @@ class AuthRegis extends Controller
                         'last_name_pakar' =>$request->last_name_pakar,
                         'email' =>$request->email,
                         'password' =>$request->password,
+                        'password_hash' => Hash::make($request->password),
                         'pend_terakhir' =>$request->pend_terakhir,
                         'nama_instansi' =>$request->nama_instansi,
                     ]

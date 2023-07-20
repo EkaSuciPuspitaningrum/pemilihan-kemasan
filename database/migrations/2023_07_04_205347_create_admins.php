@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('role');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('password_hash');
             $table->timestamps();
         });
     }

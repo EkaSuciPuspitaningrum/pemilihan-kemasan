@@ -9,6 +9,7 @@ use App\Models\Pakar;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class KelolaSuperAdmin extends Controller
@@ -60,6 +61,7 @@ class KelolaSuperAdmin extends Controller
         $admin->email = $request->email;
         $admin->role = "Admin";
         $admin->password = $request->password;
+        $admin->password_hash = bcrypt($request->password);
         $admin->save();
     
         return redirect('/data_admin')->with('message', 'Data berhasil diedit.');
@@ -97,6 +99,7 @@ class KelolaSuperAdmin extends Controller
                         'last_name_pakar' =>$request->last_name_pakar,
                         'email' =>$request->email,
                         'password' =>$request->password,
+                        'password_hash' => Hash::make($request->password),
                         'pend_terakhir' =>$request->pend_terakhir,
                         'nama_instansi' =>$request->nama_instansi,
                     ]
@@ -174,6 +177,7 @@ class KelolaSuperAdmin extends Controller
         $pakar->last_name_pakar = $request->last_name_pakar;
         $pakar->email = $request->email;
         $pakar->password = $request->password;
+        $pakar->password_hash = bcrypt($request->password);
         $pakar->pend_terakhir = $request->pend_terakhir;
         $pakar->nama_instansi = $request->nama_instansi;
         $pakar->save();
