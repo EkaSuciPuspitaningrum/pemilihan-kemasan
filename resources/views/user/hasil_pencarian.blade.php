@@ -17,19 +17,9 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Pencarian Kemasan</h1>
+            <h1>Hasil Pencarian Kemasan</h1>
         </div>
-        @if(session('error'))
-        <div class="alert alert-danger alert-dismissible show fade">
-            <div class="alert-body">
-                <button class="close"
-                    data-dismiss="alert">
-                    <span>&times;</span>
-                </button>
-                {{session('error')}}
-            </div>
-        </div>
-    @endif
+
         <div class="section-body">
             <h2 class="section-title">Data Produk</h2>
 
@@ -40,74 +30,79 @@
                             <h4>Masukkan Data Produk</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{url('/pencarian')}}" method="POST" enctype="multipart/form-data">
-                            @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="namaproduk">Nama Produk</label>
                                     <input type="text"
                                            class="form-control"
-                                           id="namaproduk" required>
+                                           id="namaproduk"  value="{{ $namaproduk }}" readonly>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="beratproduk">Berat Produk</label>
                                     <input type="number"
                                            class="form-control"
-                                           id="beratproduk" required>
+                                           id="beratproduk" value="{{ $beratproduk }}" readonly>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="ukuranproduk">Ukuran Produk</label>
                                     <input type="text"
                                            class="form-control"
-                                           id="ukuranproduk" required>
+                                           id="ukuranproduk" value="{{ $ukuranproduk }}" readonly>
                                     <code>Panjang x Lebar x Tinggi (cm), Jika cair kosongkan!</code>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="volumeproduk">Volume Produk</label>
                                     <input type="number"
                                            class="form-control"
-                                           id="volumeproduk" required>
+                                           id="volumeproduk" value="{{ $volumeproduk }}" readonly>
                                 </div>
-                                <div class="form-group col-md-12">
-                                    <label>Kriteria Produk</label>
-                                    <table id="table" class="table table-hover table-bordered mb-3" >
-                                        <thead class="bg-primary">
-                                            <tr>
-                                                <th class="text-white text-center">No</th>
-                                                <th class="text-white text-center">Kode</th>
-                                                <th class="text-white text-center">Kriteria Produk</th>
-                                                <th class="text-white text-center">Pilih Kriteria Produk</th>
-
-                                                
-                                            </tr>
-                                        </thead>
-                                        <tbody class="bg-white">
-                                            @php
-                                                $i = 1;
-                                            @endphp
-                                            @foreach ($kriteria as $kriteriaa)
-                                                <tr>
-                                                    <th class="text-center">{{ $i }}</th>
-                                                    <th class="text-center">{{ $kriteriaa->id_kriteria }}</th>
-                                                    <th>{{ $kriteriaa->kriteria_produk }}</th>
-                                                    <th class="text-center">
-                                                        <input class="form-check-input" type="checkbox" name="choiceRadio[]"
-                                                        id="defaultCheck1" value="{{ $kriteriaa->kriteria_produk }}">
-                                                    </th>
+                                <div class="card mb-3">
+                                    <div class="card-body p-0" style="border: 2px solid #ff00f7;">
+                                        <table class="table table-bordered" style="width: 100%; margin-bottom: 0;">
+                                            <thead>
+                                                <tr style="background-color: #ff00f7;">
+                                                    <th class="text-white text-center m-0 p-0 py-2" style="width:5% ;">No</th>
+                                                    <th class="text-white text-center">Kriteria Produk Pengguna</th>
                                                 </tr>
+                                            </thead>
+                                            <tbody>
                                                 @php
-                                                    $i++;
+                                                    $i = 1;
                                                 @endphp
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                                @foreach ($hasilKriteria as $kriteria)
+                                                    <tr>
+                                                        <td>{{ $i }}</td>
+                                                        <td>{{ $kriteria }}</td>
+                                                    </tr>
+                                                    @php
+                                                        $i++;
+                                                    @endphp
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                                <div class="d-grid gap-2 d-md-flex justify-content-center">
-                                    <button class="btn btn-primary" type="submit"><i class="fas fa-save mr-1"></i> Simpan
-                                        Data</button>
+                                <div class="card mb-3">
+                                    <div class="card-header bg-success">
+                                        <p class="text-white fw-bold m-0 p-0">Jenis Kemasan yang Sesuai</p>
+                                    </div>
+                                    <div class="card-body" style="border: 2px solid #198754;">
+                                        <p class="m-0 p-0 text-success"><b>{{ $JenisKemasan }}</b> /
+                                            {{ $persentase . ' % ' . '(' . $probabilitas . ')' }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card mb-3">
+                                    <div class="card-header" style="background: #0d6efd;">
+                                        <p class="text-white fw-bold m-0 p-0">Detail Kemasan</p>
+                                    </div>
+                                    <div class="card-body" style="border: 2px solid #0d6efd;">
+                                        <p class="text-justify m-0 p-0">
+                                            {{ $keterangan_kemasan }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </form>
                     </div>
                     </div>
                 </div>

@@ -26,16 +26,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    return view('pakar.dashboard');
-});
+// Route::get('/', function () {
+//     return view('pakar.dashboard');
+// });
 // Route::get('/', function () {
 //     return view('super-admin.dashboard');
 // });
 
-// Route::get('/', function () {
-//     return view('user.dashboard');
-// });
+Route::get('/', function () {
+    return view('user.dashboard');
+});
 
 // Route::get('/', function () {
 //     return view('login.login');
@@ -120,5 +120,10 @@ Route::name('user')->group(function () {
     Route::get('/tentang', [TentangMetode::class,'show'])->name('tentang.show');
     Route::get('/cari', [PencarianKemasan::class,'show'])->name('cari.show');
     Route::get('/history', [PencarianKemasan::class,'showhistory'])->name('history.showhistory');
+    Route::post('/pencarian', [PencarianKemasan::class, 'pencarian'])->name('pencarian');
+    Route::post('/pencarian/pencarian', [PencarianKemasan::class, 'prosesCari']);
+    Route::get('/pencarian/{dataUser?}', [PencarianKemasan::class, 'tampilkanHasil']);
+
+
 });
 

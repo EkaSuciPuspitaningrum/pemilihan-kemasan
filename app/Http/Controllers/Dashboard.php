@@ -8,6 +8,7 @@ class Dashboard extends Controller
 {
     public function show()
     {
+        
         return view('user.dashboard', [
             'type_menu' => 'dashboard',
         ]);
