@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Crypt;
 
 class PencarianKemasan extends Controller
 {
-    public function show()
+    public function pencarian_show()
     {
         $data = ["kriteria"=>KriteriaProduk::all()];
 
         return view('user.pencarian-kemasan', $data,[
-            'type_menu' => 'cari',
+            'type_menu' => 'pencarian_show',
         ]);
     }
 
@@ -29,7 +29,7 @@ class PencarianKemasan extends Controller
         ]);
     }
 
-    public function pencarian(Request $request)
+    public function hasilpencarian(Request $request)
     {
         $validateReq = $request->validate([
             'namaproduk' => 'required',
@@ -56,8 +56,8 @@ class PencarianKemasan extends Controller
                     ->toArray();
 
                 $daftarKriteria[$kemasan->jenis_kemasan] = [];
-                foreach ($fetchData[$kemasan->jenis_kemasan] as $dataGejala) {
-                    array_push($daftarKriteria[$kemasan->jenis_kemasan], $dataGejala['kriteria_produk']);
+                foreach ($fetchData[$kemasan->jenis_kemasan] as $dataKriteria) {
+                    array_push($daftarKriteria[$kemasan->jenis_kemasan], $dataKriteria['kriteria_produk']);
                 }
 
                 $resultProcess[$kemasan->jenis_kemasan] = array_intersect($daftarKriteria[$kemasan->jenis_kemasan], $services);

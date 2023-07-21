@@ -12,7 +12,10 @@ class JenisKemasan extends Model
     protected $table = 'jenis_kemasan';
 
     protected $fillable = [
-        'id', 'id_kemasan', 'jenis_kemasan', 'keterangan_kemasan'
+        'id', 
+        'id_kemasan', 
+        'jenis_kemasan', 
+        'keterangan_kemasan'
     ];  
 
     
