@@ -22,7 +22,7 @@
             </li>
             <li class="menu-header">Tentang</li>
             <li class="{{ Request::is('tentang') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('user_metode') }}"><i class="fas fa-solid fa-circle-exclamation"></i><span>Penjelasan Metode</span></a>
+                <a class="nav-link" href="{{ url('tentang') }}"><i class="fas fa-solid fa-circle-exclamation"></i><span>Penjelasan Metode</span></a>
             </li>
     </aside>
 </div>

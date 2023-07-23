@@ -118,13 +118,11 @@ Route::name('pakar')->group(function () {
 Route::name('user')->group(function () {
 
     Route::get('/dashboard_user', [Dashboard::class,'show'])->name('dashboard.show'); 
-    Route::get('/tentang', [TentangMetode::class,'show'])->name('tentang.show');
+    Route::get('/tentang', [TentangMetode::class,'user_show'])->name('tentang');
     Route::get('/history', [PencarianKemasan::class,'showhistory'])->name('history.showhistory');
 
     Route::get('/pencarian', [PencarianKemasan::class,'pencarian_show'])->name('pencarian');
     Route::post('/pencarian_analisa', [PencarianKemasan::class, 'analisa'])->name('pencarian_analisa');
-    Route::post('/pencarian/pencarian', [PencarianKemasan::class, 'prosesCari']);
-    Route::get('/pencarian/{dataUser?}', [PencarianKemasan::class, 'tampilkanHasil']);
 
 
 });
