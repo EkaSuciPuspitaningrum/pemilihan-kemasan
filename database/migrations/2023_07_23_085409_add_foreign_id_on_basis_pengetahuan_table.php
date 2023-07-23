@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tabel_data_riwayat', function (Blueprint $table) {
-            $table->id('id_riwayat');
-            $table->bigInteger('id_user');
-            $table->date('tanggal');
-            $table->string('kriteria');
-            $table->longText('keterangan');
-            $table->longText('kemasan');
-            $table->timestamps();
+        Schema::table('pengetahuan', function (Blueprint $table) {
+            $table->foreign('kriteria_id')->references('id')->on('kriteria_produk')->onDelete('cascade');
+            $table->foreign('jenis_kemasan_id')->references('id')->on('jenis_kemasan')->onDelete('cascade');
         });
     }
 
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tabel_data_riwayat');
+        //
     }
 };

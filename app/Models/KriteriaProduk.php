@@ -12,6 +12,6 @@ class KriteriaProduk extends Model
     protected $table = 'kriteria_produk';
 
     protected $fillable = [
-        'id', 'id_kriteria', 'kriteria_produk', 'keterangan_kriteria'
+        'id', 'kriteria_produk', 'keterangan_kriteria'
     ]; 
 }

@@ -7,13 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class DataPencarian extends Model
 {
-    protected $table = 'tabel_data_pencarian';
-    protected $primaryKey = 'id_user';
+    protected $table = 'data_pencarian';
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'kode_user',
+        'id',
         'nama_produk',
         'berat_produk',
         'ukuran_produk',
-        'volume_produk'
+        'volume_produk',
+        'kemasan_id',
+         'presentase'
     ];
+
+    public function Kemasan(){
+        return $this->belongsTo(JenisKemasan::class, 'kemasan_id');
+    } 
 }

@@ -12,11 +12,21 @@ class JenisKemasan extends Model
     protected $table = 'jenis_kemasan';
 
     protected $fillable = [
-        'id', 
-        'id_kemasan', 
+        'id',
         'jenis_kemasan', 
-        'keterangan_kemasan'
+        'keterangan_kemasan',
+        'created_at',
+        'updated_at'
     ];  
 
+    public function basis_pengetahuans()
+    {
+        return $this->hasMany(BasisPengetahuan::class);
+    }
+
+    public function Pencarians()
+    {
+        return $this->hasMany(DataPencarian::class);        
+    }
     
 }

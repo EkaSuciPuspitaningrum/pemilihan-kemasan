@@ -40,34 +40,34 @@
                             <h4>Masukkan Data Produk</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ URL::to('/pencarian') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ url('/pencarian_analisa') }}" method="post">
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="namaproduk">Nama Produk</label>
+                                    <label for="nama_produk">Nama Produk</label>
                                     <input type="text"
-                                           class="form-control @error('namaproduk') is-invalid @enderror"
-                                           id="namaproduk" value="{{ old('namaproduk') }}" required>
+                                           class="form-control @error('nama_produk') is-invalid @enderror"
+                                           id="nama_produk" value="{{ old('nama_produk') }}" required>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="beratproduk">Berat Produk (Kg)</label>
+                                    <label for="berat_produk">Berat Produk (Kg)</label>
                                     <input  type="number"
-                                           class="form-control @error('beratproduk') is-invalid @enderror"
-                                           id="beratproduk" value="{{ old('beratproduk') }}" required>
+                                           class="form-control @error('berat_produk') is-invalid @enderror"
+                                           id="berat_produk" value="{{ old('berat_produk') }}" required>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="ukuranproduk">Ukuran Produk</label>
+                                    <label for="ukuran_produk">Ukuran Produk</label>
                                            <input type="text"
-                                           class="form-control @error('ukuranproduk') is-invalid @enderror"
-                                           id="ukuranproduk" value="{{ old('ukuranproduk') }}" required>
+                                           class="form-control @error('ukuran_produk') is-invalid @enderror"
+                                           id="ukuran_produk" value="{{ old('ukuran_produk') }}" required>
                                            
                                     <code>Panjang x Lebar x Tinggi (cm), Jika cair isi dengan "0 atau -"!</code>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="volumeproduk">Volume Produk (Liter)</label>
+                                    <label for="volume_produk">Volume Produk (Liter)</label>
                                            <input type="number"
-                                           class="form-control @error('volumeproduk') is-invalid @enderror"
-                                           id="volumeproduk" value="{{ old('volumeproduk') }}" required>
+                                           class="form-control @error('volume_produk') is-invalid @enderror"
+                                           id="volume_produk" value="{{ old('volume_produk') }}" required>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label>Kriteria Produk</label>
@@ -92,8 +92,16 @@
                                                     <th class="text-center">{{ $kriteriaa->id_kriteria }}</th>
                                                     <th>{{ $kriteriaa->kriteria_produk }}</th>
                                                     <th class="text-center">
-                                                        <input class="form-check-input" type="checkbox" name="choiceRadio[]"
-                                                        id="defaultCheck2" value="{{ $kriteriaa->kriteria_produk }}">
+                                                        <div class="form-group">
+                                                            <select name="kondisi[]" id="kondisi" class="form-control">
+                                                                <option disabled selected>Pilih</option>
+                                                                <option value="{{ $kriteriaa->id }}_1">Yakin</option>
+                                                                <option value="{{ $kriteriaa->id }}_2">Hampir yakin</option>
+                                                                <option value="{{ $kriteriaa->id }}_3">Mungkin</option>
+                                                                <option value="{{ $kriteriaa->id }}_4">Ragu-ragu</option>
+                                                                <option value="{{ $kriteriaa->id }}_0">Tidak</option>
+                                                            </select>
+                                                        </div>
                                                     </th>
                                                 </tr>
                                                 @php

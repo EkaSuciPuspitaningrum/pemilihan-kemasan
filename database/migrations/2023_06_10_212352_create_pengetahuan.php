@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('pengetahuan', function (Blueprint $table) {
             $table->id();
-            $table->text("id_pengetahuan");
-            $table->string("jenis_kemasan");
-            $table->string("kriteria_produk");
-            $table->string("nilai_CF");
+            $table->char('jenis_kemasan_id',4);
+            $table->char('kriteria_id',4);
+            $table->string("cf");
             $table->timestamps();
         });
     }

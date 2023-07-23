@@ -12,7 +12,19 @@ class BasisPengetahuan extends Model
     protected $table = 'pengetahuan';
 
     protected $fillable = [
-        'id_pengetahuan', 'jenis_kemasan', 'kriteria_produk', 'nilai_CF'
+        'jenis_kemasan_id', 
+        'kriteria_id', 
+        'cf'
     ];  
+
+    public function kemasan()
+    {
+        return $this->belongsTo(JenisKemasan::class, 'jenis_kemasan_id');
+    }
+
+    public function kriteria()
+    {
+        return $this->belongsTo(KriteriaProduk::class, 'kriteria_id');
+    }
 
 }

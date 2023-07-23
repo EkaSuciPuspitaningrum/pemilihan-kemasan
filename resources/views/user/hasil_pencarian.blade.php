@@ -30,79 +30,64 @@
                             <h4>Masukkan Data Produk</h4>
                         </div>
                         <div class="card-body">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="namaproduk">Nama Produk</label>
-                                    <input type="text"
-                                           class="form-control"
-                                           id="namaproduk"  value="{{ $namaproduk }}" readonly>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="beratproduk">Berat Produk</label>
-                                    <input type="number"
-                                           class="form-control"
-                                           id="beratproduk" value="{{ $beratproduk }}" readonly>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="ukuranproduk">Ukuran Produk</label>
-                                    <input type="text"
-                                           class="form-control"
-                                           id="ukuranproduk" value="{{ $ukuranproduk }}" readonly>
-                                    <code>Panjang x Lebar x Tinggi (cm), Jika cair kosongkan!</code>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="volumeproduk">Volume Produk</label>
-                                    <input type="number"
-                                           class="form-control"
-                                           id="volumeproduk" value="{{ $volumeproduk }}" readonly>
-                                </div>
-                                <div class="card mb-3">
-                                    <div class="card-body p-0" style="border: 2px solid #ff00f7;">
-                                        <table class="table table-bordered" style="width: 100%; margin-bottom: 0;">
-                                            <thead>
-                                                <tr style="background-color: #ff00f7;">
-                                                    <th class="text-white text-center m-0 p-0 py-2" style="width:5% ;">No</th>
-                                                    <th class="text-white text-center">Kriteria Produk Pengguna</th>
+                            <div class="pilihan" class="mt-4">
+                                <h3 style="font-size: 25px" class="mb-2">Pilihan Pengguna</h3>
+                                <table class="table table-bordered table-hovered">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Kriteria Produk</th>
+                                            <th>Pilihan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($kriteria as $kriteriaa)
+                                            @foreach ($kepastian as $key => $kp)
+                                                @if ($kriteriaa->id == $key)
+                                                <tr>
+                                                    <td>{{$loop->iteration}}</td>
+                
+                                                    <td>{{$kriteriaa->kriteria_produk}}</td>
+                                                    <td>
+                                                        @if($kp == 1)
+                                                        Pasti
+                                                        @elseif($kp == 2)
+                                                        Hampir pasti
+                                                        @elseif($kp == 3)
+                                                        Mungkin
+                                                        @elseif($kp == 4)
+                                                        Ragu-ragu
+                                                        @else
+                                                        Tidak
+                                                        @endif
+                                                    </td>
                                                 </tr>
-                                            </thead>
-                                            <tbody>
-                                                @php
-                                                    $i = 1;
-                                                @endphp
-                                                @foreach ($hasilKriteria as $kriteria)
-                                                    <tr>
-                                                        <td>{{ $i }}</td>
-                                                        <td>{{ $kriteria }}</td>
-                                                    </tr>
-                                                    @php
-                                                        $i++;
-                                                    @endphp
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="card mb-3">
-                                    <div class="card-header bg-success">
-                                        <p class="text-white fw-bold m-0 p-0">Jenis Kemasan yang Sesuai</p>
-                                    </div>
-                                    <div class="card-body" style="border: 2px solid #198754;">
-                                        <p class="m-0 p-0 text-success"><b>{{ $JenisKemasan }}</b> /
-                                            {{ $persentase . ' % ' . '(' . $probabilitas . ')' }}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="card mb-3">
-                                    <div class="card-header" style="background: #0d6efd;">
-                                        <p class="text-white fw-bold m-0 p-0">Detail Kemasan</p>
-                                    </div>
-                                    <div class="card-body" style="border: 2px solid #0d6efd;">
-                                        <p class="text-justify m-0 p-0">
-                                            {{ $keterangan_kemasan }}
-                                        </p>
-                                    </div>
-                                </div>
+                                                @endif
+                                            @endforeach
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
+                            @foreach ($kemasans as $kemasan)
+                            @if ($kemasan->id == array_key_first($cfHasil))
+                                <div class="row bg-light rounded-sm mt-4">
+                                    <div class="col-md p-3">
+                                        <h3 style="font-size: 25px" class="mb-4">Hasil Rekomendasi</h3>
+                                        <p>Berdasarkan daftar kriteria produk yang dipilih, jenis kemasan yang yang cocok dengan produk Anda :</p>
+                                            <h4 style="font-size: 22px" class="mb-3 text-success">{{ $kemasan->jenis_kemasan }}</h4>
+                                            <p style="font-size: 20px" class="text-success">Presentase : {{$cfHasil[array_key_first($cfHasil)] * 100}}%</p>
+                                    </div>
+                                </div>
+                                <div class="my-4"></div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3 style="font-size: 25px" class="mb-2">Penjelasan Kemasan</h3>
+                                        <br>
+                                        {!!$kemasan->keterangan_kemasan!!}
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
                     </div>
                 </div>

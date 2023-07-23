@@ -13,15 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tabel_data_pencarian', function (Blueprint $table) {
-            $table->id('id_user');
-            $table->string('kode_user')->unique();
+        Schema::create('data_pencarian', function (Blueprint $table) {
+            $table->id();
             $table->string('nama_produk');
             $table->string('berat_produk');
             $table->string('ukuran_produk');
             $table->string('volume_produk');
+            $table->char('jenis_kemasan_id', 4);
+            $table->float('presentase');
             $table->timestamps();
+
+            $table->foreign('jenis_kemasan_id')->references('id')->on('jenis_kemasan')->onDelete('cascade');
+
         });
+
+        
     }
 
     /**

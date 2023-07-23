@@ -16,13 +16,20 @@ class DataKemasan extends Seeder
     public function run()
     {
         JenisKemasan::insert([
-            ['id'=> 1 , 'id_kemasan'=> "K-1", 'jenis_kemasan' => 'Plastik PET/PETE', 'keterangan_kemasan' => ''],
-            ['id'=> 2 , 'id_kemasan'=> "K-2", 'jenis_kemasan' => 'Plastik HDPE', 'keterangan_kemasan' => ''],
-            ['id'=> 3 , 'id_kemasan'=> "K-3", 'jenis_kemasan' => 'Plastik PVC', 'keterangan_kemasan' => ''],
-            ['id'=> 4 , 'id_kemasan'=> "K-4", 'jenis_kemasan' => 'Plastik LDPE', 'keterangan_kemasan' => ''],
-            ['id'=> 5 , 'id_kemasan'=> "K-5", 'jenis_kemasan' => 'Plastik PP', 'keterangan_kemasan' => ''],
-            ['id'=> 6 , 'id_kemasan'=> "K-6", 'jenis_kemasan' => 'Plastik PS', 'keterangan_kemasan' => ''],
-            ['id'=> 7 , 'id_kemasan'=> "K-7", 'jenis_kemasan' => 'Plastik NYLON', 'keterangan_kemasan' => ''],
+            ['id'=> "K001" , 'jenis_kemasan' => 'Plastik PET/PETE', 'keterangan_kemasan' => '', 'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s") ],
+            ['id'=> "K002" , 'jenis_kemasan' => 'Plastik HDPE', 'keterangan_kemasan' => '', 'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s") ],
+            ['id'=> "K003" , 'jenis_kemasan' => 'Plastik PVC', 'keterangan_kemasan' => '', 'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s") ],
+            ['id'=> "K004" , 'jenis_kemasan' => 'Plastik LDPE', 'keterangan_kemasan' => '', 'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s") ],
+            ['id'=> "K005" , 'jenis_kemasan' => 'Plastik PP', 'keterangan_kemasan' => '', 'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s") ],
+            ['id'=> "K006" , 'jenis_kemasan' => 'Plastik PS', 'keterangan_kemasan' => '', 'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s") ],
+            ['id'=> "K007" , 'jenis_kemasan' => 'Plastik NYLON', 'keterangan_kemasan' => '', 'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s") ],
 
         ]);
     }

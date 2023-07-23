@@ -72,7 +72,7 @@
                                 <h4>Riwayat Pencarian</h4>
                             </div>
                             <div class="card-body">
-                                {{ DB::table('riwayat')->count() }}
+                                {{ DB::table('data_pencarian')->count() }}
                             </div>
                         </div>
                     </div>

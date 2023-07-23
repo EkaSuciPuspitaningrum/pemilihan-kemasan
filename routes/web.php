@@ -122,7 +122,7 @@ Route::name('user')->group(function () {
     Route::get('/history', [PencarianKemasan::class,'showhistory'])->name('history.showhistory');
 
     Route::get('/pencarian', [PencarianKemasan::class,'pencarian_show'])->name('pencarian');
-    Route::post('/pencarian', [PencarianKemasan::class, 'hasilpencarian']);
+    Route::post('/pencarian_analisa', [PencarianKemasan::class, 'analisa'])->name('pencarian_analisa');
     Route::post('/pencarian/pencarian', [PencarianKemasan::class, 'prosesCari']);
     Route::get('/pencarian/{dataUser?}', [PencarianKemasan::class, 'tampilkanHasil']);
 

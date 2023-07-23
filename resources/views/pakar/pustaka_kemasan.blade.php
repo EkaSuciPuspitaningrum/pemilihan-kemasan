@@ -62,7 +62,7 @@
                                         @foreach ($jenis_kemasan as $kemasan )
                                         <tr>
                                             <th style="text-align: center">{{ $i++}}</th>
-                                            <td style="text-align: center">{{$kemasan->id_kemasan}}</td>
+                                            <td style="text-align: center">{{$kemasan->id}}</td>
                                             <td>{{$kemasan->jenis_kemasan}}</td>
                                             <td>{{$kemasan->keterangan_kemasan}}</td>
                                             <td style="text-align: center">
@@ -102,6 +102,12 @@
                     <form action="{{ url("/kemasan_store") }}" method="POST">
                         @csrf
                         <div class="modal-body modal-lg">
+                            <div class="form-group">
+                                <label for="jeniskemasan">Kode Jenis Kemasan</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="id" name="id" value="{{$generateId}}">
+                            </div>
                             <div class="form-group">
                                 <label for="jeniskemasan">Jenis Kemasan</label>
                                 <input type="text"
