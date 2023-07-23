@@ -45,9 +45,6 @@
                         </div>
                         <div class="card-body">
                             <div> 
-                                @php
-                                    $i=1;
-                                @endphp 
                                 <table id="table" class="table-hover table" >
                                     <thead>
                                         <tr>
@@ -61,7 +58,7 @@
                                     <tbody >
                                         @foreach ($jenis_kemasan as $kemasan )
                                         <tr>
-                                            <th style="text-align: center">{{ $i++}}</th>
+                                            <th style="text-align: center">{{ $loop->iteration }}</th>
                                             <td style="text-align: center">{{$kemasan->id}}</td>
                                             <td>{{$kemasan->jenis_kemasan}}</td>
                                             <td>{{$kemasan->keterangan_kemasan}}</td>
@@ -106,7 +103,7 @@
                                 <label for="jeniskemasan">Kode Jenis Kemasan</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="id" name="id" value="{{$generateId}}">
+                                       id="id" name="id" value="{{$generateId}}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="jeniskemasan">Jenis Kemasan</label>

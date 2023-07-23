@@ -12,10 +12,16 @@ class PustakaProduk extends Controller
 {
      public function show()
     {
-        $kriteria = ["kriteria_produk"=>KriteriaProduk::all()];
-        return view('pakar.pustaka_produk', $kriteria,[
-            'type_menu' => 'pustaka_produk',
-        ]);
+        $kriteria_produk = KriteriaProduk::orderByDesc('id')->get();
+
+        $generate = KriteriaProduk::all()->count();
+        if ($generate > 0) {
+            $generateId = sprintf("P%03s", ++$generate);
+        } else if ($generate == 0) {
+            $generateId = "P001";
+        }
+        return view('pakar.pustaka_produk', compact('kriteria_produk', 'generateId'));
+
     }
 
 

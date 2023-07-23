@@ -56,13 +56,10 @@
                                         </tr>
                                     </thead>
                                     <tbody >
-                                        @php
-                                            $i=1;
-                                        @endphp 
                                         @foreach ($kriteria_produk as $kriteria )
                                         <tr>
-                                            <th style="text-align: center">{{ $i++}}</th>
-                                            <td style="text-align: center">{{$kriteria->id_kriteria}}</td>
+                                            <td style="text-align: center">{{ $loop->iteration }}</td>
+                                            <td style="text-align: center">{{$kriteria->id}}</td>
                                             <td>{{$kriteria->kriteria_produk}}</td>
                                             <td>{{$kriteria->keterangan_kriteria}}</td>
                                             <td style="text-align: center">
@@ -103,6 +100,12 @@
                     <form action="{{ url("/kriteria_store") }}" method="POST">
                         @csrf
                         <div class="modal-body modal-lg">
+                            <div class="form-group">
+                                <label for="jeniskemasan">Kode Kriteria Produk</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="id" name="id" value="{{$generateId}}" readonly>
+                            </div>
                             <div class="form-group">
                                 <label for="kriteriaproduk">Kriteria Produk</label>
                                 <input type="text"

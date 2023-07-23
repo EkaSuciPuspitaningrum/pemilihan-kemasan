@@ -40,25 +40,26 @@
                             <h4>Masukkan Data Produk</h4>
                         </div>
                         <div class="card-body">
+                            
                             <form action="{{ url('/pencarian_analisa') }}" method="post">
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="nama_produk">Nama Produk</label>
                                     <input type="text"
-                                           class="form-control @error('nama_produk') is-invalid @enderror"
+                                           class="form-control"
                                            id="nama_produk" value="{{ old('nama_produk') }}" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="berat_produk">Berat Produk (Kg)</label>
                                     <input  type="number"
-                                           class="form-control @error('berat_produk') is-invalid @enderror"
+                                           class="form-control"
                                            id="berat_produk" value="{{ old('berat_produk') }}" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="ukuran_produk">Ukuran Produk</label>
                                            <input type="text"
-                                           class="form-control @error('ukuran_produk') is-invalid @enderror"
+                                           class="form-control"
                                            id="ukuran_produk" value="{{ old('ukuran_produk') }}" required>
                                            
                                     <code>Panjang x Lebar x Tinggi (cm), Jika cair isi dengan "0 atau -"!</code>
@@ -66,7 +67,7 @@
                                 <div class="form-group col-md-6">
                                     <label for="volume_produk">Volume Produk (Liter)</label>
                                            <input type="number"
-                                           class="form-control @error('volume_produk') is-invalid @enderror"
+                                           class="form-control"
                                            id="volume_produk" value="{{ old('volume_produk') }}" required>
                                 </div>
                                 <div class="form-group col-md-12">
@@ -75,23 +76,16 @@
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th class="text-white text-center">No</th>
-                                                <th class="text-white text-center">Kode</th>
                                                 <th class="text-white text-center">Kriteria Produk</th>
                                                 <th class="text-white text-center">Pilih Kriteria Produk</th>
-
-                                                
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white">
-                                            @php
-                                                $i = 1;
-                                            @endphp
                                             @foreach ($kriteria as $kriteriaa)
                                                 <tr>
-                                                    <th class="text-center">{{ $i }}</th>
-                                                    <th class="text-center">{{ $kriteriaa->id_kriteria }}</th>
-                                                    <th>{{ $kriteriaa->kriteria_produk }}</th>
-                                                    <th class="text-center">
+                                                    <th class="text-center">{{ $loop->iteration }}</th>
+                                                    <th>{{ Str::title($kriteriaa->kriteria_produk) }}</th>
+                                                    <th class="text-center" >
                                                         <div class="form-group">
                                                             <select name="kondisi[]" id="kondisi" class="form-control">
                                                                 <option disabled selected>Pilih</option>
@@ -104,9 +98,6 @@
                                                         </div>
                                                     </th>
                                                 </tr>
-                                                @php
-                                                    $i++;
-                                                @endphp
                                             @endforeach
                                         </tbody>
                                     </table>
