@@ -59,7 +59,7 @@
                                         @foreach ($jenis_kemasan as $kemasan )
                                         <tr style="text-align: center">
                                             <th>{{ $loop->iteration }}</th>
-                                            <td>{{$kemasan->id}}</td>
+                                            <td>K-{{$kemasan->id}}</td>
                                             <td>{{$kemasan->jenis_kemasan}}</td>
                                             <td>{{$kemasan->keterangan_kemasan}}</td>
                                             <td>

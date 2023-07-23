@@ -15,10 +15,13 @@ return new class extends Migration
     {
         Schema::create('pengetahuan', function (Blueprint $table) {
             $table->id();
-            $table->char('jenis_kemasan_id',4);
-            $table->char('kriteria_id',4);
+            $table->unsignedBigInteger('jenis_kemasan_id');
+            $table->unsignedBigInteger('kriteria_id');
             $table->string("cf");
             $table->timestamps();
+            
+            $table->foreign('kriteria_id')->references('id')->on('kriteria_produk')->onDelete('cascade');
+            $table->foreign('jenis_kemasan_id')->references('id')->on('jenis_kemasan')->onDelete('cascade');
         });
     }
 

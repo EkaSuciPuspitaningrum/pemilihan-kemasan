@@ -48,19 +48,19 @@
                                     <label for="nama_produk">Nama Produk</label>
                                     <input type="text"
                                            class="form-control"
-                                           id="nama_produk" value="{{ old('nama_produk') }}" required>
+                                           id="nama_produk" name="nama_produk" value="{{ old('nama_produk') }}" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="berat_produk">Berat Produk (Kg)</label>
                                     <input  type="number"
                                            class="form-control"
-                                           id="berat_produk" value="{{ old('berat_produk') }}" required>
+                                           id="berat_produk" name="berat_produk" value="{{ old('berat_produk') }}" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="ukuran_produk">Ukuran Produk</label>
                                            <input type="text"
                                            class="form-control"
-                                           id="ukuran_produk" value="{{ old('ukuran_produk') }}" required>
+                                           id="ukuran_produk" name="ukuran_produk" value="{{ old('ukuran_produk') }}" required>
                                            
                                     <code>Panjang x Lebar x Tinggi (cm), Jika cair isi dengan "0 atau -"!</code>
                                 </div>
@@ -68,7 +68,7 @@
                                     <label for="volume_produk">Volume Produk (Liter)</label>
                                            <input type="number"
                                            class="form-control"
-                                           id="volume_produk" value="{{ old('volume_produk') }}" required>
+                                           id="volume_produk" name="volume_produk" value="{{ old('volume_produk') }}" required>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label>Kriteria Produk</label>

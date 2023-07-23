@@ -12,7 +12,7 @@ class PustakaProduk extends Controller
 {
      public function show()
     {
-        $kriteria_produk = KriteriaProduk::orderByDesc('id')->get();
+        $kriteria_produk = KriteriaProduk::all();
 
         $generate = KriteriaProduk::all()->count();
         if ($generate > 0) {
@@ -20,6 +20,7 @@ class PustakaProduk extends Controller
         } else if ($generate == 0) {
             $generateId = "P001";
         }
+
         return view('pakar.pustaka_produk', compact('kriteria_produk', 'generateId'));
 
     }
@@ -28,9 +29,7 @@ class PustakaProduk extends Controller
     public function kriteriaStore(Request $request)
     {
 
-       $generator = Helper::IDGenerator(new KriteriaProduk, 'id_kriteria', 3, 'P');
        $produk = new KriteriaProduk;
-       $produk->id_kriteria = $generator;
        $produk->kriteria_produk = $request->kriteria_produk;
        $produk->keterangan_kriteria = $request->keterangan_kriteria;
        $produk->save();

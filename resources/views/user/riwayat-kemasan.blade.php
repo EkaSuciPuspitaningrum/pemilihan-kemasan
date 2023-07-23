@@ -29,28 +29,32 @@
                                 @php
                                     $i=1;
                                 @endphp 
-                                <table id="table" class="table" style="text-align: center">
+                                <table id="table" class="table" style="text-align: center; width: 1200px">
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
-                                            <th style="text-align: center" scope="col">Kode Riwayat</th>
+                                            <th style="text-align: center" scope="col">Nama Produk</th>
+                                            <th style="text-align: center" scope="col">Berat Produk</th>
+                                            <th style="text-align: center" scope="col">Ukuran Produk</th>
+                                            <th style="text-align: center" scope="col">Volume Produk</th>
                                             <th style="text-align: center" scope="col">Jenis Kemasan</th>
-                                            <th style="text-align: center" scope="col">Keterangan Jenis Kemasan</th>
-                                            <th style="text-align: center" scope="col">Action</th>
+                                            <th style="text-align: center" scope="col">Persentase</th>
+                                            <th style="text-align: center" scope="col">Tanggal Pencarian</th>
                                         </tr>
                                     </thead>
                                     <tbody >
-                                        {{-- @foreach ($jenis_kemasan as $kemasan )
+                                        @foreach ($riwayat as $riwayatt )
                                         <tr>
                                             <th>{{ $i++}}</th>
-                                            <td>{{$kemasan->id_kemasan}}</td>
-                                            <td>{{$kemasan->jenis_kemasan}}</td>
-                                            <td>{{$kemasan->keterangan_kemasan}}</td>
-                                            <td><a data-toggle="modal" href="{{ url('/kemasan_show/{id}',$kemasan->id) }}"  data-target="#editKemasan" type="button" class="btn btn-warning">Edit</a>
-                                                <a href="" type="button" class="btn btn-danger">Hapus</a>
-                                            </td>
+                                            <td>{{$riwayatt->nama_produk}}</td>
+                                            <td>{{$riwayatt->berat_produk}}</td>
+                                            <td>{{$riwayatt->ukuran_produk}}</td>
+                                            <td>{{$riwayatt->volume_produk}}</td>
+                                            <td>{{$riwayatt->kemasan->jenis_kemasan}}</td>
+                                            <td>{{$riwayatt->persen * 100}}%</td>
+                                            <td>{{ date_format($riwayatt->created_at,'d-m-Y') }}</td>
                                         </tr>
-                                        @endforeach --}}
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

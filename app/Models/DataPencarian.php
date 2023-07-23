@@ -15,11 +15,11 @@ class DataPencarian extends Model
         'berat_produk',
         'ukuran_produk',
         'volume_produk',
-        'kemasan_id',
-         'presentase'
+        'jenis_kemasan_id',
+        'persen',
     ];
 
-    public function Kemasan(){
-        return $this->belongsTo(JenisKemasan::class, 'kemasan_id');
+    public function kemasan(){
+        return $this->belongsTo(JenisKemasan::class, 'jenis_kemasan_id');
     } 
 }

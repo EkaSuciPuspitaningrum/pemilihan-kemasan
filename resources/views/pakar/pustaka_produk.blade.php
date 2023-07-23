@@ -59,7 +59,7 @@
                                         @foreach ($kriteria_produk as $kriteria )
                                         <tr>
                                             <td style="text-align: center">{{ $loop->iteration }}</td>
-                                            <td style="text-align: center">{{$kriteria->id}}</td>
+                                            <td style="text-align: center">P-{{$kriteria->id}}</td>
                                             <td>{{$kriteria->kriteria_produk}}</td>
                                             <td>{{$kriteria->keterangan_kriteria}}</td>
                                             <td style="text-align: center">

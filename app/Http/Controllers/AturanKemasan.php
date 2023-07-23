@@ -25,9 +25,7 @@ class AturanKemasan extends Controller
     public function store(Request $request)
     {
 
-       $generator = Helper::IDGenerator(new BasisPengetahuan(), 'id_pengetahuan', 3, 'BPK');
        $pengetahuan = new BasisPengetahuan();
-       $pengetahuan->id_pengetahuan = $generator;
        $pengetahuan->jenis_kemasan = $request->jenis_kemasan;
        $pengetahuan->kriteria_produk = $request->kriteria_produk;
        $pengetahuan->nilai_cf = $request->nilai_cf;

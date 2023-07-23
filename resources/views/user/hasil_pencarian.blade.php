@@ -21,17 +21,14 @@
         </div>
 
         <div class="section-body">
-            <h2 class="section-title">Data Produk</h2>
-
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Masukkan Data Produk</h4>
+                            <h4>Pilihan Pengguna</h4>
                         </div>
                         <div class="card-body">
                             <div class="pilihan" class="mt-4">
-                                <h3 style="font-size: 25px" class="mb-2">Pilihan Pengguna</h3>
                                 <table class="table table-bordered table-hovered">
                                     <thead>
                                         <tr>
@@ -68,6 +65,11 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
                             @foreach ($kemasans as $kemasan)
                             @if ($kemasan->id == array_key_first($cfHasil))
                                 <div class="row bg-light rounded-sm mt-4">
@@ -78,18 +80,23 @@
                                             <p style="font-size: 20px" class="text-success">Presentase : {{$cfHasil[array_key_first($cfHasil)] * 100}}%</p>
                                     </div>
                                 </div>
-                                <div class="my-4"></div>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h3 style="font-size: 25px" class="mb-2">Penjelasan Kemasan</h3>
-                                        <br>
-                                        {!!$kemasan->keterangan_kemasan!!}
-                                    </div>
-                                </div>
                             @endif
                         @endforeach
+                        </div>
                     </div>
+                    
+                    @foreach ($kemasans as $kemasan)
+                    @if ($kemasan->id == array_key_first($cfHasil))
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Penjelasan Kemasan :</h4>
+                        </div>
+                        <div class="card-body">
+                            {!!$kemasan->keterangan_kemasan!!}
+                        </div>
                     </div>
+                    @endif
+                    @endforeach
                 </div>
             </div>
         </div>

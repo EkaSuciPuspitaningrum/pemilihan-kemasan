@@ -24,9 +24,9 @@ class PencarianKemasan extends Controller
 
     public function showhistory()
     {
-        return view('user.riwayat-kemasan', [
-            'type_menu' => 'history',
-        ]);
+        $riwayat = DataPencarian::latest()->get();
+        return view('user.riwayat-kemasan', compact('riwayat'));
+
     }
 
     public function analisa(Request $request)
@@ -49,41 +49,40 @@ class PencarianKemasan extends Controller
                 }])->groupBy('id')->orderBy('id')->get();
             }
         }
-        dd(array_keys($kepastian));
-        // foreach($kemasans as $kemas) {
-        //     foreach($kemas->basis_pengetahuans as $bp) {
-        //         $arrCfKombine[$kemas->id][] = $bp->cf * $arbobot[$kepastian[$bp->kriteria_id]];
-        //     }
-        //     foreach($arrCfKombine as $key => $cfKombine){
-        //         $cfBaru = 0;
-        //         $jumlahCf = count($cfKombine);
-        //         foreach($cfKombine as $key2 => $cf){
-        //             if(++$key2 == $jumlahCf){
-        //                 $cfLama = $cfBaru;
-        //                 $cfBaru = $cfLama + $cf * (1 - $cfLama);
-        //                 $cfTotal = $cfBaru;
-        //             }elseif($key2 >= 1){
-        //                 $cfLama = $cfBaru;
-        //                 $cfBaru = $cfLama + $cf * (1 - $cfLama);
-        //             }else{
-        //                 $cfBaru = $cf[0];
-        //             }
-        //         }
-        //         $cfHasil[$key] = $cfTotal;
-        //     }
-        // }
-        // arsort(($cfHasil));
-        // DataPencarian::create([
-        //     'nama_produk' =>['nama_produk'],
-        //     'berat_produk' => ['berat_produk'],
-        //     'ukuran_produk' => ['ukuran_produk'],
-        //     'volume_produk' => ['volume_produk'],
-        //     'kemasan_id' => array_key_first($cfHasil),
-        //     'presentase' => $cfHasil[array_key_first($cfHasil)]
-        // ]);
-        // $bcrum = $this->bcrum('Hasil', route('/pencarian'));
-        // $kriteri = KriteriaProduk::all();
-        // return view('user.hasil_pencarian', compact('cfHasil', 'kemasans', 'kepastian', 'kriteria','bcrum'));
+        // dd(array_keys($kepastian));
+        foreach($kemasans as $kemas) {
+            foreach($kemas->basis_pengetahuans as $bp) {
+                $arrCfKombine[$kemas->id][] = $bp->cf * $arbobot[$kepastian[$bp->kriteria_id]];
+            }
+            foreach($arrCfKombine as $key => $cfKombine){
+                $cfBaru = 0;
+                $jumlahCf = count($cfKombine);
+                foreach($cfKombine as $key2 => $cf){
+                    if(++$key2 == $jumlahCf){
+                        $cfLama = $cfBaru;
+                        $cfBaru = $cfLama + $cf * (1 - $cfLama);
+                        $cfTotal = $cfBaru;
+                    }elseif($key2 >= 1){
+                        $cfLama = $cfBaru;
+                        $cfBaru = $cfLama + $cf * (1 - $cfLama);
+                    }else{
+                        $cfBaru = $cf[0];
+                    }
+                }
+                $cfHasil[$key] = $cfTotal;
+            }
+        }
+        arsort(($cfHasil));
+        DataPencarian::create([
+            'nama_produk' =>$request->nama_produk,
+            'berat_produk' =>$request->berat_produk,
+            'ukuran_produk' =>$request->ukuran_produk,
+            'volume_produk' =>$request->volume_produk,
+            'jenis_kemasan_id' => array_key_first($cfHasil),
+            'persen' => $cfHasil[array_key_first($cfHasil)]
+        ]);
+        $kriteria = KriteriaProduk::all();
+        return view('user.hasil_pencarian', compact('cfHasil', 'kemasans', 'kepastian', 'kriteria'));
     }
 }
 
