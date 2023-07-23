@@ -13,15 +13,7 @@ class PustakaProduk extends Controller
      public function show()
     {
         $kriteria_produk = KriteriaProduk::all();
-
-        $generate = KriteriaProduk::all()->count();
-        if ($generate > 0) {
-            $generateId = sprintf("P%03s", ++$generate);
-        } else if ($generate == 0) {
-            $generateId = "P001";
-        }
-
-        return view('pakar.pustaka_produk', compact('kriteria_produk', 'generateId'));
+        return view('pakar.pustaka_produk', compact('kriteria_produk'));
 
     }
 

@@ -100,12 +100,6 @@
                         @csrf
                         <div class="modal-body modal-lg">
                             <div class="form-group">
-                                <label for="jeniskemasan">Kode Jenis Kemasan</label>
-                                <input type="text"
-                                       class="form-control"
-                                       id="id" name="id" value="{{$generateId}}" readonly>
-                            </div>
-                            <div class="form-group">
                                 <label for="jeniskemasan">Jenis Kemasan</label>
                                 <input type="text"
                                        class="form-control"

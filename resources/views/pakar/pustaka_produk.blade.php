@@ -101,12 +101,6 @@
                         @csrf
                         <div class="modal-body modal-lg">
                             <div class="form-group">
-                                <label for="jeniskemasan">Kode Kriteria Produk</label>
-                                <input type="text"
-                                       class="form-control"
-                                       id="id" name="id" value="{{$generateId}}" readonly>
-                            </div>
-                            <div class="form-group">
                                 <label for="kriteriaproduk">Kriteria Produk</label>
                                 <input type="text"
                                        class="form-control"
