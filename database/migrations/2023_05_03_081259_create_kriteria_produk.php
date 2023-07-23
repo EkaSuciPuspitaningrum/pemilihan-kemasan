@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('kriteria_produk', function (Blueprint $table) {
             $table->char('id', 4)->primary();
-            $table->string("kriteria_produk")->nullable();
-            $table->string("keterangan_kriteria")->nullable();
+            $table->string("kriteria_produk");
+            $table->string("keterangan_kriteria");
             $table->timestamps();
         });
     }

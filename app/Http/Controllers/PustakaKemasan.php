@@ -12,7 +12,8 @@ class PustakaKemasan extends Controller
 {
     public function show()
     {
-        $jenis_kemasan = JenisKemasan::all();
+        $jenis_kemasan = JenisKemasan::orderByDesc('id')->get();
+
         $generate = JenisKemasan::all()->count();
         if ($generate > 0) {
             $generateId = sprintf("K%03s", ++$generate);

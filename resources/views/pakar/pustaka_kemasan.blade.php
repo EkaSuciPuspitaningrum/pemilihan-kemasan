@@ -49,7 +49,7 @@
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
-                                            <th style="text-align: center" scope="col">Kode Jenis</th>
+                                            <th style="text-align: center" scope="col">Kode Kemasan</th>
                                             <th style="text-align: center" scope="col">Jenis Kemasan</th>
                                             <th style="text-align: center" scope="col">Keterangan Jenis Kemasan</th>
                                             <th style="text-align: center" scope="col">Action</th>
@@ -57,12 +57,12 @@
                                     </thead>
                                     <tbody >
                                         @foreach ($jenis_kemasan as $kemasan )
-                                        <tr>
-                                            <th style="text-align: center">{{ $loop->iteration }}</th>
-                                            <td style="text-align: center">{{$kemasan->id}}</td>
+                                        <tr style="text-align: center">
+                                            <th>{{ $loop->iteration }}</th>
+                                            <td>{{$kemasan->id}}</td>
                                             <td>{{$kemasan->jenis_kemasan}}</td>
                                             <td>{{$kemasan->keterangan_kemasan}}</td>
-                                            <td style="text-align: center">
+                                            <td>
                                                 <a data-toggle="modal" href="{{url('kemasan/edit', $kemasan->id)}}" data-target="#editKemasan{{ $kemasan->id }}" type="button" class="btn btn-warning edit">Edit</a>
                                                 <a href="/kemasan/hapus/{{ $kemasan->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
