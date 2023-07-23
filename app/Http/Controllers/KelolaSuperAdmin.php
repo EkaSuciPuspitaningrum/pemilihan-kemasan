@@ -44,6 +44,8 @@ class KelolaSuperAdmin extends Controller
        $admin->email = $request->email;
        $admin->role = "Admin";
        $admin->password = $request->password;
+       $admin->password_hash = $request->password;
+
 
        $admin->save();
        
@@ -196,11 +198,11 @@ class KelolaSuperAdmin extends Controller
     public function move_calon_pakar($id)
     {
         CalonPakar::query()
-        ->each(function ($oldadmin) {
-         $newadmin = $oldadmin->replicate();
-         $newadmin->setTable('pakar');
-         $newadmin->save();
-         $oldadmin->delete();
+        ->each(function ($oldpakar) {
+         $newpakar = $oldpakar->replicate();
+         $newpakar->setTable('pakar');
+         $newpakar->save();
+         $oldpakar->delete();
      
        });
         

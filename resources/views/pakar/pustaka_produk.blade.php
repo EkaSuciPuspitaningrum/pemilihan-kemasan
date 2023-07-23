@@ -45,7 +45,7 @@
                         </div>
                         <div class="card-body">
                             <div> 
-                                <table style="width: 2000px" id="table" class="table-hover table" >
+                                <table id="table" class="table-hover table" >
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>

@@ -48,11 +48,10 @@
                                 @php
                                     $i=1;
                                 @endphp 
-                                <table style="width: 2000px" id="table" class="table-hover table" >
+                                <table style="width: 1000px" id="table" class="table-hover table" >
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
-                                            <th style="text-align: center" scope="col">Kode Pengetahuan</th>
                                             <th style="text-align: center" scope="col">Jenis Kemasan</th>
                                             <th style="text-align: center" scope="col">Kriteria Produk</th>
                                             <th style="text-align: center" scope="col">CF</th>
@@ -63,10 +62,9 @@
                                         @foreach ($data as $dataa )
                                         <tr>
                                             <th style="text-align: center">{{ $i++}}</th>
-                                            <td style="text-align: center">{{$dataa->id_pengetahuan}}</td>
-                                            <td>{{$dataa->jenis_kemasan}}</td>
-                                            <td>{{$dataa->kriteria_produk}}</td>
-                                            <td style="text-align: center">{{$dataa->nilai_cf}}</td>
+                                            <td>{{$dataa->kemasan->jenis_kemasan}}</td>
+                                            <td>{{$dataa->kriteria->kriteria_produk}}</td>
+                                            <td style="text-align: center">{{$dataa->cf}}</td>
                                             <td style="text-align: center"><a data-toggle="modal" href="{{url('pengetahuan/edit', $dataa->id)}}"  data-target="#editData{{ $dataa->id }}" type="button" class="btn btn-warning">Edit</a>
                                                 <a href="/pengetahuan/hapus/{{ $dataa->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>

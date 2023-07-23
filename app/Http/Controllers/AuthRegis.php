@@ -49,7 +49,7 @@ class AuthRegis extends Controller
                     ]
                 );
             }
-        return redirect("/login")->with('message', 'Akun akan segera diapprove oleh Admin, mohon tunggu sekitar 5 menit.');
+        return redirect("/login")->with('message', 'Akun akan segera diapprove oleh Admin.');
     }
 
     public function show_regis_pakar()

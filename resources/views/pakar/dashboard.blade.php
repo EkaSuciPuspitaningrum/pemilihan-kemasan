@@ -39,10 +39,10 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Kriteria Produk</h4>
+                                <h4>Jenis Kemasan</h4>
                             </div>
                             <div class="card-body">
-                                {{ DB::table('kriteria_produk')->count() }}
+                                {{ DB::table('jenis_kemasan')->count() }}
                             </div>
                         </div>
                     </div>
@@ -54,10 +54,10 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Jenis Kemasan</h4>
+                                <h4>Kriteria Produk</h4>
                             </div>
                             <div class="card-body">
-                                {{ DB::table('jenis_kemasan')->count() }}
+                                {{ DB::table('kriteria_produk')->count() }}
                             </div>
                         </div>
                     </div>
@@ -77,6 +77,7 @@
                         </div>
                     </div>
                 </div>   
+            </div>
         </section>
         <div class="row">
             <div class="col-12">
@@ -89,13 +90,13 @@
                             <div class="col-12 col-sm-12 col-md-4">
                                 <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="produk-tab" data-toggle="tab" href="#data_produk" role="tab" aria-controls="produk" aria-selected="true">Pustaka Produk</a>
+                                        <a class="nav-link active" id="produk-tab" data-toggle="tab" href="#data_produk" role="tab" aria-controls="produk" aria-selected="true">Kriteria Produk</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="kemasan-tab" data-toggle="tab" href="#data_kemasan" role="tab" aria-controls="kemasan" aria-selected="false">Pustaka Kemasan</a>
+                                        <a class="nav-link" id="kemasan-tab" data-toggle="tab" href="#data_kemasan" role="tab" aria-controls="kemasan" aria-selected="false">Jenis Kemasan</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="pengetahuan-tab" data-toggle="tab" href="#basis_pengetahuan" role="tab" aria-controls="pengetahuan" aria-selected="false">Preview</a>
+                                        <a class="nav-link" id="pengetahuan-tab" data-toggle="tab" href="#basis_pengetahuan" role="tab" aria-controls="pengetahuan" aria-selected="false">Basis Pengetahuan</a>
                                     </li>
                                 </ul>
                             </div>
@@ -103,76 +104,36 @@
                                 <div class="tab-content no-padding" id="myTab2Content">
                                     <div class="tab-pane fade show active" id="data_produk" role="tabpanel" aria-labelledby="produk-tab">
                                         <div class="card-body">
-                                            <h6 style="color: #6777ef">Cara Penggunaan Untuk Halaman Data Mahasiswa:</h6>
+                                            <h6 style="color: #6777ef">Cara Penggunaan Untuk Halaman Kriteria Produk:</h6>
+                                            <p class="">Pada halaman ini, Anda dapat menambah, mengubah dan menghapus data sesuai dengan data yang telah ditentukan. Berikut langka-langkah pada halaman data:</p>
                                         </div>
                                         <ol>
-                                            <li>Masukkan tahun periode pendaftaran.</li>
-                                            <li>Masukkan data calon mahasiswa dengan file excel ke dalam form yang sudah disediakan.</li>
-                                            <li>Masukkan tahun tabel.</li>
-                                            <li>Tambahkan nama kolom excel yang akan diinput.</li>
-                                            <li>Menekan tombol submit. Data akan ditampilkan pada tabel, silahkan cek kembali.</li>
-                                            <li>Jika data salah, silahkan tekan tombol "Cancel" dan lakukan kegiatan penginputan data dari awal.</li>
-                                            <li>Jika data benar, silahkan tekan tombol "Save" dan data akan tersimpan.</li>
+                                            <li>Jika ingin menambah data, Anda dapat menekan tombol "Tambah Data" dan mengisi data yang dibutuhkan, setelah itu tekan tombol simpan.</li>
+                                            <li>Jika ingin mengubah data, Anda dapat menekan tombol "Edit" dan mengubah data yang dibutuhkan, setelah itu tekan tombol simpan.</li>
+                                            <li>Jika ingin menghapus data, Anda dapat menekan tombol "Hapus" maka data akan terhapus.</li>
                                         </ol>
                                     </div>
                                     <div class="tab-pane fade" id="data_kemasan" role="tabpanel" aria-labelledby="kemasan-tab">
                                         <div class="card-body">
-                                            <h6 style="color: #6777ef">Cara Penggunaan Untuk Halaman Program Studi:</h6>
-                                            <br>
-                                            <div id="accordion">
-                                                <div class="accordion">
-                                                    <div class="accordion-header" role="button" data-toggle="collapse" data-target="#panel-body-1" aria-expanded="true">
-                                                        <h4>Cara Penggunaan Halaman Data</h4>
-                                                    </div>
-                                                    <div class="accordion-body collapse show" id="panel-body-1" data-parent="#accordion">
-                                                        <p class="mb-0">Pada halaman ini, Anda dapat menambah, mengubah dan menghapus data sesuai dengan data yang telah ditentukan. Berikut langka-langkah pada halaman data:</p>
-                                                        <p><b>Langkah-Langkah Menambah Data:</b></p>
-                                                        <ol>
-                                                            <li>Menekan tombol "Add".</li>
-                                                            <li>Mengisi data sesuai dengan data yang telah ditentukan sebelumnya.</li>
-                                                            <li>Menekan tombol "Tambah" untuk menyimpan data.</li>
-                                                        </ol>
-                                                        <p><b>Langkah-Langkah Mengubah Data:</b></p>
-                                                        <ol>
-                                                            <li>Menekan tombol edit yang ditandai dengan simbol pena dengan warna tombol yaitu oranye.</li>
-                                                            <li>Mengubah data sesuai dengan yang sudah ditentukan.</li>
-                                                            <li>Menekan tombol "Submit", jika data sudah benar.</li>
-                                                            <li>Menekan tombol "Close", jika data tidak ingin diubah.</li>
-                                                        </ol>
-                                                        <p><b>Langkah-Langkah Menghapus Data:</b></p>
-                                                        <ol>
-                                                            <p>Menekan tombol hapus yang ditandai dengan simbol tempat sampah dengan warna tombol yaitu merah. Maka data secara otomatis akan terhapus.</p>
-                                                        </ol>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion">
-                                                    <div class="accordion-header" role="button" data-toggle="collapse" data-target="#panel-body-2">
-                                                        <h4>Cara Penggunaan Halaman Binding</h4>
-                                                    </div>
-                                                    <div class="accordion-body collapse" id="panel-body-2" data-parent="#accordion">
-                                                        <p class="mb-0">Pada halaman ini, Anda dapat memvalidasi kembali data program studi yang telah melalui proses tambah, ubah dan hapus pada halaman sebelumnya.</p>
-                                                        <p><b>Langkah-Langkah Binding Data:</b></p>
-                                                        <ol>
-                                                            <li>Menekan tombol "Binding".</li>
-                                                            <li>Masukkan program studi uang sesuai pada form Program Studi (Binding).</li>
-                                                            <li>Masukkan tahun.</li>
-                                                            <li>Memastikan bahwa data sudah sesuai dengan menekan tombol "Nama Prodi Sesuai".</li>
-                                                            <li>Jika data benar, silahkan klik tombol "Submit".</li>
-                                                        </ol>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <h6 style="color: #6777ef">Cara Penggunaan Untuk Halaman Jenis Kemasan:</h6>
+                                            <p class="">Pada halaman ini, Anda dapat menambah, mengubah dan menghapus data sesuai dengan data yang telah ditentukan. Berikut langka-langkah pada halaman data:</p>
                                         </div>
+                                        <ol>
+                                            <li>Jika ingin menambah data, Anda dapat menekan tombol "Tambah Data" dan mengisi data yang dibutuhkan, setelah itu tekan tombol simpan.</li>
+                                            <li>Jika ingin mengubah data, Anda dapat menekan tombol "Edit" dan mengubah data yang dibutuhkan, setelah itu tekan tombol simpan.</li>
+                                            <li>Jika ingin menghapus data, Anda dapat menekan tombol "Hapus" maka data akan terhapus.</li>
+                                        </ol>
                                     </div>
                                     <div class="tab-pane fade" id="basis_pengetahuan" role="tabpanel" aria-labelledby="pengetahuan-tab">
                                         <div class="card-body">
-                                            <h6 style="color: #6777ef">Cara Penggunaan Untuk Halaman Preview:</h6>
-                                            <br>
-                                            <p>Pada halaman ini Anda dapat melihat data mahasiswa sesuai dengan seleksi yang dipilih calon mahasiswa.
-                                                Pada halaman ini ada keterangan yaitu <b>"post-import"</b> untuk memberitahukan bahwa data masih belum diubah dan <b>"filtered"</b> untuk memberitahukan bahwa data sudah melalui proses filter.
-                                                Data juga dapat dilihat sesuai dengan tahun, Anda dapat menekan tahun pada pojok kanan atas.</p>
-
+                                            <h6 style="color: #6777ef">Cara Penggunaan Untuk Halaman Basis Pengetahuan:</h6>
+                                            <p class="">Pada halaman ini, Anda dapat menambah, mengubah dan menghapus data sesuai dengan data yang telah ditentukan. Berikut langka-langkah pada halaman data:</p>
                                         </div>
+                                        <ol>
+                                            <li>Jika ingin menambah data, Anda dapat menekan tombol "Tambah Data" dan mengisi data yang dibutuhkan, setelah itu tekan tombol simpan.</li>
+                                            <li>Jika ingin mengubah data, Anda dapat menekan tombol "Edit" dan mengubah data yang dibutuhkan, setelah itu tekan tombol simpan.</li>
+                                            <li>Jika ingin menghapus data, Anda dapat menekan tombol "Hapus" maka data akan terhapus.</li>
+                                        </ol>
                                     </div>
                                 </div>
                             </div>

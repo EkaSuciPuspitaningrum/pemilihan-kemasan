@@ -45,24 +45,24 @@
                         </div>
                         <div class="card-body">
                             <div> 
-                                <table id="table" class="table-hover table" >
-                                    <thead>
-                                        <tr>
-                                            <th style="text-align: center" scope="col">#</th>
-                                            <th style="text-align: center" scope="col">Kode Kemasan</th>
-                                            <th style="text-align: center" scope="col">Jenis Kemasan</th>
-                                            <th style="text-align: center" scope="col">Keterangan Jenis Kemasan</th>
-                                            <th style="text-align: center" scope="col">Action</th>
+                                <table id="table" class="table-hover table">
+                                    <thead >
+                                        <tr >
+                                            <th style="text-align: center"  scope="col">#</th>
+                                            <th style="text-align: center"  scope="col">Kode Kemasan</th>
+                                            <th style="text-align: center"  scope="col">Jenis Kemasan</th>
+                                            <th style="text-align: center"  scope="col">Keterangan Jenis Kemasan</th>
+                                            <th style="text-align: center"  scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody >
                                         @foreach ($jenis_kemasan as $kemasan )
-                                        <tr style="text-align: center">
-                                            <th>{{ $loop->iteration }}</th>
-                                            <td>K-{{$kemasan->id}}</td>
+                                        <tr>
+                                            <th style="text-align: center" >{{ $loop->iteration }}</th>
+                                            <td style="text-align: center" >K-{{$kemasan->id}}</td>
                                             <td>{{$kemasan->jenis_kemasan}}</td>
                                             <td>{{$kemasan->keterangan_kemasan}}</td>
-                                            <td>
+                                            <td style="text-align: center" >
                                                 <a data-toggle="modal" href="{{url('kemasan/edit', $kemasan->id)}}" data-target="#editKemasan{{ $kemasan->id }}" type="button" class="btn btn-warning edit">Edit</a>
                                                 <a href="/kemasan/hapus/{{ $kemasan->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
