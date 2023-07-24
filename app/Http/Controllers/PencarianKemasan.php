@@ -31,10 +31,13 @@ class PencarianKemasan extends Controller
 
     public function analisa(Request $request)
     {
+        //kriteria harus dilih
         if(empty($request->kondisi) || count($request->kondisi) < 2){
             $this->notification('error', 'Kesalahan', 'Harus memasukkan kriteria produk.');
             return redirect(route('/pencarian'));
         }
+
+        //pembobotan oleh user, dengan memilih kriteria yang telah disediakan
         $arbobot = [0, 1, 0.75, 0.5, 0.25];
         $argejala = [];
         $arrCfKombine = [];
@@ -49,7 +52,10 @@ class PencarianKemasan extends Controller
                 }])->groupBy('id')->orderBy('id')->get();
             }
         }
+
         // dd(array_keys($kepastian));
+
+        //perhitungan certainty factor
         foreach($kemasans as $kemas) {
             foreach($kemas->basis_pengetahuans as $bp) {
                 $arrCfKombine[$kemas->id][] = $bp->cf * $arbobot[$kepastian[$bp->kriteria_id]];
@@ -72,7 +78,13 @@ class PencarianKemasan extends Controller
                 $cfHasil[$key] = $cfTotal;
             }
         }
+
+        //arsort() digunakan untuk untuk mengurutkan elemen-elemen dari sebuah array 
+        //asosiatif secara ascending (menaik) berdasarkan nilainya.
         arsort(($cfHasil));
+
+        //data akan disimpan di tabel data pencarian yang selanjutnya
+        //akan ditampilkan di halaman riwayat
         DataPencarian::create([
             'nama_produk' =>$request->nama_produk,
             'berat_produk' =>$request->berat_produk,
@@ -81,6 +93,7 @@ class PencarianKemasan extends Controller
             'jenis_kemasan_id' => array_key_first($cfHasil),
             'persen' => $cfHasil[array_key_first($cfHasil)]
         ]);
+
         $kriteria = KriteriaProduk::all();
         return view('user.hasil_pencarian', compact('cfHasil', 'kemasans', 'kepastian', 'kriteria'));
     }

@@ -40,7 +40,17 @@
                             <h4>Masukkan Data Produk</h4>
                         </div>
                         <div class="card-body">
-                            
+                            @if(session('error'))
+                                <div class="alert alert-danger alert-dismissible show fade">
+                                    <div class="alert-body">
+                                        <button class="close"
+                                            data-dismiss="alert">
+                                            <span>&times;</span>
+                                        </button>
+                                        {{session('error')}}
+                                    </div>
+                                </div>
+                            @endif
                             <form action="{{ url('/pencarian_analisa') }}" method="post">
                             @csrf
                             <div class="form-row">
@@ -52,7 +62,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="berat_produk">Berat Produk (Kg)</label>
-                                    <input  type="number"
+                                    <input  type="text"
                                            class="form-control"
                                            id="berat_produk" name="berat_produk" value="{{ old('berat_produk') }}" required>
                                 </div>
