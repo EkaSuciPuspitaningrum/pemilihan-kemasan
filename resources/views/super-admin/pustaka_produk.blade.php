@@ -1,6 +1,6 @@
-@extends('layouts-pakar.app')
+@extends('layouts-super-admin.app')
 
-@section('title', 'Aturan Kemasan')
+@section('title', 'Data Produk')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -17,7 +17,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Basis Pengetahuan Kemasan</h1>
+            <h1>Pustaka Produk</h1>
         </div>
         @if(session('message'))
         <div class="alert alert-success alert-dismissible show fade">
@@ -31,8 +31,8 @@
         </div>
     @endif
         <div class="section-body">
-            <h2 class="section-title">Pengetahuan Kemasan</h2>
-            <p class="section-lead">Silahkan tambahkan, ubah maupun hapus data pengetahuan-pengetahuan kemasan.</p>
+            <h2 class="section-title">Kriteria Produk</h2>
+            <p class="section-lead">Silahkan tambahkan, ubah maupun hapus data kriteria-kriteria produk.</p>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -40,39 +40,39 @@
                             <div class="buttons">
                                 <button class="btn btn-primary"
                                 data-toggle="modal"
-                                data-target="#pengetahuanModal">Tambah Basis Pengetahuan Kemasan</button>
+                                data-target="#kriteriaProduk">Tambah Kriteria Produk</button>
                             </div>
                         </div>
                         <div class="card-body">
                             <div> 
-                                @php
-                                    $i=1;
-                                @endphp 
-                                <table style="width: 1000px" id="table" class="table-hover table" >
+                                <table id="table" class="table-hover table" >
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
-                                            <th style="text-align: center" scope="col">Jenis Kemasan</th>
+                                            <th style="text-align: center" scope="col">Kode Kriteria</th>
                                             <th style="text-align: center" scope="col">Kriteria Produk</th>
-                                            <th style="text-align: center" scope="col">CF</th>
+                                            <th style="text-align: center" scope="col">Keterangan Kriteria Produk</th>
                                             <th style="text-align: center" scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody >
-                                        @foreach ($data as $dataa )
+                                        @foreach ($kriteria_produk as $kriteria )
                                         <tr>
-                                            <th style="text-align: center">{{ $i++}}</th>
-                                            <td>{{$dataa->kemasan->jenis_kemasan}}</td>
-                                            <td>{{$dataa->kriteria->kriteria_produk}}</td>
-                                            <td style="text-align: center">{{$dataa->cf}}</td>
-                                            <td style="text-align: center"><a data-toggle="modal" href="{{url('pengetahuan/edit', $dataa->id)}}"  data-target="#editData{{ $dataa->id }}" type="button" class="btn btn-warning">Edit</a>
-                                                <a href="/pengetahuan/hapus/{{ $dataa->id }}" type="button" class="btn btn-danger">Hapus</a>
+                                            <td style="text-align: center">{{ $loop->iteration }}</td>
+                                            <td style="text-align: center">P-{{$kriteria->id}}</td>
+                                            <td>{{$kriteria->kriteria_produk}}</td>
+                                            <td>{{$kriteria->keterangan_kriteria}}</td>
+                                            <td style="text-align: center">
+                                                <a data-toggle="modal" href="{{url('kriteria/edit', $kriteria->id)}}" data-target="#editKriteria{{ $kriteria->id }}" type="button" class="btn btn-warning edit">Edit</a>
+                                                <a href="/kriteria/hapus/{{ $kriteria->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
+                                    
                                 </table>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -80,15 +80,16 @@
         </div>
     </section>
 
-    <div class="modal fade"
+
+<div class="modal fade"
             tabindex="-1"
             role="dialog"
-            id="pengetahuanModal">
+            id="kriteriaProduk">
             <div class="modal-dialog"
                 role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Masukkan Basis Pengetahuan Kemasan</h5>
+                        <h5 class="modal-title">Masukkan Data Kriteria - Kriteria Produk</h5>
                         <button type="button"
                             class="close"
                             data-dismiss="modal"
@@ -96,37 +97,20 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ url("/pengetahuan_store") }}" method="POST">
+                    <form action="{{ url("/kriteria_store") }}" method="POST">
                         @csrf
                         <div class="modal-body modal-lg">
                             <div class="form-group">
-                                <label>Jenis Kemasan</label>
-                                <select name="jenis_kemasan_id" class="form-control">
-                                    @foreach ($kemasan as $kemas)
-                                        <option value="{{ $kemas->id }}">{{ $kemas->jenis_kemasan }}</option>
-                                    @endforeach
-                                </select>
+                                <label for="kriteriaproduk">Kriteria Produk</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="kriteria_produk" name="kriteria_produk">
                             </div>
                             <div class="form-group">
-                                <label>Kriteria Produk</label>
-                                <select name="kriteria_id" class="form-control">
-                                    @foreach ($kriteria as $kriteriaa)
-                                        <option value="{{ $kriteriaa->id }}">{{ $kriteriaa->kriteria_produk }}</option>
-                                    @endforeach
-                                </select>
+                                <label for="kriteriaproduk">Keterangan Kriteria Produk</label>
+                                <textarea class="form-control" style="height: 150px" name="keterangan_kriteria"
+                                 required></textarea>
                             </div>
-                            <div class="form-group">
-                                <label for="nilaipercaya">Nilai Kepercayaan Mutlak (CF)</label>
-                                <select id="cf" name="cf" class="form-control">
-                                    <option value="1">Sangat Yakin</option>
-                                    <option value="0.8">Yakin</option>
-                                    <option value="0.6">Cukup Yakin</option>
-                                    <option value="0.4">Kurang Yakin</option>
-                                    <option value="0.2">Tidak Tahu</option>
-                                    <option value="0">Tidak</option>
-                                </select>
-                            </div>
-
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
                             <button type="button"
@@ -138,18 +122,18 @@
                     </form>
                 </div>
             </div>
-        </div>
+</div>
 
-        @foreach ($data as $dataa )
-        <div class="modal fade"
+@foreach ($kriteria_produk as $kriteria )
+<div class="modal fade"
             tabindex="-1"
             role="dialog"
-            id="editData{{ $dataa->id }}">
+            id="editKriteria{{ $kriteria->id }}">
             <div class="modal-dialog"
                 role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Masukkan Basis Pengetahuan Kemasan</h5>
+                        <h5 class="modal-title">Edit Data Kriteria - Kriteria Produk</h5>
                         <button type="button"
                             class="close"
                             data-dismiss="modal"
@@ -157,50 +141,33 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ url("/pengetahuan/update",$dataa->id) }}" method="POST">
+                    <form action="{{url('kriteria/update', $kriteria->id)}}"  method="POST">
                         @csrf
                         <div class="modal-body modal-lg">
                             <div class="form-group">
-                                <label>Jenis Kemasan</label>
-                                <select name="jenis_kemasan_id" class="form-control">
-                                    @foreach ($kemasan as $kemas)
-                                        <option value="{{ $kemas->id }}" {{$dataa->jenis_kemasan == $kemas->jenis_kemasan  ? 'selected' : ''}}>{{ $kemas->jenis_kemasan}}</option>
-                                    @endforeach
-                                </select>
+                                <label for="kriteriaproduk">Kriteria Produk</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="kriteria_produk" name="kriteria_produk" value="{{ $kriteria->kriteria_produk }}">
                             </div>
                             <div class="form-group">
-                                <label>Kriteria Produk</label>
-                                <select name="kriteria_id" class="form-control">
-                                    @foreach ($kriteria as $kriteriaa)
-                                        <option value="{{ $kriteriaa->id }}" {{$dataa->kriteria_produk == $kriteriaa->kriteria_produk  ? 'selected' : ''}}>{{ $kriteriaa->kriteria_produk}}</option>
-                                    @endforeach
-                                </select>
+                                <label for="kriteriaproduk">Keterangan Kriteria Produk</label>
+                                <textarea class="form-control" style="height: 150px" name="keterangan_kriteria"
+                                 required>{{ $kriteria->keterangan_kriteria }}</textarea>
                             </div>
-                            <div class="form-group ">
-                                <label for="nilaipercaya">Nilai Kepercayaan Mutlak (CF)</label>
-                                <select id="cf" name="cf" class="form-control">
-                                    <option value="1" {{ $dataa->cf == '1' ? 'selected' : '' }}>Sangat Yakin</option>
-                                    <option value="0.8" {{ $dataa->cf == '0.8' ? 'selected' : '' }}>Yakin</option>
-                                    <option value="0.6" {{ $dataa->cf == '0.6' ? 'selected' : '' }}>Cukup Yakin</option>
-                                    <option value="0.4" {{ $dataa->cf == '0.4' ? 'selected' : '' }}>Kurang Yakin</option>
-                                    <option value="0.2" {{ $dataa->cf == '0.2' ? 'selected' : '' }}>Tidak Tahu</option>
-                                    <option value="0" {{ $dataa->cf == '0' ? 'selected' : '' }}>Tidak</option>
-                                </select>
-                            </div>
-
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
                             <button type="button"
                                 class="btn btn-danger"
                                 data-dismiss="modal">Tutup</button>
-                                <button type="submit"
+                            <button type="submit"
                                 class="btn btn-warning">Edit</button>
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
-        @endforeach
+        </div>     
+@endforeach
 </div>
 @endsection
 

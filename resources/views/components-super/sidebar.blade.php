@@ -12,7 +12,13 @@
             <li class="{{ Request::is('dashboard_super') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('dashboard_super') }}"><i class="fas fa-house"></i><span>Dashboard</span></a>
             </li>
-
+            <li class="menu-header">Pustaka Pengetahuan</li>
+            <li class="{{ Request::is('pustaka_produk') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('pustaka_produk') }}"><i class="fas fa-tag"></i><span>Kriteria Produk</span></a>
+            </li>
+            <li class="{{ Request::is('pustaka_kemasan') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('pustaka_kemasan') }}"><i class="fas fa-box"></i><span>Jenis Kemasan</span></a>
+            </li>
             <li class="menu-header">Data Pakar</li>
             <li class="{{ Request::is('appr_pakar') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('appr_pakar') }}"><i class="fas fa-person-circle-check"></i><span>Approve Pakar</span></a>

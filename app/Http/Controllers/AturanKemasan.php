@@ -26,9 +26,9 @@ class AturanKemasan extends Controller
     {
 
        $pengetahuan = new BasisPengetahuan();
-       $pengetahuan->jenis_kemasan = $request->jenis_kemasan;
-       $pengetahuan->kriteria_produk = $request->kriteria_produk;
-       $pengetahuan->nilai_cf = $request->nilai_cf;
+       $pengetahuan->jenis_kemasan_id = $request->jenis_kemasan_id;
+       $pengetahuan->kriteria_id = $request->kriteria_id;
+       $pengetahuan->cf = $request->cf;
 
        $pengetahuan->save();
        
@@ -42,9 +42,9 @@ class AturanKemasan extends Controller
 
     public function pengetahuan_update(Request $request, $id){
         $admin = BasisPengetahuan::whereId($id)->first();
-        $admin->jenis_kemasan = $request->jenis_kemasan;
-        $admin->kriteria_produk = $request->kriteria_produk;
-        $admin->nilai_cf = $request->nilai_cf;
+        $admin->jenis_kemasan_id = $request->jenis_kemasan_id;
+        $admin->kriteria_id = $request->kriteria_id;
+        $admin->cf = $request->cf;
         $admin->save();
     
         return redirect('/aturan')->with('message', 'Data berhasil diedit.');
