@@ -86,6 +86,19 @@ Route::name('super-admin')->group(function () {
     Route::get('/admin/edit/{id}', [KelolaSuperAdmin::class,'admin_edit'])->name('admin_edit');
     Route::post('/admin/update/{id}', [KelolaSuperAdmin::class, 'admin_update'])->name('admin_update');
    
+    Route::get('/pustaka_produk_admin', [PustakaProduk::class,'produk_admin'])->name('pustaka_produk_admin');
+    Route::post('/kriteriaadmin_store', [PustakaProduk::class,'kriteriaadminStore'])->name('kriteriaadmin_store');
+    Route::get('/kriteriaadmin/edit/{id}', [PustakaProduk::class,'kriteria_edit_admin'])->name('kriteria_edit_admin');
+    Route::post('/kriteriaadmin/update/{id}', [PustakaProduk::class, 'kriteria_update_admin'])->name('kriteria_update_admin');
+    Route::get('/kriteriaadmin/hapus/{id}', [PustakaProduk::class,'kriteria_hapus_admin'])->name('kriteria_hapus_admin');
+ 
+    Route::get('/pustaka_kemasan_admin', [PustakaKemasan::class,'kemasan_admin'])->name('pustaka_kemasan_admin');
+    Route::post('/kemasanadmin_store', [PustakaKemasan::class,'kemasan_store_admin'])->name('kemasanadmin_store');
+    Route::get('/kemasanadmin/edit/{id}', [PustakaKemasan::class,'kemasan_edit_admin'])->name('kemasan_edit_admin');
+    Route::post('/kemasanadmin/update/{id}', [PustakaKemasan::class, 'kemasan_update_admin'])->name('kemasan_update_admin');
+    Route::get('/kemasanadmin/hapus/{id}', [PustakaKemasan::class,'kemasan_hapus_admin'])->name('kemasan_hapus_admin');
+
+
 });
 
 Route::name('pakar')->group(function () {

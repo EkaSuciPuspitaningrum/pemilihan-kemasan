@@ -60,11 +60,20 @@
                                            class="form-control"
                                            id="nama_produk" name="nama_produk" value="{{ old('nama_produk') }}" required>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="berat_produk">Berat Produk (Kg)</label>
+                                <div class="form-group col-md-3">
+                                    <label for="berat_produk1">Berat Produk</label>
                                     <input  type="text"
                                            class="form-control"
-                                           id="berat_produk" name="berat_produk" value="{{ old('berat_produk') }}" >
+                                           id="berat_produk1" name="berat_produk1" value="{{ old('berat_produk') }}" >
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="berat_produk2">Satuan Berat</label>
+                                    <select id="berat_produk2" name="berat_produk2" class="form-control">
+                                        <option>Kilogram (Kg)</option>
+                                        <option>Gram (g)</option>
+                                        <option>Ons (Hg)</option>
+                                        <option>Pon</option>
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="ukuran_produk">Ukuran Produk</label>

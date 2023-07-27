@@ -1,4 +1,6 @@
 @extends('layouts-super-admin.app')
+
+
 @section('title', 'Data Kemasan')
 
 @push('style')
@@ -44,7 +46,7 @@
                         </div>
                         <div class="card-body">
                             <div> 
-                                <table id="table" class="table-hover table">
+                                <table id="table" class="table table-hover table-bordered mb-3" >
                                     <thead >
                                         <tr >
                                             <th style="text-align: center"  scope="col">#</th>
@@ -60,10 +62,10 @@
                                             <th style="text-align: center" >{{ $loop->iteration }}</th>
                                             <td style="text-align: center" >K-{{$kemasan->id}}</td>
                                             <td>{{$kemasan->jenis_kemasan}}</td>
-                                            <td>{{$kemasan->keterangan_kemasan}}</td>
+                                            <td style="text-align: justify">{{$kemasan->keterangan_kemasan}}</td>
                                             <td style="text-align: center" >
-                                                <a data-toggle="modal" href="{{url('kemasan/edit', $kemasan->id)}}" data-target="#editKemasan{{ $kemasan->id }}" type="button" class="btn btn-warning edit">Edit</a>
-                                                <a href="/kemasan/hapus/{{ $kemasan->id }}" type="button" class="btn btn-danger">Hapus</a>
+                                                <a data-toggle="modal" href="{{url('kemasanadmin/edit', $kemasan->id)}}" data-target="#editKemasan{{ $kemasan->id }}" type="button" class="btn btn-warning edit">Edit</a>
+                                                <a href="/kemasanadmin/hapus/{{ $kemasan->id }}" type="button" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -95,7 +97,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ url("/kemasan_store") }}" method="POST">
+                    <form action="{{ url("/kemasanadmin_store") }}" method="POST">
                         @csrf
                         <div class="modal-body modal-lg">
                             <div class="form-group">
@@ -140,7 +142,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{url('kemasan/update', $kemasan->id)}}"  method="POST">
+                    <form action="{{url('kemasanadmin/update', $kemasan->id)}}"  method="POST">
                         @csrf
                         <div class="modal-body modal-lg">
                             <div class="form-group">

@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('data_pencarian', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_produk');
-            $table->string('berat_produk');
-            $table->string('ukuran_produk');
-            $table->string('volume_produk');
+            $table->string('nama_produk')->nullable();
+            $table->string('berat_produk')->nullable();
+            $table->string('ukuran_produk')->nullable();
+            $table->string('volume_produk')->nullable();
             $table->unsignedBigInteger('jenis_kemasan_id');
             // $table->float('persen');
             $table->timestamps();

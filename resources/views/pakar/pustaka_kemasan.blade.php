@@ -61,7 +61,7 @@
                                             <th style="text-align: center" >{{ $loop->iteration }}</th>
                                             <td style="text-align: center" >K-{{$kemasan->id}}</td>
                                             <td>{{$kemasan->jenis_kemasan}}</td>
-                                            <td>{{$kemasan->keterangan_kemasan}}</td>
+                                            <td style="text-align: justify">{{$kemasan->keterangan_kemasan}}</td>
                                             <td style="text-align: center" >
                                                 <a data-toggle="modal" href="{{url('kemasan/edit', $kemasan->id)}}" data-target="#editKemasan{{ $kemasan->id }}" type="button" class="btn btn-warning edit">Edit</a>
                                                 <a href="/kemasan/hapus/{{ $kemasan->id }}" type="button" class="btn btn-danger">Hapus</a>

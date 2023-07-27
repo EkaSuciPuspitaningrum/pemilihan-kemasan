@@ -51,7 +51,6 @@
                                             <th style="text-align: center" scope="col">#</th>
                                             <th style="text-align: center" scope="col">Kode Kriteria</th>
                                             <th style="text-align: center" scope="col">Kriteria Produk</th>
-                                            <th style="text-align: center" scope="col">Keterangan Kriteria Produk</th>
                                             <th style="text-align: center" scope="col">Action</th>
                                         </tr>
                                     </thead>
@@ -61,7 +60,6 @@
                                             <td style="text-align: center">{{ $loop->iteration }}</td>
                                             <td style="text-align: center">P-{{$kriteria->id}}</td>
                                             <td>{{$kriteria->kriteria_produk}}</td>
-                                            <td>{{$kriteria->keterangan_kriteria}}</td>
                                             <td style="text-align: center">
                                                 <a data-toggle="modal" href="{{url('kriteria/edit', $kriteria->id)}}" data-target="#editKriteria{{ $kriteria->id }}" type="button" class="btn btn-warning edit">Edit</a>
                                                 <a href="/kriteria/hapus/{{ $kriteria->id }}" type="button" class="btn btn-danger">Hapus</a>
@@ -106,11 +104,6 @@
                                        class="form-control"
                                        id="kriteria_produk" name="kriteria_produk">
                             </div>
-                            <div class="form-group">
-                                <label for="kriteriaproduk">Keterangan Kriteria Produk</label>
-                                <textarea class="form-control" style="height: 150px" name="keterangan_kriteria"
-                                 required></textarea>
-                            </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
                             <button type="button"
@@ -149,11 +142,6 @@
                                 <input type="text"
                                        class="form-control"
                                        id="kriteria_produk" name="kriteria_produk" value="{{ $kriteria->kriteria_produk }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="kriteriaproduk">Keterangan Kriteria Produk</label>
-                                <textarea class="form-control" style="height: 150px" name="keterangan_kriteria"
-                                 required>{{ $kriteria->keterangan_kriteria }}</textarea>
                             </div>
                         </div>
                         <div class="modal-footer bg-whitesmoke br">

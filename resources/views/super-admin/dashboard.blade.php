@@ -89,7 +89,13 @@
                             <div class="col-12 col-sm-12 col-md-4">
                                 <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="approve-tab" data-toggle="tab" href="#data_approve" role="tab" aria-controls="approve" aria-selected="true">Approve Pakar</a>
+                                        <a class="nav-link active" id="produk-tab" data-toggle="tab" href="#data_produk" role="tab" aria-controls="produk" aria-selected="true">Kriteria Produk</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="kemasan-tab" data-toggle="tab" href="#data_kemasan" role="tab" aria-controls="kemasan" aria-selected="false">Jenis Kemasan</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="approve-tab" data-toggle="tab" href="#data_approve" role="tab" aria-controls="approve" aria-selected="true">Approve Pakar</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="pakar-tab" data-toggle="tab" href="#data_pakar" role="tab" aria-controls="pakar" aria-selected="false">Data Pakar</a>
@@ -101,7 +107,29 @@
                             </div>
                             <div class="col-12 col-sm-12 col-md-8">
                                 <div class="tab-content no-padding" id="myTab2Content">
-                                    <div class="tab-pane fade show active" id="data_approve" role="tabpanel" aria-labelledby="approve-tab">
+                                    <div class="tab-pane fade show active" id="data_produk" role="tabpanel" aria-labelledby="produk-tab">
+                                        <div class="card-body">
+                                            <h6 style="color: #6777ef">Cara Penggunaan Untuk Halaman Kriteria Produk:</h6>
+                                            <p class="">Pada halaman ini, Anda dapat menambah, mengubah dan menghapus data sesuai dengan data yang telah ditentukan. Berikut langka-langkah pada halaman data:</p>
+                                        </div>
+                                        <ol>
+                                            <li>Jika ingin menambah data, Anda dapat menekan tombol "Tambah Data" dan mengisi data yang dibutuhkan, setelah itu tekan tombol simpan.</li>
+                                            <li>Jika ingin mengubah data, Anda dapat menekan tombol "Edit" dan mengubah data yang dibutuhkan, setelah itu tekan tombol simpan.</li>
+                                            <li>Jika ingin menghapus data, Anda dapat menekan tombol "Hapus" maka data akan terhapus.</li>
+                                        </ol>
+                                    </div>
+                                    <div class="tab-pane fade" id="data_kemasan" role="tabpanel" aria-labelledby="kemasan-tab">
+                                        <div class="card-body">
+                                            <h6 style="color: #6777ef">Cara Penggunaan Untuk Halaman Jenis Kemasan:</h6>
+                                            <p class="">Pada halaman ini, Anda dapat menambah, mengubah dan menghapus data sesuai dengan data yang telah ditentukan. Berikut langka-langkah pada halaman data:</p>
+                                        </div>
+                                        <ol>
+                                            <li>Jika ingin menambah data, Anda dapat menekan tombol "Tambah Data" dan mengisi data yang dibutuhkan, setelah itu tekan tombol simpan.</li>
+                                            <li>Jika ingin mengubah data, Anda dapat menekan tombol "Edit" dan mengubah data yang dibutuhkan, setelah itu tekan tombol simpan.</li>
+                                            <li>Jika ingin menghapus data, Anda dapat menekan tombol "Hapus" maka data akan terhapus.</li>
+                                        </ol>
+                                    </div>
+                                    <div class="tab-pane fade" id="data_approve" role="tabpanel" aria-labelledby="approve-tab">
                                         <div class="card-body">
                                             <h6 style="color: #6777ef">Cara Penggunaan Untuk Halaman Approve Pakar:</h6>
                                         </div>

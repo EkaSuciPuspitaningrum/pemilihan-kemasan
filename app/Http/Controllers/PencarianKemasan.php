@@ -86,8 +86,11 @@ class PencarianKemasan extends Controller
         //data akan disimpan di tabel data pencarian yang selanjutnya
         //akan ditampilkan di halaman riwayat
         DataPencarian::create([
+            $berat_produk1 = $request->berat_produk1,
+            $berat_produk2 = $request->berat_produk2,
+
             'nama_produk' =>$request->nama_produk,
-            'berat_produk' =>$request->berat_produk,
+            'berat_produk' =>$berat_produk1 . " " . $berat_produk2,
             'ukuran_produk' =>$request->ukuran_produk,
             'volume_produk' =>$request->volume_produk,
             'jenis_kemasan_id' => array_key_first($cfHasil),

@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('kriteria_produk', function (Blueprint $table) {
             $table->id();
             $table->string("kriteria_produk");
-            $table->text("keterangan_kriteria");
             $table->timestamps();
         });
     }

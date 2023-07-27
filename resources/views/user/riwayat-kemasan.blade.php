@@ -38,7 +38,6 @@
                                             <th style="text-align: center" scope="col">Ukuran Produk</th>
                                             <th style="text-align: center" scope="col">Volume Produk</th>
                                             <th style="text-align: center" scope="col">Jenis Kemasan</th>
-                                            <th style="text-align: center" scope="col">Persentase</th>
                                             <th style="text-align: center" scope="col">Tanggal Pencarian</th>
                                         </tr>
                                     </thead>
@@ -51,7 +50,6 @@
                                             <td>{{$riwayatt->ukuran_produk}}</td>
                                             <td>{{$riwayatt->volume_produk}}</td>
                                             <td>{{$riwayatt->kemasan->jenis_kemasan}}</td>
-                                            <td>{{$riwayatt->persen * 100}}%</td>
                                             <td>{{ date_format($riwayatt->created_at,'d-m-Y') }}</td>
                                         </tr>
                                         @endforeach
