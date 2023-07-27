@@ -91,7 +91,7 @@ class PencarianKemasan extends Controller
             'ukuran_produk' =>$request->ukuran_produk,
             'volume_produk' =>$request->volume_produk,
             'jenis_kemasan_id' => array_key_first($cfHasil),
-            'persen' => $cfHasil[array_key_first($cfHasil)]
+            // 'persen' => $cfHasil[array_key_first($cfHasil)]
         ]);
 
         $kriteria = KriteriaProduk::all();

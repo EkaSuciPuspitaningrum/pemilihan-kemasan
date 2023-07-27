@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('ukuran_produk');
             $table->string('volume_produk');
             $table->unsignedBigInteger('jenis_kemasan_id');
-            $table->float('persen');
+            // $table->float('persen');
             $table->timestamps();
 
             $table->foreign('jenis_kemasan_id')->references('id')->on('jenis_kemasan')->onDelete('cascade');

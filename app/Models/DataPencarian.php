@@ -16,7 +16,7 @@ class DataPencarian extends Model
         'ukuran_produk',
         'volume_produk',
         'jenis_kemasan_id',
-        'persen',
+        // 'persen',
     ];
 
     public function kemasan(){

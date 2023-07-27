@@ -76,8 +76,8 @@
                                     <div class="col-md p-3">
                                         <h3 style="font-size: 25px" class="mb-4">Hasil Rekomendasi</h3>
                                         <p>Berdasarkan daftar kriteria produk yang dipilih, jenis kemasan yang yang cocok dengan produk Anda :</p>
-                                            <h4 style="font-size: 22px" class="mb-3 text-success">{{ $kemasan->jenis_kemasan }}</h4>
-                                            <p style="font-size: 20px" class="text-success">Presentase : {{$cfHasil[array_key_first($cfHasil)] * 100}}%</p>
+                                           <strong><h4 style="font-size: 22px" class="mb-3 text-success">{{ $kemasan->jenis_kemasan }}</h4></strong>
+                                            {{-- <p style="font-size: 20px" class="text-success">Presentase : {{$cfHasil[array_key_first($cfHasil)] * 100}}%</p> --}}
                                     </div>
                                 </div>
                             @endif
