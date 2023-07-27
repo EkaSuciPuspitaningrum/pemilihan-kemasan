@@ -98,7 +98,8 @@ class PencarianKemasan extends Controller
         ]);
 
         $kriteria = KriteriaProduk::all();
-        return view('user.hasil_pencarian', compact('cfHasil', 'kemasans', 'kepastian', 'kriteria'));
+        return view('user.hasi
+        l_pencarian', compact('cfHasil', 'kemasans', 'kepastian', 'kriteria'));
     }
 }
 
