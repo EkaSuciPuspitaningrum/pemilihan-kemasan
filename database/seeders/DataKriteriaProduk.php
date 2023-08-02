@@ -22,11 +22,11 @@ class DataKriteriaProduk extends Seeder
                 'updated_at' => date("Y-m-d H:i:s") ],
             ['id'=> 3 , 'kriteria_produk' => 'Mengandung air', 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s") ],
-            ['id'=> 4 , 'kriteria_produk' => 'Memiliki permeabilitas yang rendah terhadap air', 'created_at' => date("Y-m-d H:i:s"),
+            ['id'=> 4 , 'kriteria_produk' => 'Memiliki daya tembus yang rendah terhadap air', 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s") ],
-            ['id'=> 5 , 'kriteria_produk' => 'Memiliki permeabilitas yang tinggi terhadap gas', 'created_at' => date("Y-m-d H:i:s"),
+            ['id'=> 5 , 'kriteria_produk' => 'Memiliki daya tembus yang tinggi terhadap gas', 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s") ],
-            ['id'=> 6 , 'kriteria_produk' => 'Memiliki permeabilitas yang tinggi terhadap uap', 'created_at' => date("Y-m-d H:i:s"),
+            ['id'=> 6 , 'kriteria_produk' => 'Memiliki daya tembus yang tinggi terhadap uap', 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s") ],
             ['id'=> 7 , 'kriteria_produk' => 'Mengandung bahan pengawet buatan', 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s") ],
@@ -42,7 +42,7 @@ class DataKriteriaProduk extends Seeder
                 'updated_at' => date("Y-m-d H:i:s") ],
             ['id'=> 13  , 'kriteria_produk' => 'Beralkohol', 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s") ],
-            ['id'=> 14  , 'kriteria_produk' => 'Mengandung bahan kimia', 'created_at' => date("Y-m-d H:i:s"),
+            ['id'=> 14  , 'kriteria_produk' => 'Mengandung bahan kimia (pewarna, pengawet, dll)', 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s") ],
         ]);
     }

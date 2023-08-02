@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BasisPengetahuan;
 use App\Models\DataPencarian;
 use App\Models\DataRiwayat;
 use App\Models\JenisKemasan;
@@ -33,8 +32,8 @@ class PencarianKemasan extends Controller
     {
         //kriteria harus dilih
         if(empty($request->kondisi) || count($request->kondisi) < 2){
-            $this->notification('error', 'Kesalahan', 'Harus memasukkan kriteria produk.');
-            return redirect(route('/pencarian'));
+            return redirect("/pencarian")->with('message', 'Harus memasukkan minimal 3 kriteria produk.');
+
         }
 
         //pembobotan oleh user, dengan memilih kriteria yang telah disediakan
