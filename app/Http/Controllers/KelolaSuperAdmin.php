@@ -111,36 +111,18 @@ class KelolaSuperAdmin extends Controller
     }
 
     public function lihat_cv($id){
-        $pdfFile = Pakar::whereId($id)->first();
-
-    // Check if the PDF file exists
-    if ($pdfFile) {
-        // Get the contents of the PDF file
-        $pdfContent = Storage::disk('dokumen')->get($pdfFile->dokumen);
-
-        // Return the PDF file as response with appropriate headers
-        return response($pdfContent, 200)->header('Content-Type', 'application/pdf');
-    }
-
-    // PDF file not found, return a response indicating the error
-    return response('PDF file not found', 404);
+        $dataPakar = ["pakar"=>Pakar::whereId($id)->first()];
+        return view('super-admin.data_pakar', $dataPakar,[
+            'type_menu' => 'data_pakar',
+        ]);
     
     }
 
     public function lihat_cv_appr($id){
-        $pdfFile = CalonPakar::whereId($id)->first();
-
-    // Check if the PDF file exists
-    if ($pdfFile) {
-        // Get the contents of the PDF file
-        $pdfContent = Storage::disk('dokumen')->get($pdfFile->dokumen);
-
-        // Return the PDF file as response with appropriate headers
-        return response($pdfContent, 200)->header('Content-Type', 'application/pdf');
-    }
-
-    // PDF file not found, return a response indicating the error
-    return response('PDF file not found', 404);
+        $data = ["calon_pakar"=>CalonPakar::whereId($id)->first()];
+        return view('super-admin.appr_pakar', $data,[
+            'type_menu' => 'appr_pakar',
+        ]);
     
     }
     

@@ -99,6 +99,41 @@
                     </div>
                     @endif
                     @endforeach
+
+                    <div id="kemungkinan" class="mt-4 no-print">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Kemungkinan Jenis Kemasan Lain :</h4>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-bordered table-hovered">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Jenis Kemasan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="plain">
+                                        @php
+                                            $i = 0;
+                                        @endphp
+                                        @foreach ($cfHasil as $key => $cf)
+                                            @foreach ($kemasans as $kemasan)
+                                                @if ($key == $kemasan->id)
+                                                @if($i <= 3)
+                                                <tr>
+                                                    <td>{{$i++}}</td>
+                                                    <td>{{$kemasan->jenis_kemasan}}</td>
+                                                </tr>
+                                                @endif
+                                                @endif
+                                            @endforeach
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -122,4 +157,7 @@
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/table.js') }}"></script>
     <script src="{{ asset('js/page/index-0.js') }}"></script>
+    <script>
+        $('#plain tr:first').hide();
+    </script>
 @endpush

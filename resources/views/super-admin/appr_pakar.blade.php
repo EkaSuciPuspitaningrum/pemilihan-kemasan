@@ -40,11 +40,11 @@
                 
                     <div class="card">
                         <div class="card-body">
-                            <div> 
+                            <div class="table-responsive"> 
                                 @php
                                     $i=1;
                                 @endphp 
-                                <table style="width: 2000px" id="table" class="table-hover table">
+                                <table id="table" class="table-hover table">
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
@@ -95,7 +95,7 @@
             tabindex="-1"
             role="dialog"
             id="cvPakar{{ $dataa->id }}">
-            <div class="modal-dialog"
+            <div class="modal-dialog modal-lg"
                 role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -108,7 +108,7 @@
                         </button>
                     </div>
                     <div id="pdf-container">
-                        <embed src="{{ url('lihat_cv_appr', $dataa->id) }}" type="application/pdf" width="100%" height="400px" />
+                        <embed src="dokumen/{{ $dataa->dokumen }}" type="application/pdf" width="100%" height="400px" />
                     </div>
                     
                 </div>

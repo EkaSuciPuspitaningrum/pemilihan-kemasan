@@ -25,7 +25,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <div> 
+                            <div class="table-responsive"> 
                                 @php
                                     $i=1;
                                 @endphp 
