@@ -1,17 +1,8 @@
-<p align="center">
-  <a href="https://laravel.com/">
-    <img src="https://laravel.com/img/logomark.min.svg" alt="laravel logo" width="75" height="75">
-  </a>
-  <a href="https://getstisla.com">
-    <img src="https://avatars2.githubusercontent.com/u/45754626?s=75&v=4" alt="Stisla logo" width="75" height="75">
-  </a>
-</p>
-
-<h1 align="center">Laravel Stisla</h1>
+<h1 align="center">Pemilihan Kemasan</h1>
 
 <span align="center">
 
-**Laravel Stisla** is a Free Bootstrap Admin Template which will help you to speed up your project and design your own dashboard UI using Laravel blade templating engine.
+**Web Pemilihan Kemasan** merupakan web yang ditunjukan untuk pelaku UMKM dalam menentukan jenis kemasan yang sesuai dengan standar produknya.
 
 </span>
 
