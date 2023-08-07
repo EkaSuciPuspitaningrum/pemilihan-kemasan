@@ -47,13 +47,8 @@ class PustakaKemasan extends Controller
     public function kemasan_show(JenisKemasan $kemasan)
     {
         $jenis_kemasan = JenisKemasan::all();
-        $generate = JenisKemasan::all()->count();
-        if ($generate > 0) {
-            $generateId = sprintf("K%03s", ++$generate);
-        } else if ($generate == 0) {
-            $generateId = "K001";
-        }
-        return view('pakar.pustaka_kemasan', compact('jenis_kemasan', 'generateId'));
+
+        return view('pakar.pustaka_kemasan', compact('jenis_kemasan'));
     }
 
     public function kemasan_edit($id){
