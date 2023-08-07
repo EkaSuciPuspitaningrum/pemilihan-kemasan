@@ -1,6 +1,6 @@
 <h1 align="center">Pemilihan Kemasan</h1>
 
-<span align="center">
+<span align="justify">
 
 **Web Pemilihan Kemasan** merupakan web yang ditunjukan untuk pelaku UMKM dalam menentukan jenis kemasan yang sesuai dengan standar produknya.
 
@@ -10,16 +10,13 @@
 Web ini menggunakan perhitungan Certainty Factor. Untuk data-data pakar sudah sesuai dengan hasil wawancara yang dilakukan oleh pakar.
 </span>
 
-
-
 <br>
 
-## Table of Contents
+## Pengguna Pada Web
 
-- [Table of Contents](#table-of-contents)
-- [Quick start](#quick-start)
-- [License](#license)
-- [Supports](#supports)
+- Pengguna (UMKM atau Umum)
+- Pakar
+- Admin
 
 ## Quick start
 
