@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AturanKemasan;
+use App\Http\Controllers\PengetahuanPakar;
 use App\Http\Controllers\AuthAdmin;
 use App\Http\Controllers\AuthRegis;
 use App\Http\Controllers\AuthLogin;
@@ -9,8 +9,9 @@ use App\Http\Controllers\DashboardPakar;
 use App\Http\Controllers\DashboardSuper;
 use App\Http\Controllers\KelolaSuperAdmin;
 use App\Http\Controllers\PencarianKemasan;
-use App\Http\Controllers\PustakaKemasan;
-use App\Http\Controllers\PustakaProduk;
+use App\Http\Controllers\ProdukAdmin;
+use App\Http\Controllers\KemasanAdmin;
+use App\Http\Controllers\ProdukPakar;
 use App\Http\Controllers\TentangMetode;
 use Illuminate\Support\Facades\Route;
 
@@ -26,26 +27,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// Route::get('/', function () {
-//     return view('pakar.dashboard');
-// });
-// Route::get('/', function () {
-//     return view('super-admin.dashboard');
-// });
 
 Route::get('/', function () {
     return view('user.dashboard');
 });
 
-// Route::get('/', function () {
-//     return view('login.login');
-// });
+Route::name('user')->group(function () {
 
-// Route::get('/', function () {
-//     return view('auth-user.registrasi_user');
-// });
+    Route::get('/dashboard_user', [Dashboard::class,'show'])->name('dashboard.show'); 
+    Route::get('/tentang', [TentangMetode::class,'user_show'])->name('tentang');
+    Route::get('/history', [PencarianKemasan::class,'showhistory'])->name('history.showhistory');
 
-//pakar
+    Route::get('/pencarian', [PencarianKemasan::class,'pencarian_show'])->name('pencarian');
+    Route::post('/pencarian_analisa', [PencarianKemasan::class, 'analisa'])->name('pencarian_analisa');
+
+});
 
 Route::name('auth')->group(function(){
     Route::get('/login', [AuthLogin::class,'login'])->name('login');
@@ -63,8 +59,31 @@ Route::name('auth')->group(function(){
 });
 
 
-Route::name('super-admin')->group(function () {
+Route::group(['middleware' => 'expert'], function () {
+    Route::get('/dashboard_pakar', [DashboardPakar::class,'show'])->name('dashboard_pakar.show');
+    Route::get('/pakar_metode', [DashboardPakar::class,'pakar_show'])->name('pakar_show');
+    
+    Route::get('/pustaka_produk', [ProdukPakar::class,'show'])->name('pustaka_produk.show');
+    Route::post('/kriteria_store', [ProdukPakar::class,'kriteriaStore'])->name('kriteria_store');
+    Route::get('/kriteria/edit/{id}', [ProdukPakar::class,'kriteria_edit'])->name('kriteria_edit');
+    Route::post('/kriteria/update/{id}', [ProdukPakar::class, 'kriteria_update'])->name('kriteria_update');
+    Route::get('/kriteria/hapus/{id}', [ProdukPakar::class,'kriteria_hapus'])->name('kriteria_hapus');
+  
+    Route::get('/pustaka_kemasan', [KemasanPakar::class,'show'])->name('pustaka_kemasan.show');
+    Route::post('/kemasan_store', [KemasanPakar::class,'store'])->name('kemasan_store');
+    Route::get('/kemasan/edit/{id}', [KemasanPakar::class,'kemasan_edit'])->name('kemasan_edit');
+    Route::post('/kemasan/update/{id}', [KemasanPakar::class, 'kemasan_update'])->name('kemasan_update');
+    Route::get('/kemasan/hapus/{id}', [KemasanPakar::class,'kemasan_hapus'])->name('kemasan_hapus');
+    
+    Route::get('/aturan', [PengetahuanPakar::class,'show'])->name('aturan.show');
+    Route::post('/pengetahuan_store', [PengetahuanPakar::class,'store'])->name('pengetahuan_store');
+    Route::get('/pengetahuan/edit/{id}', [PengetahuanPakar::class,'pengetahuan_edit'])->name('pengetahuan_edit');
+    Route::post('/pengetahuan/update/{id}', [PengetahuanPakar::class, 'pengetahuan_update'])->name('pengetahuan_update');
+    Route::get('/pengetahuan/hapus/{id}', [PengetahuanPakar::class,'pengetahuan_hapus'])->name('pengetahuan_hapus');
+    
+});
 
+Route::group(['middleware' => 'admin'], function () {
     Route::get('/dashboard_super', [DashboardSuper::class,'show'])->name('dashboard_super');
     
     Route::get('/appr_pakar', [KelolaSuperAdmin::class,'appr_pakar'])->name('appr_pakar');
@@ -85,57 +104,18 @@ Route::name('super-admin')->group(function () {
     Route::get('/admin/hapus/{id}', [KelolaSuperAdmin::class,'admin_hapus'])->name('admin_hapus');
     Route::get('/admin/edit/{id}', [KelolaSuperAdmin::class,'admin_edit'])->name('admin_edit');
     Route::post('/admin/update/{id}', [KelolaSuperAdmin::class, 'admin_update'])->name('admin_update');
-   
-    Route::get('/pustaka_produk_admin', [PustakaProduk::class,'produk_admin'])->name('pustaka_produk_admin');
-    Route::post('/kriteriaadmin_store', [PustakaProduk::class,'kriteriaadminStore'])->name('kriteriaadmin_store');
-    Route::get('/kriteriaadmin/edit/{id}', [PustakaProduk::class,'kriteria_edit_admin'])->name('kriteria_edit_admin');
-    Route::post('/kriteriaadmin/update/{id}', [PustakaProduk::class, 'kriteria_update_admin'])->name('kriteria_update_admin');
-    Route::get('/kriteriaadmin/hapus/{id}', [PustakaProduk::class,'kriteria_hapus_admin'])->name('kriteria_hapus_admin');
+
+    Route::get('/pustaka_produk_admin', [ProdukAdmin::class,'produk_admin'])->name('pustaka_produk_admin');
+    Route::post('/kriteriaadmin_store', [ProdukAdmin::class,'kriteriaadminStore'])->name('kriteriaadmin_store');
+    Route::get('/kriteriaadmin/edit/{id}', [ProdukAdmin::class,'kriteria_edit_admin'])->name('kriteria_edit_admin');
+    Route::post('/kriteriaadmin/update/{id}', [ProdukAdmin::class, 'kriteria_update_admin'])->name('kriteria_update_admin');
+    Route::get('/kriteriaadmin/hapus/{id}', [ProdukAdmin::class,'kriteria_hapus_admin'])->name('kriteria_hapus_admin');
  
-    Route::get('/pustaka_kemasan_admin', [PustakaKemasan::class,'kemasan_admin'])->name('pustaka_kemasan_admin');
-    Route::post('/kemasanadmin_store', [PustakaKemasan::class,'kemasan_store_admin'])->name('kemasanadmin_store');
-    Route::get('/kemasanadmin/edit/{id}', [PustakaKemasan::class,'kemasan_edit_admin'])->name('kemasan_edit_admin');
-    Route::post('/kemasanadmin/update/{id}', [PustakaKemasan::class, 'kemasan_update_admin'])->name('kemasan_update_admin');
-    Route::get('/kemasanadmin/hapus/{id}', [PustakaKemasan::class,'kemasan_hapus_admin'])->name('kemasan_hapus_admin');
-
-
-});
-
-Route::name('pakar')->group(function () {
-
-    Route::get('/dashboard_pakar', [DashboardPakar::class,'show'])->name('dashboard_pakar.show');
-    
-    Route::get('/pustaka_produk', [PustakaProduk::class,'show'])->name('pustaka_produk.show');
-    Route::post('/kriteria_store', [PustakaProduk::class,'kriteriaStore'])->name('kriteria_store');
-    Route::get('/kriteria/edit/{id}', [PustakaProduk::class,'kriteria_edit'])->name('kriteria_edit');
-    Route::post('/kriteria/update/{id}', [PustakaProduk::class, 'kriteria_update'])->name('kriteria_update');
-    Route::get('/kriteria/hapus/{id}', [PustakaProduk::class,'kriteria_hapus'])->name('kriteria_hapus');
-  
-    Route::get('/pustaka_kemasan', [PustakaKemasan::class,'show'])->name('pustaka_kemasan.show');
-    Route::post('/kemasan_store', [PustakaKemasan::class,'store'])->name('kemasan_store');
-    Route::get('/kemasan/edit/{id}', [PustakaKemasan::class,'kemasan_edit'])->name('kemasan_edit');
-    Route::post('/kemasan/update/{id}', [PustakaKemasan::class, 'kemasan_update'])->name('kemasan_update');
-    Route::get('/kemasan/hapus/{id}', [PustakaKemasan::class,'kemasan_hapus'])->name('kemasan_hapus');
-    
-    Route::get('/aturan', [AturanKemasan::class,'show'])->name('aturan.show');
-    Route::post('/pengetahuan_store', [AturanKemasan::class,'store'])->name('pengetahuan_store');
-    Route::get('/pengetahuan/edit/{id}', [AturanKemasan::class,'pengetahuan_edit'])->name('pengetahuan_edit');
-    Route::post('/pengetahuan/update/{id}', [AturanKemasan::class, 'pengetahuan_update'])->name('pengetahuan_update');
-    Route::get('/pengetahuan/hapus/{id}', [AturanKemasan::class,'pengetahuan_hapus'])->name('pengetahuan_hapus');
-    
-    Route::get('/pakar_metode', [TentangMetode::class,'pakar_show'])->name('pakar_show');
-
-
-});
-
-Route::name('user')->group(function () {
-
-    Route::get('/dashboard_user', [Dashboard::class,'show'])->name('dashboard.show'); 
-    Route::get('/tentang', [TentangMetode::class,'user_show'])->name('tentang');
-    Route::get('/history', [PencarianKemasan::class,'showhistory'])->name('history.showhistory');
-
-    Route::get('/pencarian', [PencarianKemasan::class,'pencarian_show'])->name('pencarian');
-    Route::post('/pencarian_analisa', [PencarianKemasan::class, 'analisa'])->name('pencarian_analisa');
+    Route::get('/pustaka_kemasan_admin', [KemasanAdmin::class,'kemasan_admin'])->name('pustaka_kemasan_admin');
+    Route::post('/kemasanadmin_store', [KemasanAdmin::class,'kemasan_store_admin'])->name('kemasanadmin_store');
+    Route::get('/kemasanadmin/edit/{id}', [KemasanAdmin::class,'kemasan_edit_admin'])->name('kemasan_edit_admin');
+    Route::post('/kemasanadmin/update/{id}', [KemasanAdmin::class, 'kemasan_update_admin'])->name('kemasan_update_admin');
+    Route::get('/kemasanadmin/hapus/{id}', [KemasanAdmin::class,'kemasan_hapus_admin'])->name('kemasan_hapus_admin');
 
 
 });

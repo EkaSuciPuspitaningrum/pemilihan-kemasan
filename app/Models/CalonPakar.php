@@ -14,6 +14,7 @@ class CalonPakar extends Model
     protected $fillable = [
         'first_name_pakar', 
         'last_name_pakar',
+        'role',
         'dokumen',
         'pend_terakhir',
         'nama_instansi',

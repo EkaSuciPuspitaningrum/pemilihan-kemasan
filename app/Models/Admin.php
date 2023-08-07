@@ -1,21 +1,17 @@
 <?php
 
+// app/Models/Admin.php
+
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-
-
 
 class Admin extends Authenticatable
 {
-    use HasFactory;
-    
-    protected $primaryKey = 'id';
+    use Notifiable;
     protected $table = 'user';
-
+    protected $primaryKey = 'id';
     protected $fillable = [
         'name',
         'role',
@@ -24,4 +20,14 @@ class Admin extends Authenticatable
         'password_hash',
 
     ];
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role');
+    }
+
+    public function hasRole($roleName)
+    {
+        return $this->roles->contains('name', $roleName);
+    }
 }

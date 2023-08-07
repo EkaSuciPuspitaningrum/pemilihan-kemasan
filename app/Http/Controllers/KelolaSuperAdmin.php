@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Storage;
 
 class KelolaSuperAdmin extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     public function appr_pakar()
     {
         $data = ["calon_pakar"=>CalonPakar::all()];
@@ -42,7 +47,7 @@ class KelolaSuperAdmin extends Controller
        $admin = new Admin;
        $admin->name = $request->name;
        $admin->email = $request->email;
-       $admin->role = "Admin";
+       $admin->role = "admin";
        $admin->password = $request->password;
        $admin->password_hash = $request->password;
 
@@ -61,7 +66,7 @@ class KelolaSuperAdmin extends Controller
         $admin = Admin::whereId($id)->first();
         $admin->name = $request->name;
         $admin->email = $request->email;
-        $admin->role = "Admin";
+        $admin->role = "admin";
         $admin->password = $request->password;
         $admin->password_hash = bcrypt($request->password);
         $admin->save();
@@ -104,6 +109,7 @@ class KelolaSuperAdmin extends Controller
                         'password_hash' => Hash::make($request->password),
                         'pend_terakhir' =>$request->pend_terakhir,
                         'nama_instansi' =>$request->nama_instansi,
+                        'role' =>"expert",
                     ]
                 );
             }
@@ -131,66 +137,49 @@ class KelolaSuperAdmin extends Controller
         return view('super-admin.data_pakar')->with('pakar', $pakar);
     }
 
-    public function pakar_update(Request $request, $id){
-        
-        $request->validate([
-            'dokumen' => 'required',
-            'dokumen.*' => 'mimes:PDF,pdf|max:2000',
-            'first_name_pakar' => 'required',
-            'last_name_pakar' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-            'pend_terakhir' => 'required',
-            'nama_instansi' => 'required',
-        ]);
-        
-        $pakar = Pakar::whereId($id)->first();
+    public function pakar_update(Request $request, $id)
+{
+    $request->validate([
+        'dokumen' => 'nullable|mimes:pdf|max:2000', 
+        'first_name_pakar' => 'required',
+        'last_name_pakar' => 'required',
+        'email' => 'required|email',
+        'password' => 'required',
+        'pend_terakhir' => 'required',
+        'nama_instansi' => 'required',
+    ]);
 
-        if ($request->hasFile('dokumen')) {
-            $dokumen = $request->file('dokumen');
-            $store_path = "dokumen";
-            $name = md5(uniqid(rand(), true)) . str_replace(' ', '-', $dokumen->getClientOriginalName());
-            $dokumen->move(public_path('/' . $store_path), $name);
-            $exist_dokumen = $pakar['dokumen'];
-            if (isset($exist_dokumen) && file_exists($exist_dokumen)) {
-                unlink($exist_dokumen);
-            }
-            $update['dokumen'] = $store_path . '/' . $name;
+    $pakar = Pakar::findOrFail($id);
+
+    if ($request->hasFile('dokumen')) {
+        // Process the new document if provided
+        $dokumen = $request->file('dokumen');
+        $store_path = "dokumen";
+        $name = md5(uniqid(rand(), true)) . str_replace(' ', '-', $dokumen->getClientOriginalName());
+        $dokumen->move(public_path('/' . $store_path), $name);
+
+        // Delete the old document if it exists and replace it with the new one
+        $exist_dokumen = $pakar->dokumen;
+        if (isset($exist_dokumen) && file_exists(public_path($exist_dokumen))) {
+            unlink(public_path($exist_dokumen));
         }
-        $pakar->first_name_pakar = $request->first_name_pakar;
-        $pakar->last_name_pakar = $request->last_name_pakar;
-        $pakar->email = $request->email;
-        $pakar->password = $request->password;
-        $pakar->password_hash = bcrypt($request->password);
-        $pakar->pend_terakhir = $request->pend_terakhir;
-        $pakar->nama_instansi = $request->nama_instansi;
-        $pakar->save();
-    
-        return redirect('/data_pakar')->with('message', 'Data berhasil diedit.');
+        $pakar->dokumen = $store_path . '/' . $name;
     }
 
-    public function pakar_hapus($id)
-    {
-        DB::table('pakar')->where('id',$id)->delete();
-        
-        return redirect('/data_pakar')->with("message", "Data berhasil dihapus.");
-        
-    }
+    // Update other fields of the "Pakar" model
+    $pakar->first_name_pakar = $request->first_name_pakar;
+    $pakar->last_name_pakar = $request->last_name_pakar;
+    $pakar->email = $request->email;
+    $pakar->password = $request->password;
+    $pakar->password_hash = bcrypt($request->password);
+    $pakar->pend_terakhir = $request->pend_terakhir;
+    $pakar->nama_instansi = $request->nama_instansi;
+    $pakar->role = "expert";
+    $pakar->save();
 
-    public function move_calon_pakar($id)
-    {
-        CalonPakar::query()
-        ->each(function ($oldpakar) {
-         $newpakar = $oldpakar->replicate();
-         $newpakar->setTable('pakar');
-         $newpakar->save();
-         $oldpakar->delete();
-     
-       });
-        
-        return redirect('/appr_pakar')->with("message", "Data berhasil mendapat approve.");
-        
-    }
+    return redirect('/data_pakar')->with('message', 'Data berhasil diedit.');
+}
+
 
     public function calon_pakar_hapus($id)
     {

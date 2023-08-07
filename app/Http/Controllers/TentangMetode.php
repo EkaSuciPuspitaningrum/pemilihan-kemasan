@@ -12,11 +12,4 @@ class TentangMetode extends Controller
             'type_menu' => 'tentang',
         ]);
     }
-
-    public function pakar_show()
-    {
-        return view('pakar.tentang-metode', [
-            'type_menu' => 'tentang',
-        ]);
-    }
 }

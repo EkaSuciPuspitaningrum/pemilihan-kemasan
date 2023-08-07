@@ -2,24 +2,34 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Pakar extends Model
+class Pakar extends Authenticatable
 {
-    use HasFactory;
-    protected $primaryKey = 'id';
+    use Notifiable;
     protected $table = 'pakar';
-
+    protected $primaryKey = 'id';
     protected $fillable = [
         'first_name_pakar', 
         'last_name_pakar',
+        'role',
         'dokumen',
         'pend_terakhir',
         'nama_instansi',
         'email',
         'password',
-        'password_hash'
+        'password_hash',
+        'created_at'
+    ];
 
-    ];  
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role');
+    }
+
+    public function hasRole($roleName)
+    {
+        return $this->roles->contains('first_name_pakar', $roleName);
+    }
 }

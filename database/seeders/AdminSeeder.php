@@ -22,7 +22,7 @@ class AdminSeeder extends Seeder
     {
         Admin::create([
                 'name' => 'Admin',
-                'role' => 'Admin',
+                'role' => '1',
                 'email' => 'admin@gmail.com',
                 'password' => 'adminkemasan',
                 'password_hash' => Hash::make('adminkemasan'),

@@ -235,6 +235,9 @@
                             <div class="form-group">
                                 <label for="dokumen">Curriculum Vitae (CV) / Daftar Riwayat Hidup</label>
                                 <div class="input-group mb-3">
+                                    @if ($dataa->dokumen)
+                                        <code>Current Document: {{ $dataa->dokumen }}</code>
+                                    @endif
                                   <input type="file" class="form-control" required id="dokumen" name="dokumen">
                                   <label class="input-group-text" for="customFile">Upload</label>
                                 </div>

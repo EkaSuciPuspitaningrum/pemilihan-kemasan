@@ -6,14 +6,22 @@
 
 </span>
 
+
 <br>
 
-## Table of Contents
+<span align="justify">
 
-- [Table of Contents](#table-of-contents)
-- [Quick start](#quick-start)
-- [License](#license)
-- [Supports](#supports)
+Web ini menggunakan perhitungan Certainty Factor. Untuk data-data pakar sudah sesuai dengan hasil wawancara yang dilakukan oleh pakar.
+
+</span>
+
+<br>
+
+## Pengguna Pada Web
+
+- Pengguna (UMKM atau Umum)
+- Pakar
+- Admin
 
 ## Quick start
 

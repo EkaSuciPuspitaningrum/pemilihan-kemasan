@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Helpers\Helper;
 use App\Models\BasisPengetahuan;
 use App\Models\JenisKemasan;
 use App\Models\KriteriaProduk;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AturanKemasan extends Controller
+class PengetahuanPakar extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('expert');
+    }
+    
     public function show()
     {
         $data = BasisPengetahuan::all();
@@ -57,5 +61,4 @@ class AturanKemasan extends Controller
     return redirect('/aturan')->with('message', 'Data berhasil dihapus.');
     
 }
-
 }

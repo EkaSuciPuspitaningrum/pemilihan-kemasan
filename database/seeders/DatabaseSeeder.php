@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
                 DataKemasan::class,
                 DataKriteriaProduk::class,
                 DataPengetahuan::class,
+                RoleSeeder::class,
             ]);
     }
 }
