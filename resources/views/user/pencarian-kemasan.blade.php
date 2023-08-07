@@ -70,10 +70,11 @@
                                 <div class="form-group col-md-3">
                                     <label for="berat_produk2">Satuan Berat</label>
                                     <select id="berat_produk2" name="berat_produk2" class="form-control">
-                                        <option>Kilogram (Kg)</option>
-                                        <option>Gram (g)</option>
-                                        <option>Ons (Hg)</option>
-                                        <option>Pon</option>
+                                        <option value="">Pilih Satuan Berat:</option>
+                                        <option value="Kilogram (Kg)">Kilogram (Kg)</option>
+                                        <option value="Gram (g)">Gram (g)</option>
+                                        <option value="Ons (Hg)">Ons (Hg)</option>
+                                        <option value="Pon">Pon</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
