@@ -3,41 +3,39 @@
 <span align="center">
 
 **Web Pemilihan Kemasan** merupakan web yang ditunjukan untuk pelaku UMKM dalam menentukan jenis kemasan yang sesuai dengan standar produknya.
+
 </span>
-
-
-<br>
 
 <span align="justify">
 Web ini menggunakan perhitungan Certainty Factor. Untuk data-data pakar sudah sesuai dengan hasil wawancara yang dilakukan oleh pakar.
 </span>
 
+
+
 <br>
 
-## Pengguna Pada Web
+## Table of Contents
 
-- Pengguna (UMKM atau Umum)
-- Pakar
-- Admin
+- [Table of Contents](#table-of-contents)
+- [Quick start](#quick-start)
+- [License](#license)
+- [Supports](#supports)
 
-## Kegiatan yang Dapat Dilakukan Oleh Masing-Masing Pengguna
+## Quick start
 
-**Pengguna (UMKM atau Umum)** 
+Several quick start options are available:
 
--   Mencari kemasan sesuai dengan kriteria produk masing-masing
--   Melihat hasil pencarian
--   Melihat daftar riwayat pencarian
+-   Clone the repo: `git clone https://github.com/edikurniawan-dev/laravel-stisla.git`
+-   Run `cd` to the newly created `/laravel-stisla` directory
+-   Run `composer install` command
+-   Run `npm install` command
+-   Run `npm run dev` command
+-   Run `cp .env.example .env` command
+-   Run `php artisan key:generate` command
+-   Run `php artisan serve` command
+-   Done
 
-**Pakar** 
-
--   Mengelola data jenis kemasan dan kriteria produk
--   Mengelola data basis pengetahuan 
-
-**Admin** 
-
--   Mengelola data calon pakar dengan memvalidasi data calon pakar untuk dijadikan pakar
--   Mengelola data pakar
--   Mengelola data jenis kemasan dan kriteria produk (ADMIN MEMILIKI KEHARUSAN MENGISI) 
+Read the [documentation page](https://getstisla.com/docs) for more information on the framework contents, templates and examples, and more.
 
 ## License
 
