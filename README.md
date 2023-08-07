@@ -35,6 +35,7 @@ Web ini menggunakan perhitungan Certainty Factor. Untuk data-data pakar sudah se
 
 -   Mengelola data calon pakar dengan memvalidasi data calon pakar untuk dijadikan pakar
 -   Mengelola data pakar
+-   Mengelola data admin
 -   Mengelola data jenis kemasan dan kriteria produk (ADMIN MEMILIKI KEHARUSAN MENGISI) 
 
 ## License
