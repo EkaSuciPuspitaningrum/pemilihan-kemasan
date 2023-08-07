@@ -18,6 +18,26 @@ Web ini menggunakan perhitungan Certainty Factor. Untuk data-data pakar sudah se
 - Pakar
 - Admin
 
+## Kegiatan yang Dapat Dilakukan Oleh Masing-Masing Pengguna
+
+**Pengguna (UMKM atau Umum)** 
+
+-   Mencari kemasan sesuai dengan kriteria produk masing-masing
+-   Melihat hasil pencarian
+-   Melihat daftar riwayat pencarian
+
+**Pakar** 
+
+-   Mengelola data jenis kemasan dan kriteria produk
+-   Mengelola data basis pengetahuan 
+
+**Admin** 
+
+-   Mengelola data calon pakar dengan memvalidasi data calon pakar untuk dijadikan pakar
+-   Mengelola data pakar
+-   Mengelola data jenis kemasan dan kriteria produk (ADMIN MEMILIKI KEHARUSAN MENGISI) 
+
+
 ## Quick start
 
 Several quick start options are available:
