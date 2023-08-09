@@ -13,6 +13,8 @@ use App\Http\Controllers\ProdukAdmin;
 use App\Http\Controllers\KemasanAdmin;
 use App\Http\Controllers\ProdukPakar;
 use App\Http\Controllers\TentangMetode;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\ExpertMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,7 +61,7 @@ Route::name('auth')->group(function(){
 });
 
 
-Route::group(['middleware' => 'expert'], function () {
+Route::group(['middleware' => [ExpertMiddleware::class]], function () {
     Route::get('/dashboard_pakar', [DashboardPakar::class,'show'])->name('dashboard_pakar.show');
     Route::get('/pakar_metode', [DashboardPakar::class,'pakar_show'])->name('pakar_show');
     
@@ -83,7 +85,7 @@ Route::group(['middleware' => 'expert'], function () {
     
 });
 
-Route::group(['middleware' => 'admin'], function () {
+Route::group(['middleware' => [AdminMiddleware::class]], function () {
     Route::get('/dashboard_super', [DashboardSuper::class,'show'])->name('dashboard_super');
     
     Route::get('/appr_pakar', [KelolaSuperAdmin::class,'appr_pakar'])->name('appr_pakar');
@@ -119,4 +121,3 @@ Route::group(['middleware' => 'admin'], function () {
 
 
 });
-

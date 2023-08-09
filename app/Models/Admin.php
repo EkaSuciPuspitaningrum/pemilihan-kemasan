@@ -26,8 +26,8 @@ class Admin extends Authenticatable
         return $this->belongsToMany(Role::class, 'role');
     }
 
-    public function hasRole($roleName)
+    public function isAdmin()
     {
-        return $this->roles->contains('name', $roleName);
+        return $this->roles->contains('name', 'admin');
     }
 }

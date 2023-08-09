@@ -10,10 +10,17 @@ class ExpertMiddleware
 {
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Role::where('first_name_pakar', 'pakar')->first()->pakars->contains(Auth::user())) {
-            return $next($request);
+         // Check if the user is authenticated
+        if (!Auth::check()) {
+            return redirect('/login_pakar');
         }
 
-        return redirect('/');
+        // Check if the authenticated user is an expert
+        if (Auth::user()->role !== 'expert') {
+            // Customize behavior, e.g., redirect to a different route or show an error message
+            abort(403, 'Unauthorized');
+        }
+
+        return $next($request);
     }
 }
