@@ -56,8 +56,7 @@ Route::name('auth')->group(function(){
     Route::get('/login_admin', [AuthAdmin::class,'show_login_admin'])->name('show_login_admin');
     
     Route::get('actionlogout', [AuthLogin::class, 'actionlogout'])->name('actionlogout');
-    Route::post('/login_pakar', [AuthLogin::class, 'login_pakar'])->name('login_pakar');
-    
+    Route::post('/login_pakar', [AuthLogin::class, 'login_pakar'])->name('login_pakar');  
 });
 
 
@@ -81,8 +80,7 @@ Route::group(['middleware' => [ExpertMiddleware::class]], function () {
     Route::post('/pengetahuan_store', [PengetahuanPakar::class,'store'])->name('pengetahuan_store');
     Route::get('/pengetahuan/edit/{id}', [PengetahuanPakar::class,'pengetahuan_edit'])->name('pengetahuan_edit');
     Route::post('/pengetahuan/update/{id}', [PengetahuanPakar::class, 'pengetahuan_update'])->name('pengetahuan_update');
-    Route::get('/pengetahuan/hapus/{id}', [PengetahuanPakar::class,'pengetahuan_hapus'])->name('pengetahuan_hapus');
-    
+    Route::get('/pengetahuan/hapus/{id}', [PengetahuanPakar::class,'pengetahuan_hapus'])->name('pengetahuan_hapus');  
 });
 
 Route::group(['middleware' => [AdminMiddleware::class]], function () {
@@ -118,6 +116,4 @@ Route::group(['middleware' => [AdminMiddleware::class]], function () {
     Route::get('/kemasanadmin/edit/{id}', [KemasanAdmin::class,'kemasan_edit_admin'])->name('kemasan_edit_admin');
     Route::post('/kemasanadmin/update/{id}', [KemasanAdmin::class, 'kemasan_update_admin'])->name('kemasan_update_admin');
     Route::get('/kemasanadmin/hapus/{id}', [KemasanAdmin::class,'kemasan_hapus_admin'])->name('kemasan_hapus_admin');
-
-
 });
