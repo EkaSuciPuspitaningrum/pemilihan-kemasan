@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Admin;
 use App\Models\CalonPakar;
 use App\Models\Pakar;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,15 +21,21 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        Admin::create([
+        $adminUser = Admin::create([
                 'name' => 'Admin',
-                'role' => '1',
+                'role' => 'admin',
                 'email' => 'admin@gmail.com',
                 'password' => 'adminkemasan',
                 'password_hash' => Hash::make('adminkemasan'),
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"), 
         ]);
+
         
+                // Find the admin role
+                $adminRole = Role::where('name', 'admin')->first();
+
+                // Attach the admin role to the admin user
+                $adminUser->roles()->attach($adminRole);
     }
 }

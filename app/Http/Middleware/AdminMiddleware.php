@@ -10,10 +10,21 @@ class AdminMiddleware
 {
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Role::where('name', 'user')->first()->admins->contains(Auth::user())) {
-            return $next($request);
-        }
+            // Check if the user is authenticated
+            if (!Auth::check()) {
+                return redirect('/login_admin');
+            }
+        
+            // Check if the authenticated user is an admin
+            if (Auth::user()->role === 'admin') {
+                return redirect('/dashboard_super');
+            } else {
+                // User is not an admin, show unauthorized error
+                abort(403, 'Unauthorized');
+            }
+            
 
-        return redirect('/');
+            return $next($request);
+    
     }
 }
