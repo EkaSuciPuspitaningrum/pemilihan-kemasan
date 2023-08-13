@@ -60,7 +60,7 @@ Route::name('auth')->group(function(){
 });
 
 
-Route::group(['middleware' => [ExpertMiddleware::class]], function () {
+Route::group(['pakar'], function () {
     Route::get('/dashboard_pakar', [DashboardPakar::class,'show'])->name('dashboard_pakar.show');
     Route::get('/pakar_metode', [DashboardPakar::class,'pakar_show'])->name('pakar_show');
     
@@ -83,7 +83,7 @@ Route::group(['middleware' => [ExpertMiddleware::class]], function () {
     Route::get('/pengetahuan/hapus/{id}', [PengetahuanPakar::class,'pengetahuan_hapus'])->name('pengetahuan_hapus');  
 });
 
-Route::group(['middleware' => [AdminMiddleware::class]], function () {
+Route::group(['admin'], function () {
     Route::get('/dashboard_super', [DashboardSuper::class,'show'])->name('dashboard_super');
     
     Route::get('/appr_pakar', [KelolaSuperAdmin::class,'appr_pakar'])->name('appr_pakar');
