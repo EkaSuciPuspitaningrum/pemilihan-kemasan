@@ -29,7 +29,7 @@
                                 @php
                                     $i=1;
                                 @endphp 
-                                <table id="table" class="table" style="text-align: center; width: 1200px">
+                                <table id="table" class="table" style="width: 1200px">
                                     <thead>
                                         <tr>
                                             <th style="text-align: center" scope="col">#</th>
@@ -44,7 +44,7 @@
                                     <tbody >
                                         @foreach ($riwayat as $riwayatt )
                                         <tr>
-                                            <th>{{ $i++}}</th>
+                                            <th style="text-align: center">{{ $i++}}</th>
                                             <td>{{$riwayatt->nama_produk}}</td>
                                             <td>{{$riwayatt->berat_produk}}</td>
                                             <td>{{$riwayatt->ukuran_produk}}</td>

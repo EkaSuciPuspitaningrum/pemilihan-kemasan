@@ -180,7 +180,20 @@ class KelolaSuperAdmin extends Controller
     return redirect('/data_pakar')->with('message', 'Data berhasil diedit.');
 }
 
-
+public function move_calon_pakar($id)
+{
+    CalonPakar::query()
+    ->each(function ($oldpakar) {
+     $newpakar = $oldpakar->replicate();
+     $newpakar->setTable('pakar');
+     $newpakar->save();
+     $oldpakar->delete();
+ 
+   });
+    
+    return redirect('/appr_pakar')->with("message", "Data berhasil mendapat approve.");
+    
+}
     public function calon_pakar_hapus($id)
     {
         DB::table('calon_pakar')->where('id',$id)->delete();

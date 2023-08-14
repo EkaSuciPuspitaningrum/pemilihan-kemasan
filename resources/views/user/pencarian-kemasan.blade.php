@@ -61,13 +61,13 @@
                                            id="nama_produk" name="nama_produk" value="{{ old('nama_produk') }}" required>
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="berat_produk1">Berat Produk</label>
+                                    <label for="berat_produk1">Berat Produk (Optional)</label>
                                     <input  type="text"
                                            class="form-control"
                                            id="berat_produk1" name="berat_produk1" value="{{ old('berat_produk') }}" >
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="berat_produk2">Satuan Berat</label>
+                                    <label for="berat_produk2">Satuan Berat (Optional)</label>
                                     <select id="berat_produk2" name="berat_produk2" class="form-control">
                                         <option value="">Pilih Satuan Berat:</option>
                                         <option value="Kilogram (Kg)">Kilogram (Kg)</option>
@@ -77,7 +77,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="ukuran_produk">Ukuran Produk</label>
+                                    <label for="ukuran_produk">Ukuran Produk (Optional)</label>
                                            <input type="text"
                                            class="form-control"
                                            id="ukuran_produk" name="ukuran_produk" value="{{ old('ukuran_produk') }}">
@@ -85,7 +85,7 @@
                                     <code>Panjang x Lebar x Tinggi (cm), Jika cair isi dengan "0 atau -"!</code>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="volume_produk">Volume Produk (Liter)</label>
+                                    <label for="volume_produk">Volume Produk (Liter) (Optional)</label>
                                            <input type="number"
                                            class="form-control"
                                            id="volume_produk" name="volume_produk" value="{{ old('volume_produk') }}">
@@ -109,11 +109,11 @@
                                                         <div class="form-group">
                                                             <select name="kondisi[]" id="kondisi" class="form-control">
                                                                 <option disabled selected>Pilih</option>
-                                                                <option value="{{ $kriteriaa->id }}_1">Yakin</option>
-                                                                <option value="{{ $kriteriaa->id }}_2">Hampir yakin</option>
-                                                                <option value="{{ $kriteriaa->id }}_3">Mungkin</option>
-                                                                <option value="{{ $kriteriaa->id }}_4">Ragu-ragu</option>
-                                                                <option value="{{ $kriteriaa->id }}_0">Tidak</option>
+                                                                <option value="{{ $kriteriaa->id }}_0">Yakin</option>
+                                                                <option value="{{ $kriteriaa->id }}_1">Hampir yakin</option>
+                                                                <option value="{{ $kriteriaa->id }}_2">Mungkin</option>
+                                                                <option value="{{ $kriteriaa->id }}_3">Ragu-ragu</option>
+                                                                <option value="{{ $kriteriaa->id }}_4">Tidak</option>
                                                             </select>
                                                         </div>
                                                     </th>

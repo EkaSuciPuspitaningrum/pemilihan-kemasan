@@ -37,9 +37,11 @@ class PencarianKemasan extends Controller
         }
 
         //pembobotan oleh user, dengan memilih kriteria yang telah disediakan
-        $arbobot = [0, 1, 0.75, 0.5, 0.25];
+        $arbobot = [1, 0.75, 0.5, 0.25, 0];
         $argejala = [];
         $arrCfKombine = [];
+
+        //explode() sebagai pemisah atau pemecah string
         for ($i = 0; $i < count($request->kondisi); $i++) {
             $arkondisi = explode("_", $request->kondisi[$i]);
             $kondisi[] = ['kriteria_id' => $arkondisi[0]];
@@ -93,7 +95,7 @@ class PencarianKemasan extends Controller
             'ukuran_produk' =>$request->ukuran_produk,
             'volume_produk' =>$request->volume_produk,
             'jenis_kemasan_id' => array_key_first($cfHasil),
-            // 'persen' => $cfHasil[array_key_first($cfHasil)]
+            // 'persen' => ($cfHasil[array_key_first($cfHasil)]),
         ]);
 
         $kriteria = KriteriaProduk::all();

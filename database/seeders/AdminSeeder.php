@@ -30,12 +30,5 @@ class AdminSeeder extends Seeder
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"), 
         ]);
-
-        
-                // Find the admin role
-                $adminRole = Role::where('name', 'admin')->first();
-
-                // Attach the admin role to the admin user
-                $adminUser->roles()->attach($adminRole);
     }
 }
