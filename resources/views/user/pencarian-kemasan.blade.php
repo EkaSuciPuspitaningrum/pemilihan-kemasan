@@ -106,15 +106,10 @@
                                                     <th class="text-center">{{ $loop->iteration }}</th>
                                                     <th>{{ Str::title($kriteriaa->kriteria_produk) }}</th>
                                                     <th class="text-center" >
-                                                        <div class="form-group">
-                                                            <select name="kondisi[]" id="kondisi" class="form-control">
-                                                                <option disabled selected>Pilih</option>
-                                                                <option value="{{ $kriteriaa->id }}_0">Yakin</option>
-                                                                <option value="{{ $kriteriaa->id }}_1">Hampir yakin</option>
-                                                                <option value="{{ $kriteriaa->id }}_2">Mungkin</option>
-                                                                <option value="{{ $kriteriaa->id }}_3">Ragu-ragu</option>
-                                                                <option value="{{ $kriteriaa->id }}_4">Tidak</option>
-                                                            </select>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input"
+                                                                   type="checkbox"
+                                                                   name="kondisi[]" id="kondisi" value="{{ $kriteriaa->id }}_0">
                                                         </div>
                                                     </th>
                                                 </tr>

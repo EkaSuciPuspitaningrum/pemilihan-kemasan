@@ -47,19 +47,6 @@
                                                     <td>{{$loop->iteration}}</td>
                 
                                                     <td>{{$kriteriaa->kriteria_produk}}</td>
-                                                    <td>
-                                                        @if($kp == 1)
-                                                        Pasti
-                                                        @elseif($kp == 2)
-                                                        Hampir pasti
-                                                        @elseif($kp == 3)
-                                                        Mungkin
-                                                        @elseif($kp == 4)
-                                                        Ragu-ragu
-                                                        @else
-                                                        Tidak
-                                                        @endif
-                                                    </td>
                                                 </tr>
                                                 @endif
                                             @endforeach

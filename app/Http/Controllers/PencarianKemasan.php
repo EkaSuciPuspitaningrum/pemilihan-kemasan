@@ -37,7 +37,7 @@ class PencarianKemasan extends Controller
         }
 
         //pembobotan oleh user, dengan memilih kriteria yang telah disediakan
-        $arbobot = [1, 0.75, 0.5, 0.25, 0];
+        $arbobot = [1];
         $argejala = [];
         $arrCfKombine = [];
 
