@@ -91,7 +91,7 @@
                                            id="volume_produk" name="volume_produk" value="{{ old('volume_produk') }}">
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label>Kriteria Produk <code>**Minimal 10 kriteria</code></label>
+                                    <label>Kriteria Produk <code>***Minimal 10 kriteria</code></label>
                                     <table id="table" class="table table-hover table-bordered mb-3" >
                                         <thead class="bg-primary">
                                             <tr>
