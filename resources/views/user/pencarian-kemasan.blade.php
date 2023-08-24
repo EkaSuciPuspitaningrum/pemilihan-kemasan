@@ -61,7 +61,7 @@
                                            id="nama_produk" name="nama_produk" value="{{ old('nama_produk') }}" required>
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="berat_produk1">Berat Produk <code>*Wajib diisi</code></label>
+                                    <label for="berat_produk1">Berat Produk <code>**Optional</code></label>
                                     <input  type="text"
                                            class="form-control"
                                            id="berat_produk1" name="berat_produk1" value="{{ old('berat_produk') }}" >
