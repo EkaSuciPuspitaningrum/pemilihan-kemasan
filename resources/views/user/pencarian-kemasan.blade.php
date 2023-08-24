@@ -55,19 +55,19 @@
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="nama_produk">Nama Produk</label>
+                                    <label for="nama_produk">Nama Produk <code>*Wajib diisi</code></label>
                                     <input type="text"
                                            class="form-control"
                                            id="nama_produk" name="nama_produk" value="{{ old('nama_produk') }}" required>
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="berat_produk1">Berat Produk (Optional)</label>
+                                    <label for="berat_produk1">Berat Produk <code>*Wajib diisi</code></label>
                                     <input  type="text"
                                            class="form-control"
                                            id="berat_produk1" name="berat_produk1" value="{{ old('berat_produk') }}" >
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="berat_produk2">Satuan Berat (Optional)</label>
+                                    <label for="berat_produk2">Satuan Berat <code>**Optional</code></label>
                                     <select id="berat_produk2" name="berat_produk2" class="form-control">
                                         <option value="">Pilih Satuan Berat:</option>
                                         <option value="Kilogram (Kg)">Kilogram (Kg)</option>
@@ -77,7 +77,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="ukuran_produk">Ukuran Produk (Optional)</label>
+                                    <label for="ukuran_produk">Ukuran Produk <code>**Optional</code></label>
                                            <input type="text"
                                            class="form-control"
                                            id="ukuran_produk" name="ukuran_produk" value="{{ old('ukuran_produk') }}">
@@ -85,13 +85,13 @@
                                     <code>Panjang x Lebar x Tinggi (cm), Jika cair isi dengan "0 atau -"!</code>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="volume_produk">Volume Produk (Liter) (Optional)</label>
+                                    <label for="volume_produk">Volume Produk (Liter) <code>**Optional</code></label>
                                            <input type="number"
                                            class="form-control"
                                            id="volume_produk" name="volume_produk" value="{{ old('volume_produk') }}">
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label>Kriteria Produk</label>
+                                    <label>Kriteria Produk <code>**Minimal 10 kriteria</code></label>
                                     <table id="table" class="table table-hover table-bordered mb-3" >
                                         <thead class="bg-primary">
                                             <tr>

@@ -29,9 +29,7 @@ class DataKemasan extends Seeder
             Kepopuleran plastik ini dikarenakan bahannya yang tidak beracun sehingga aman dimanfaatkan untuk pengemasan produk konsumsi. Selain itu, plastik PP juga memiliki fleksibilitas yang membuatnya mudah diolah menjadi berbagai macam bentuk sesuai dengan kebutuhan.  ', 
             'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s") ],
-            ['id'=> 6 , 'jenis_kemasan' => 'Plastik PS', 'keterangan_kemasan' => 'Polistiren adalah jenis polimer dengan yang termasuk kategori termoplastik. Dengan berbagai bentuk dan karakteristiknya, plastik yang satu ini dapat digunakan dalam berbagai aplikasi mulai dari pengemasan hingga insulasi bangunan.', 'created_at' => date("Y-m-d H:i:s"),
-                'updated_at' => date("Y-m-d H:i:s") ],
-            ['id'=> 7 , 'jenis_kemasan' => 'Plastik NYLON', 'keterangan_kemasan' => 'Plastik nylon terbuat dari gabungan dua material yaitu nylon dan PE. Kedua gabungan jenis plastik ini membuat sebuah plastik nylon yang punya kekuatan lebih untuk beberapa hal terkait pengemasan. Bahan yang satu ini sering juga disebut sebagai plastik vacuum', 'created_at' => date("Y-m-d H:i:s"),
+            ['id'=> 6 , 'jenis_kemasan' => 'Plastik NYLON', 'keterangan_kemasan' => 'Plastik nylon terbuat dari gabungan dua material yaitu nylon dan PE. Kedua gabungan jenis plastik ini membuat sebuah plastik nylon yang punya kekuatan lebih untuk beberapa hal terkait pengemasan. Bahan yang satu ini sering juga disebut sebagai plastik vacuum', 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s") ],
 
         ]);
