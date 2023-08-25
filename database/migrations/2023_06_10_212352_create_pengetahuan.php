@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('jenis_kemasan_id');
             $table->unsignedBigInteger('kriteria_id');
-            $table->string("cf");
+            $table->float("cf");
             $table->timestamps();
             
             $table->foreign('kriteria_id')->references('id')->on('kriteria_produk')->onDelete('cascade');

@@ -104,20 +104,20 @@
                                         </thead>
                                         <tbody class="bg-white">
                                             @foreach ($kriteria as $kriteriaa)
-                                                <tr>
-                                                    <th class="text-center">{{ $loop->iteration }}</th>
-                                                    <th>{{ Str::title($kriteriaa->kriteria_produk) }}</th>
-                                                    <th class="text-center" >
-                                                        <div class="form-check">
-                                                            <input class="form-check-input"
-                                                                   type="checkbox"
-                                                                   name="kondisi[]" id="kondisi" value="{{ $kriteriaa->id }}_0">
-                                                        </div>
-                                                    </th>
-                                                </tr>
-                                            @endforeach
+                                            <tr>
+                                                <td class="text-center">{{ $loop->iteration }}</td>
+                                                <td>{{ Str::title($kriteriaa->kriteria_produk) }}</td>
+                                                <td class="text-center">
+                                                    <div class="form-check">
+                                                        <input id="criteria{{ $kriteriaa->id }}" type="checkbox" 
+                                                        name="criteria[]" value="{{ $kriteriaa->id }}">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
+                                    
                                     <br> <br>
                                     <div class="d-grid gap-2 d-md-flex justify-content-center">
                                         <button class="btn btn-primary" type="submit"><i class="fas fa-solid fa-magnifying-glass"></i>  Analisis</button>

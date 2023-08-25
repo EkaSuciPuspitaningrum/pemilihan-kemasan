@@ -31,25 +31,20 @@
                         </div>
                         <div class="card-body">
                             <div class="pilihan" class="mt-4">
-                                <table class="table table-bordered table-hovered">
-                                    <thead>
+                                <table id="table" class="table table-hover table-bordered mb-3" >
+                                    <thead class="bg-primary">
                                         <tr>
-                                            <th>No</th>
-                                            <th>Kriteria Produk</th>
-                                            <th>Pilihan</th>
+                                            <th class="text-white text-center">No</th>
+                                            <th class="text-white text-center">Kriteria Produk</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        @foreach ($kriteria as $kriteriaa)
-                                            @foreach ($kepastian as $key => $kp)
-                                                @if ($kriteriaa->id == $key)
-                                                <tr>
-                                                    <td>{{$loop->iteration}}</td>
-                
-                                                    <td>{{$kriteriaa->kriteria_produk}}</td>
-                                                </tr>
-                                                @endif
-                                            @endforeach
+                                    <tbody class="bg-white">
+                                        @foreach ($selectedCriteria as $criteria)
+                                        <tr>
+                                            <td>{{$loop->iteration}}</td>
+        
+                                            <td>{{$criteria->kriteria_produk}}</td>
+                                        </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -59,40 +54,32 @@
 
                     <div class="card">
                         <div class="card-body">
-                            @foreach ($kemasans as $kemasan)
-                            @if ($kemasan->id == array_key_first($cfHasil))
+                           
                                 <div class="row bg-light rounded-sm mt-4">
                                     <div class="col-md p-3">
                                         <h3 style="font-size: 25px" class="mb-4">Hasil Rekomendasi</h3>
                                         <p>Berdasarkan daftar kriteria produk yang dipilih, jenis kemasan yang yang cocok dengan produk Anda :</p>
-                                           <strong><h4 style="font-size: 22px" class="mb-3 text-success">{{ $kemasan->jenis_kemasan }}</h4></strong>
-                                            {{-- <p style="font-size: 20px" class="text-success">Presentase : {{$cfHasil[array_key_first($cfHasil)] * 100}}%</p> --}}
+                                           <strong><h4 style="font-size: 22px" class="mb-3 text-success">{{ $selectedJenisKemasan->jenis_kemasan }}</h4></strong>
                                     </div>
                                 </div>
-                            @endif
-                        @endforeach
                         </div>
                     </div>
                     
-                    @foreach ($kemasans as $kemasan)
-                    @if ($kemasan->id == array_key_first($cfHasil))
-                    <div class="card">
+                    <div class="card" style="text-align: justify">
                         <div class="card-header">
                             <h4>Penjelasan Kemasan :</h4>
                         </div>
                         <div class="card-body">
-                            {!!$kemasan->keterangan_kemasan!!}
+                            {{ $selectedJenisKemasan->keterangan_kemasan }}
                         </div>
                     </div>
-                    @endif
-                    @endforeach
 
                     <div id="kemungkinan" class="mt-4 no-print">
                         <div class="card">
                             <div class="card-header">
                                 <h4>Kemungkinan Jenis Kemasan Lain :</h4>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body">  
                                 <table class="table table-bordered table-hovered">
                                     <thead>
                                         <tr>
@@ -100,23 +87,17 @@
                                             <th>Jenis Kemasan</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="plain">
-                                        @php
-                                            $i = 0;
-                                        @endphp
-                                        @foreach ($cfHasil as $key => $cf)
-                                            @foreach ($kemasans as $kemasan)
-                                                @if ($key == $kemasan->id)
-                                                @if($i <= 3)
-                                                <tr>
-                                                    <td>{{$i++}}</td>
-                                                    <td>{{$kemasan->jenis_kemasan}}</td>
-                                                </tr>
-                                                @endif
-                                                @endif
-                                            @endforeach
-                                        @endforeach
-                                    </tbody>
+                                    <?php
+                                    $i = 1;
+                                    ?>
+                                    @foreach ($jenisKemasans as $jenisKemasan)
+                                        @if ($jenisKemasan->id !== $selectedJenisKemasan->id)
+                                            <tr>
+                                                <td>{{ $i++ }}</td>
+                                                <td>{{ $jenisKemasan->jenis_kemasan }}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
                                 </table>
                             </div>
                         </div>
@@ -126,6 +107,8 @@
         </div>
     </section>
 </div>
+
+
 @endsection
 
 @push('scripts')

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BasisPengetahuan;
 use App\Models\DataPencarian;
 use App\Models\DataRiwayat;
 use App\Models\JenisKemasan;
@@ -29,77 +30,75 @@ class PencarianKemasan extends Controller
     }
 
     public function analisa(Request $request)
-    {
-        //kriteria harus dilih
-        if(empty($request->kondisi) || count($request->kondisi) < 2){
-            return redirect("/pencarian")->with('message', 'Harus memasukkan minimal 3 kriteria produk.');
+{
+    $selectedCriteria = $request->input('criteria');
 
-        }
-
-        //pembobotan oleh user, dengan memilih kriteria yang telah disediakan
-        $arbobot = [1];
-        $argejala = [];
-        $arrCfKombine = [];
-
-        //explode() sebagai pemisah atau pemecah string
-        for ($i = 0; $i < count($request->kondisi); $i++) {
-            $arkondisi = explode("_", $request->kondisi[$i]);
-            $kondisi[] = ['kriteria_id' => $arkondisi[0]];
-            $kepastian[$arkondisi[0]] = $arkondisi[1];
-            if (strlen($request->kondisi[$i]) > 1) {
-                $argejala += [$arkondisi[0] => $arkondisi[1]];
-                $kemasans = JenisKemasan::with(['basis_pengetahuans' => function ($result) use ($kepastian) {
-                    $result->with('kriteria')->whereIn('kriteria_id', array_keys($kepastian));
-                }])->groupBy('id')->orderBy('id')->get();
-            }
-        }
-
-        // dd(array_keys($kepastian));
-
-        //perhitungan certainty factor
-        foreach($kemasans as $kemas) {
-            foreach($kemas->basis_pengetahuans as $bp) {
-                $arrCfKombine[$kemas->id][] = $bp->cf * $arbobot[$kepastian[$bp->kriteria_id]];
-            }
-            foreach($arrCfKombine as $key => $cfKombine){
-                $cfBaru = 0;
-                $jumlahCf = count($cfKombine);
-                foreach($cfKombine as $key2 => $cf){
-                    if(++$key2 == $jumlahCf){
-                        $cfLama = $cfBaru;
-                        $cfBaru = $cfLama + $cf * (1 - $cfLama);
-                        $cfTotal = $cfBaru;
-                    }elseif($key2 >= 1){
-                        $cfLama = $cfBaru;
-                        $cfBaru = $cfLama + $cf * (1 - $cfLama);
-                    }else{
-                        $cfBaru = $cf[0];
-                    }
-                }
-                $cfHasil[$key] = $cfTotal;
-            }
-        }
-
-        //arsort() digunakan untuk untuk mengurutkan elemen-elemen dari sebuah array 
-        //asosiatif secara ascending (menaik) berdasarkan nilainya.
-        arsort(($cfHasil));
-
-        //data akan disimpan di tabel data pencarian yang selanjutnya
-        //akan ditampilkan di halaman riwayat
-        DataPencarian::create([
-            $berat_produk1 = $request->berat_produk1,
-            $berat_produk2 = $request->berat_produk2,
-
-            'nama_produk' =>$request->nama_produk,
-            'berat_produk' =>$berat_produk1 . " " . $berat_produk2,
-            'ukuran_produk' =>$request->ukuran_produk,
-            'volume_produk' =>$request->volume_produk,
-            'jenis_kemasan_id' => array_key_first($cfHasil),
-            // 'persen' => ($cfHasil[array_key_first($cfHasil)]),
-        ]);
-
-        $kriteria = KriteriaProduk::all();
-        return view('user.hasil_pencarian', compact('cfHasil', 'kemasans', 'kepastian', 'kriteria'));
+    if (count($selectedCriteria) < 10) {
+        return redirect()->route('pencarian')->with('error', 'Pilih minimal 10 kriteria.');
     }
+
+    $this->validate($request, [
+        'criteria' => 'required|array|min:10',
+    ]);
+
+    $selectedRules = [];
+
+    // Dapatkan aturan berdasarkan kriteria yang dipilih
+    foreach ($selectedCriteria as $criteriaId) {
+        $rule = BasisPengetahuan::where('kriteria_id', $criteriaId)->get();
+        if ($rule->count() > 0) {
+            $selectedRules[$criteriaId] = $rule;
+        }
+    }
+
+    $jenisKemasanCF = [];
+
+    // Hitung kombinasi CF berdasarkan aturan-aturan yang dipilih
+    foreach ($selectedRules as $criteriaId => $rules) {
+        foreach ($rules as $rule) {
+            $jenisId = $rule->jenis_kemasan_id;
+            $cf = $rule->cf;
+
+            if (!isset($jenisKemasanCF[$jenisId])) {
+                $jenisKemasanCF[$jenisId] = $cf;
+            } else {
+                $jenisKemasanCF[$jenisId] += $cf; // Operasi OR
+            }
+        }
+    }
+
+    // Mendapatkan jenis kemasan dengan nilai CF tertinggi
+    $selectedJenisKemasan = null;
+    $selectedCFValue = 0;
+
+    foreach ($jenisKemasanCF as $jenisKemasanId => $cfValue) {
+        if ($cfValue > $selectedCFValue) {
+            $selectedCFValue = $cfValue;
+            $selectedJenisKemasan = JenisKemasan::find($jenisKemasanId);
+        }
+    }
+
+    // Retrieve jenis kemasan data
+    $jenisKemasans = JenisKemasan::whereIn('id', array_keys($jenisKemasanCF))->get();
+
+    $berat_produk1 = $request->berat_produk1;
+    $berat_produk2 = $request->berat_produk2;
+
+    $dataPencarian = new DataPencarian();
+    $dataPencarian->nama_produk = $request->nama_produk;
+    $dataPencarian->berat_produk = $berat_produk1 . " " . $berat_produk2;
+    $dataPencarian->ukuran_produk = $request->ukuran_produk;
+    $dataPencarian->volume_produk = $request->volume_produk;
+    $dataPencarian->jenis_kemasan_id = $selectedJenisKemasan->id;
+    $dataPencarian->save();
+
+    return view('user.hasil_pencarian', [
+        'jenisKemasanCF' => $jenisKemasanCF,
+        'jenisKemasans' => $jenisKemasans,
+        'selectedJenisKemasan' => $selectedJenisKemasan,
+        'selectedCFValue' => $selectedCFValue,
+        'selectedCriteria' => KriteriaProduk::whereIn('id', $selectedCriteria)->get(), 
+    ]);
+}
 }
 
