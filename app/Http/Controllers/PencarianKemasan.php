@@ -34,7 +34,7 @@ class PencarianKemasan extends Controller
     $selectedCriteria = $request->input('criteria');
 
     if (count($selectedCriteria) < 10) {
-        return redirect()->route('pencarian')->with('error', 'Pilih minimal 10 kriteria.');
+        return redirect()->back()->with('error', 'Pilih minimal 10 kriteria.');
     }
 
     $this->validate($request, [

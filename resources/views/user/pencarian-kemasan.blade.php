@@ -94,7 +94,7 @@
                                 
                                 <div class="form-group col-md-12">
                                     <label>Kriteria Produk <code>***Minimal 10 kriteria</code></label>
-                                    <table id="table" class="table table-hover table-bordered mb-3" >
+                                    <table id="table" class="table table-hover table-bordered" >
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th class="text-white text-center">No</th>
@@ -117,7 +117,7 @@
                                         @endforeach
                                         </tbody>
                                     </table>
-                                    
+
                                     <br> <br>
                                     <div class="d-grid gap-2 d-md-flex justify-content-center">
                                         <button class="btn btn-primary" type="submit"><i class="fas fa-solid fa-magnifying-glass"></i>  Analisis</button>
