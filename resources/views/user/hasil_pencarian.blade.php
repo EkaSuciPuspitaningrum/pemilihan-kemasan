@@ -85,6 +85,8 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Jenis Kemasan</th>
+                                            <th>Jenis Kemasan</th>
+
                                         </tr>
                                     </thead>
                                     <?php
@@ -95,9 +97,12 @@
                                             <tr>
                                                 <td>{{ $i++ }}</td>
                                                 <td>{{ $jenisKemasan->jenis_kemasan }}</td>
+            <td>{{ $jenisKemasanCF[$jenisKemasan->id] }}</td> <!-- Display the CF value -->
+
                                             </tr>
                                         @endif
                                     @endforeach
+
                                 </table>
                             </div>
                         </div>

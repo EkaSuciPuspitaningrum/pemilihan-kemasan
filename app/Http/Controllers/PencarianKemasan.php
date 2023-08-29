@@ -33,14 +33,6 @@ class PencarianKemasan extends Controller
 {
     $selectedCriteria = $request->input('criteria');
 
-    if (count($selectedCriteria) < 10) {
-        return redirect()->back()->with('error', 'Pilih minimal 10 kriteria.');
-    }
-
-    $this->validate($request, [
-        'criteria' => 'required|array|min:10',
-    ]);
-
     $selectedRules = [];
 
     // Dapatkan aturan berdasarkan kriteria yang dipilih
@@ -54,6 +46,20 @@ class PencarianKemasan extends Controller
     $jenisKemasanCF = [];
 
     // Hitung kombinasi CF berdasarkan aturan-aturan yang dipilih
+    // foreach ($selectedRules as $criteriaId => $rules) {
+    //     foreach ($rules as $rule) {
+    //         $jenisId = $rule->jenis_kemasan_id;
+    //         $cf = $rule->cf;
+
+    //         if (!isset($jenisKemasanCF[$jenisId])) {
+    //             $jenisKemasanCF[$jenisId] = $cf;
+    //         } else {
+    //             $jenisKemasanCF[$jenisId] += $cf; // Operasi OR
+                
+    //         }
+    //     }
+    // }
+
     foreach ($selectedRules as $criteriaId => $rules) {
         foreach ($rules as $rule) {
             $jenisId = $rule->jenis_kemasan_id;
@@ -63,6 +69,8 @@ class PencarianKemasan extends Controller
                 $jenisKemasanCF[$jenisId] = $cf;
             } else {
                 $jenisKemasanCF[$jenisId] += $cf; // Operasi OR
+                // Gabungkan perhitungan CF berdasarkan rumus (2)
+                // $jenisKemasanCF[$jenisId] += $cf * (1 - $jenisKemasanCF[$jenisId]);
             }
         }
     }
